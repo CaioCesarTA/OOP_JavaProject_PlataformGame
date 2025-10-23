@@ -6,19 +6,19 @@ import Auxiliar.Consts;
 import Auxiliar.ControleMouse;
 import Auxiliar.ControleTeclado;
 import Auxiliar.Desenho;
+import Fases.Fase;
 import auxiliar.Posicao;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Tela extends javax.swing.JFrame implements Runnable {
 
-    private Player player;
-    private ArrayList<Personagem> faseAtual;
+    private Fase[] fases = new Fase[5];
+    private int faseAtual;
     private ControleDeJogo cj = new ControleDeJogo();
     private Graphics g2;
     private int cameraLinha = 0;
@@ -29,7 +29,12 @@ public class Tela extends javax.swing.JFrame implements Runnable {
     public Tela() {
         super();
         initComponents();
-        Desenho.setCenario(this);        
+        
+        Desenho.setCenario(this);
+        
+        faseAtual = 0;
+        fases[faseAtual] = new Fase();
+
         ControleTeclado controleTeclado = new ControleTeclado(this);
         ControleMouse controleMouse = new ControleMouse(this);
         this.addMouseListener(controleMouse);
@@ -39,12 +44,10 @@ public class Tela extends javax.swing.JFrame implements Runnable {
          /*Cria a janela do tamanho do tabuleiro + insets (bordas) da janela*/
         this.setSize(Consts.RES * Consts.CELL_SIDE + getInsets().left + getInsets().right,
                 Consts.RES * Consts.CELL_SIDE + getInsets().top + getInsets().bottom);
-
-        faseAtual = new ArrayList<Personagem>();
-
-        /*Cria faseAtual adiciona personagens*/
-        player = new Player("Robbo.png", 0, 7);
-        this.addPersonagem(player);
+        
+        Player player = new Player("Robbo.png", 0, 7);
+        fases[faseAtual].setPlayer(player);
+        
         this.atualizaCamera();
     }
 
@@ -89,15 +92,15 @@ public class Tela extends javax.swing.JFrame implements Runnable {
     }
 
     public boolean ehPosicaoValida(Posicao p) {
-        return cj.ehPosicaoValida(this.faseAtual, p);
+        return cj.ehPosicaoValida(fases[faseAtual].getInimigos(), p);
     }
 
     public void addPersonagem(Personagem umPersonagem) {
-        faseAtual.add(umPersonagem);
+        fases[faseAtual].addInimigo(umPersonagem);
     }
 
     public void removePersonagem(Personagem umPersonagem) {
-        faseAtual.remove(umPersonagem);
+        fases[faseAtual].removerInimigo(umPersonagem);
     }
 
     public Graphics getGraphicsBuffer() {
@@ -105,7 +108,7 @@ public class Tela extends javax.swing.JFrame implements Runnable {
     }
 
     @Override
-    public void paint(Graphics gOld) {
+    public void paint(Graphics gOld) {       
         Graphics g = this.getBufferStrategy().getDrawGraphics();
         /*Criamos um contexto gráfico*/
         g2 = g.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
@@ -130,33 +133,29 @@ public class Tela extends javax.swing.JFrame implements Runnable {
                 }
             }
         }
-        if (!this.faseAtual.isEmpty()) {
-            this.cj.desenhaTudo(faseAtual);
-            this.cj.processaTudo(faseAtual);
-        }
+        
+        cj.desenhaTudo(fases[faseAtual]);
+        cj.processaTudo(fases[faseAtual]);
+        
         
         g.dispose();
         g2.dispose();
         if (!getBufferStrategy().contentsLost()) {
             getBufferStrategy().show();
         }
-        setTitle("-> Cell: " + (player.getPosicao().getLinha()) + ", " + (player.getPosicao().getColuna()));
+        setTitle("-> Cell: " + (fases[faseAtual].getPlayer().getPosicao().getLinha()) + ", " + (fases[faseAtual].getPlayer().getPosicao().getColuna()));
     }
 
     private void atualizaCamera() {
-        int linha = player.getPosicao().getLinha();
-        int coluna = player.getPosicao().getColuna();
+        int linha = fases[faseAtual].getPlayer().getPosicao().getLinha();
+        int coluna = fases[faseAtual].getPlayer().getPosicao().getColuna();
 
         cameraLinha = Math.max(0, Math.min(linha - Consts.RES / 2, Consts.MUNDO_ALTURA - Consts.RES));
         cameraColuna = Math.max(0, Math.min(coluna - Consts.RES / 2, Consts.MUNDO_LARGURA - Consts.RES));
     }
 
     public Player getPlayer() {
-        return player;
-    }
-
-    public ArrayList<Personagem> getFaseAtual() {
-        return faseAtual;
+        return fases[faseAtual].getPlayer();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

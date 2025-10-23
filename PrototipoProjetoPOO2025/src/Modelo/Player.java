@@ -7,11 +7,10 @@ public class Player extends Personagem implements Serializable{
     public Player(String sNomeImagePNG, int linha, int coluna) {
         super(sNomeImagePNG,linha, coluna);
     }
-
+    
     public void voltaAUltimaPosicao(){
         this.pPosicao.volta();
     }
-    
     
     public boolean setPosicao(int linha, int coluna){
         if(this.pPosicao.setPosicao(linha, coluna)){
