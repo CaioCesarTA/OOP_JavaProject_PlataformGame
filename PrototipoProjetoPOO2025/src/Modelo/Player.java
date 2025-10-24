@@ -1,9 +1,8 @@
 package Modelo;
 
 import Auxiliar.Desenho;
-import java.io.Serializable;
 
-public class Player extends Personagem implements Serializable{
+public class Player extends Personagem {
     public Player(String sNomeImagePNG, int linha, int coluna) {
         super(sNomeImagePNG,linha, coluna);
     }
