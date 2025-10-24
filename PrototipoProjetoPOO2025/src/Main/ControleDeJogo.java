@@ -2,7 +2,7 @@ package Main;
 
 import Fases.Fase;
 import Modelo.Personagem;
-import auxiliar.Posicao;
+import Auxiliar.Posicao;
 import java.util.ArrayList;
 
 public class ControleDeJogo {
@@ -10,7 +10,7 @@ public class ControleDeJogo {
     public void desenhaTudo(Fase fase) {
         for (int i = 0; i < fase.getInimigos().size(); i++)
             fase.getInimigos().get(i).autoDesenho();
-        
+
         fase.getPlayer().autoDesenho();
     }
     

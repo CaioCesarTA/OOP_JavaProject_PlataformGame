@@ -7,7 +7,7 @@ import Auxiliar.ControleMouse;
 import Auxiliar.ControleTeclado;
 import Auxiliar.Desenho;
 import Fases.Fase;
-import auxiliar.Posicao;
+import Auxiliar.Posicao;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -108,13 +108,12 @@ public class Tela extends javax.swing.JFrame implements Runnable {
     }
 
     @Override
-    public void paint(Graphics gOld) {       
-        Graphics g = this.getBufferStrategy().getDrawGraphics();
-        /*Criamos um contexto gráfico*/
+    public void paint(Graphics g) {
+
+        g = this.getBufferStrategy().getDrawGraphics();
+
         g2 = g.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
-        /**
-         * ***********Desenha cenário de fundo*************
-         */
+
         for (int i = 0; i < Consts.RES; i++) {
             for (int j = 0; j < Consts.RES; j++) {
                 int mapaLinha = cameraLinha + i;
