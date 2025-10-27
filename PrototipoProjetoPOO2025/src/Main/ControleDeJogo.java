@@ -3,15 +3,17 @@ package Main;
 import Fases.Fase;
 import Modelo.Personagem;
 import Auxiliar.Posicao;
+
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class ControleDeJogo {
     
-    public void desenhaTudo(Fase fase) {
+    public void desenhaTudo(Graphics g, Fase fase) {
         for (int i = 0; i < fase.getInimigos().size(); i++)
-            fase.getInimigos().get(i).autoDesenho();
+            fase.getInimigos().get(i).autoDesenho(g);
 
-        fase.getPlayer().autoDesenho();
+        fase.getPlayer().autoDesenho(g);
     }
     
     public void processaTudo(Fase fase) {

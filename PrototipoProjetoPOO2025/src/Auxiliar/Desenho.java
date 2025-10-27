@@ -17,17 +17,13 @@ public class Desenho implements Serializable {
         return jCenario;
     }
 
-    public static Graphics getGraphicsDaTela() {
-        return jCenario.getGraphicsBuffer();
-    }
-
-    public static void desenhar(ImageIcon iImage, int iColuna, int iLinha) {
+    public static void desenhar(Graphics g, ImageIcon iImage, int iColuna, int iLinha) {
         int telaX = (iColuna - jCenario.getCameraColuna()) * Consts.CELL_SIDE;
         int telaY = (iLinha - jCenario.getCameraLinha()) * Consts.CELL_SIDE;
 
         if (telaX >= 0 && telaX < Consts.RES * Consts.CELL_SIDE
                 && telaY >= 0 && telaY < Consts.RES * Consts.CELL_SIDE) {
-            iImage.paintIcon(jCenario, getGraphicsDaTela(), telaX, telaY);
+            iImage.paintIcon(jCenario, g, telaX, telaY);
         }
     }
 

@@ -20,7 +20,6 @@ public class Tela extends javax.swing.JFrame implements Runnable {
     private Fase[] fases = new Fase[5];
     private int faseAtual;
     private ControleDeJogo cj = new ControleDeJogo();
-    private Graphics g2;
     private int cameraLinha = 0;
     private int cameraColuna = 0;
     
@@ -103,45 +102,31 @@ public class Tela extends javax.swing.JFrame implements Runnable {
         fases[faseAtual].removerInimigo(umPersonagem);
     }
 
-    public Graphics getGraphicsBuffer() {
-        return g2;
-    }
-
     @Override
     public void paint(Graphics g) {
+        g = g.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
+        Image newImage = null;
+        try {
+            newImage = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Consts.PATH + "bricks.png");
+        } catch (IOException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaCamera();
 
-        g = this.getBufferStrategy().getDrawGraphics();
-
-        g2 = g.create(getInsets().left, getInsets().top, getWidth() - getInsets().right, getHeight() - getInsets().top);
-
+        //TODO: Transformar esse loop em uma funcao fase[faseAtual].desenharFase
         for (int i = 0; i < Consts.RES; i++) {
             for (int j = 0; j < Consts.RES; j++) {
                 int mapaLinha = cameraLinha + i;
                 int mapaColuna = cameraColuna + j;
 
                 if (mapaLinha < Consts.MUNDO_ALTURA && mapaColuna < Consts.MUNDO_LARGURA) {
-                    try {
-                        Image newImage = Toolkit.getDefaultToolkit().getImage(
-                                new java.io.File(".").getCanonicalPath() + Consts.PATH + "bricks.png");
-                        g2.drawImage(newImage,
-                                j * Consts.CELL_SIDE, i * Consts.CELL_SIDE,
-                                Consts.CELL_SIDE, Consts.CELL_SIDE, null);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    g.drawImage(newImage,j * Consts.CELL_SIDE, i * Consts.CELL_SIDE,Consts.CELL_SIDE, Consts.CELL_SIDE, null);
                 }
             }
         }
-        
-        cj.desenhaTudo(fases[faseAtual]);
+        cj.desenhaTudo(g, fases[faseAtual]);
         cj.processaTudo(fases[faseAtual]);
-        
-        
-        g.dispose();
-        g2.dispose();
-        if (!getBufferStrategy().contentsLost()) {
-            getBufferStrategy().show();
-        }
+
         setTitle("-> Cell: " + (fases[faseAtual].getPlayer().getPosicao().getLinha()) + ", " + (fases[faseAtual].getPlayer().getPosicao().getColuna()));
     }
 
