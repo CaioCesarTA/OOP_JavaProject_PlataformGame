@@ -1,7 +1,6 @@
 package Modelo;
 
 import Auxiliar.Consts;
-import Auxiliar.Desenho;
 import Auxiliar.Posicao;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -51,8 +50,8 @@ public abstract class Personagem implements Serializable {
         this.bTransponivel = bTransponivel;
     }
 
-    public void autoDesenho(Graphics g){
-        Desenho.desenhar(g, this.iImage, this.pPosicao.getColuna(), this.pPosicao.getLinha());
+    public void autoDesenho(){
+        //Desenho.desenhar(this.iImage, this.pPosicao.getColuna(), this.pPosicao.getLinha());
     }
 
     public boolean setPosicao(int linha, int coluna) {

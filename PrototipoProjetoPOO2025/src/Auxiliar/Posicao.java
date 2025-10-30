@@ -2,7 +2,7 @@ package Auxiliar;
 
 import java.io.Serializable;
 
-public final class Posicao implements Serializable {
+public class Posicao implements Serializable {
     private int linha;
     private int coluna;
     
