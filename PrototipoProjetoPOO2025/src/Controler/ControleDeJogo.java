@@ -9,11 +9,11 @@ public class ControleDeJogo implements Runnable {
     
     private Janela janela;
     private Tela tela;
-    
+
     private Thread threadJogo;
     //Frames por segundo do jogo
     public static final int FPS = 120;
-    
+
     public ControleDeJogo(){
         inicializarClasses();
         //Cria janela e painel
@@ -23,19 +23,19 @@ public class ControleDeJogo implements Runnable {
         //Comeca o loop de jogo
         ComecarLoopJogo();
     }
-    
+
     private void inicializarClasses(){
     }
-    
+
     private void ComecarLoopJogo(){
         this.threadJogo = new Thread(this);
         this.threadJogo.start();
     }
-    
+
     public void processaTudo(){
-        //faseatual.atualizar
+        tela.getFaseAtual().atualizarFase();
     }
-    
+
     public void desenhaTudo(Graphics g){
         tela.getFaseAtual().desenharFase(g);
     }
@@ -71,23 +71,9 @@ public class ControleDeJogo implements Runnable {
             //Contador de FPS
             if(System.currentTimeMillis() - ultimaChecagem >= 1000) {
                 ultimaChecagem = System.currentTimeMillis();
-                //System.out.println("FPS: " + frames + "| UPS: " + updates);
+                System.out.println("FPS: " + frames);
                 frames = 0;
             }      
         }
-    }
-    
-    /*Retorna true se a posicao p é válida para Hero com relacao a todos os personagens no array*/
-    public boolean ehPosicaoValida(ArrayList<Personagem> umaFase, Posicao p) {
-        Personagem pIesimoPersonagem;
-        for (int i = 1; i < umaFase.size(); i++) {
-            pIesimoPersonagem = umaFase.get(i);
-            if (!pIesimoPersonagem.isbTransponivel()) {
-                if (pIesimoPersonagem.getPosicao().igual(p)) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

@@ -2,6 +2,8 @@ package Modelo;
 
 import Auxiliar.Consts;
 import Auxiliar.Posicao;
+import Controler.Fase;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -10,67 +12,47 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public abstract class Personagem implements Serializable {
-
-    protected ImageIcon iImage;
+    protected BufferedImage[][] imagens;
     protected Posicao pPosicao;
-    protected boolean bTransponivel; /*Pode passar por cima?*/
-    protected boolean bMortal;       /*Se encostar, morre?*/
+    protected boolean bTransponivel; 
+    protected boolean bMortal; 
+    //Controle da posicao
 
-    public boolean isbMortal() {
-        return bMortal;
-    }
-    protected Personagem(String sNomeImagePNG, int linha, int coluna) {
-        this.pPosicao = new Posicao(1, 1);
-        this.bTransponivel = true;
-        this.bMortal = false;
-        try {
-            iImage = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + sNomeImagePNG);
-            Image img = iImage.getImage();
-            BufferedImage bi = new BufferedImage(Consts.CELL_SIDE, Consts.CELL_SIDE, BufferedImage.TYPE_INT_ARGB);
-            Graphics g = bi.createGraphics();
-            g.drawImage(img, 0, 0, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
-            iImage = new ImageIcon(bi);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+    protected Fase fase;
+    //Controle de animacoes
+    protected int animation_tick = 0;
+    protected int animation_index = 0;
+    protected int animation_speed = 15; //8 animacoes por segundo e 120 FPS => 15 frames por animacao
+    //Controle das acoes do personagem
+    int acaoAtual; 
+    boolean atacando;
+
+    public abstract int getQtdSprites(int id_acao);
+
+    protected abstract void carregarAnimacoes();
+    
+    protected abstract void atualizarPosicao();
+
+    public abstract void desenharPersonagem(Graphics g);
+    
+    protected abstract void atualizarAcaoAtual();
+
+    protected void atualizarTickAnimacao(){
+        animation_tick++;
+        if(animation_tick >= animation_speed){
+            animation_tick = 0;
+            animation_index++;
+            if(animation_index >= getQtdSprites(acaoAtual)){
+                animation_index = 0;
+                atacando = false;
+            }
         }
-        this.setPosicao(linha, coluna);
     }
 
-    public Posicao getPosicao() {
-        /*TODO: Retirar este método para que objetos externos nao possam operar
-         diretamente sobre a posição do Personagem*/
-        return pPosicao;
+    public void atualizarPersonagem(){
+        atualizarAcaoAtual();
+        atualizarPosicao();
+        atualizarTickAnimacao();
     }
-
-    public boolean isbTransponivel() {
-        return bTransponivel;
-    }
-
-    public void setbTransponivel(boolean bTransponivel) {
-        this.bTransponivel = bTransponivel;
-    }
-
-    public void autoDesenho(){
-        //Desenho.desenhar(this.iImage, this.pPosicao.getColuna(), this.pPosicao.getLinha());
-    }
-
-    public boolean setPosicao(int linha, int coluna) {
-        return pPosicao.setPosicao(linha, coluna);
-    }
-
-    public boolean moveUp() {
-        return this.pPosicao.moveUp();
-    }
-
-    public boolean moveDown() {
-        return this.pPosicao.moveDown();
-    }
-
-    public boolean moveRight() {
-        return this.pPosicao.moveRight();
-    }
-
-    public boolean moveLeft() {
-        return this.pPosicao.moveLeft();
-    }
+    
 }

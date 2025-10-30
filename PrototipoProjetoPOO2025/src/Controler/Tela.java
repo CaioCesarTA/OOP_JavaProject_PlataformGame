@@ -33,10 +33,6 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         cj.desenhaTudo(g);
     }
     
-    public boolean ehPosicaoValida(Posicao p){
-        return cj.ehPosicaoValida(fases[faseAtual].getInimigos(), p);
-    }
-
     public int getCameraLinha() {
         return cameraLinha;
     }
@@ -49,42 +45,6 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         return fases[faseAtual];
     }
     
-    /*
-    private void atualizaCamera() {
-        int linha = hero.getPosicao().getLinha();
-        int coluna = hero.getPosicao().getColuna();
-
-        cameraLinha = Math.max(0, Math.min(linha - Consts.RES / 2, Consts.MUNDO_ALTURA - Consts.RES));
-        cameraColuna = Math.max(0, Math.min(coluna - Consts.RES / 2, Consts.MUNDO_LARGURA - Consts.RES));
-    }
-
-
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("POO2023-1 - Skooter");
-        setAlwaysOnTop(true);
-        setAutoRequestFocus(false);
-        setResizable(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 561, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
-*/
-
     @Override
     public void mouseClicked(MouseEvent e) {
     }

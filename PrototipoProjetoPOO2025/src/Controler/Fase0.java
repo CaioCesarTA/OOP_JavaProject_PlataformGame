@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 public class Fase0 extends Fase {
     
     public Fase0(){
+        super();
         carregarImagens();
         carregarInfoNivel();
     }

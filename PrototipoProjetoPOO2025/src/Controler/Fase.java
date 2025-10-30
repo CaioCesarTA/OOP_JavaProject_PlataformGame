@@ -17,6 +17,7 @@ public abstract class Fase {
     protected BufferedImage[] imagens;
     
     public Fase(){
+        this.player = new Hero();
     }
     
     public static BufferedImage importarImagem(String nome_da_imagem) { 
@@ -30,6 +31,10 @@ public abstract class Fase {
     }
     
     protected abstract void carregarImagens();
+
+    public void atualizarFase(){
+        player.atualizarPersonagem();
+    }
     
     protected void desenharFase(Graphics g) {
         for(int i=0;i<infoCenario[0].length;i++){
@@ -37,6 +42,7 @@ public abstract class Fase {
                 g.drawImage(imagens[infoCenario[i][j]], j*32, i*32, 32, 32, null);
             }
         }
+        player.desenharPersonagem(g);
     }
 
     public ArrayList<Personagem> getInimigos() {
