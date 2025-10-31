@@ -25,8 +25,9 @@ public abstract class Fase {
         try {
             imagem = ImageIO.read(new File(new java.io.File(".").getCanonicalPath() + Consts.PATH + nome_da_imagem));
         } catch (IOException ex) {
-            System.getLogger(Fase.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
+        System.err.println("Erro ao importar imagem: " + nome_da_imagem);
+        ex.printStackTrace();
+    }
         return imagem;
     }
     
