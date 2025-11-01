@@ -7,8 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import java.awt.Graphics;
-import java.awt.Dimension;
-import Auxiliar.Posicao;
 
 public class Tela extends JPanel implements MouseListener, KeyListener {
 

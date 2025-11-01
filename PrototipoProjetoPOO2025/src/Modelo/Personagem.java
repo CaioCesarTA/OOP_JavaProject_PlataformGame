@@ -1,6 +1,5 @@
 package Modelo;
 
-import Auxiliar.Consts;
 import Auxiliar.Direcao;
 import Auxiliar.Posicao;
 import Controler.Fase;
@@ -22,12 +21,11 @@ public abstract class Personagem implements Serializable {
     protected float gravidade = 0.07f;
     protected float velocidadePulo = -3.75f;
     protected float velocidadeQuedaPosColisao = 0.5f;
-
     //Controle de animacoes
     protected BufferedImage[][] imagens;
     protected int animation_tick = 0;
     protected int animation_index = 0;
-    protected int animation_speed = 15; //8 animacoes por segundo e 120 FPS => 15 frames por animacao
+    protected int animation_speed = 10;
     protected int flipX = 0;
     protected int flipW = 1;
     //Controle das acoes do personagem
@@ -43,7 +41,7 @@ public abstract class Personagem implements Serializable {
     public Personagem(Fase fase) {
         this.fase = fase;
         direcao = new Direcao();
-        posicao = new Posicao(100,100,fase);
+        posicao = new Posicao(100,100);
     }
 
     protected abstract void inicializarHitbox();

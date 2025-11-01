@@ -1,10 +1,7 @@
 package Controler;
 
 import Auxiliar.Consts;
-import Auxiliar.Posicao;
-import Modelo.Personagem;
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 public class ControleDeJogo implements Runnable {
     

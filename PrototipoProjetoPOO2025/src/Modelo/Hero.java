@@ -1,9 +1,6 @@
 package Modelo;
 
-import Auxiliar.Posicao;
 import Controler.Fase;
-import Controler.Tela;
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
