@@ -45,8 +45,8 @@ public abstract class Fase {
         for(int i=0; i<background.length;i++){
             g.drawImage(background[i],0,0,Consts.CELL_SIDE*Consts.MUNDO_LARGURA, Consts.CELL_SIDE*Consts.MUNDO_ALTURA,null);
         }
-        for (int i = 0; i < infoCenario[0].length; i++) {
-            for (int j = 0; j < infoCenario.length; j++) {
+        for (int i = 0; i < infoCenario.length; i++) {
+            for (int j = 0; j < infoCenario[0].length; j++) {
                 g.drawImage(tileset[infoCenario[i][j]], j * Consts.CELL_SIDE, i * Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
             }
         }

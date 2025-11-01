@@ -19,8 +19,9 @@ public abstract class Personagem implements Serializable {
     protected Fase fase;
     protected float velocidadeX = 0.75f;
     protected float velocidadeAr = 0;
-    protected float gravidade = 0.04f;
-    protected float velocidadePulo = -2.25f;
+    protected float gravidade = 0.07f;
+    protected float velocidadePulo = -3.75f;
+    protected float velocidadeQuedaPosColisao = 0.5f;
 
     //Controle de animacoes
     protected BufferedImage[][] imagens;
@@ -45,7 +46,7 @@ public abstract class Personagem implements Serializable {
         posicao = new Posicao(100,100,fase);
     }
 
-    protected abstract void incializarHitbox();
+    protected abstract void inicializarHitbox();
 
     public abstract int getQtdSprites(int id_acao);
 
@@ -107,32 +108,29 @@ public abstract class Personagem implements Serializable {
                 velocidadeAr = 0;
                 pulando = false;
             }
-
+            else velocidadeAr = velocidadeQuedaPosColisao;
         }
+        if(isPersonagemNoChao())
+            pulando = false;
 
     }
 
     protected boolean isPersonagemNoChao(){
         //Checar pixel inferior esquerdo e inferior direito
-        if(!fase.isSolido(hitbox.x,hitbox.y+hitbox.height+1)){
-            if(!fase.isSolido(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)){
+        if(!fase.isSolido(hitbox.x,hitbox.y+hitbox.height+1)
+           && !fase.isSolido(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)){
                 return false;
-            }
         }
         return true;
     }
 
     public boolean isPosValida(float x, float y){
-        if(!fase.isSolido(x,y)){
-            if(!fase.isSolido(x+hitbox.width,y+hitbox.height)){
-                if(!fase.isSolido(x+hitbox.width,y)){
-                    if(!fase.isSolido(x,y+hitbox.height)){
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return     !fase.isSolido(x, y)
+                && !fase.isSolido(x + hitbox.width, y + hitbox.height)
+                && !fase.isSolido(x + hitbox.width, y)
+                && !fase.isSolido(x, y + hitbox.height)
+                && !fase.isSolido(x, y + hitbox.height / 2)
+                && !fase.isSolido(x + hitbox.width, y + hitbox.height / 2);
     }
 
     public Posicao getPosicao(){

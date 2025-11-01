@@ -22,11 +22,11 @@ public class Hero extends Personagem implements Serializable{
     public Hero(Fase fase){
         super(fase);
         carregarAnimacoes();
-        incializarHitbox();
+        inicializarHitbox();
     }
 
-    protected final void incializarHitbox(){
-        hitbox = new Rectangle2D.Float(posicao.getX(),posicao.getY(),22,64);
+    protected final void inicializarHitbox(){
+        hitbox = new Rectangle2D.Float(posicao.getX(),posicao.getY(),22,63);
     }
 
     @Override
@@ -142,7 +142,6 @@ public class Hero extends Personagem implements Serializable{
 
         if (socando)
             acaoAtual = SOCANDO;
-
 
         if(acaoInicial != acaoAtual)
             resetAniTick();
