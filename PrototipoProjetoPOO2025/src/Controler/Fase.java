@@ -5,6 +5,7 @@ import Modelo.Hero;
 import Modelo.Personagem;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.image.ComponentSampleModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,33 +15,39 @@ public abstract class Fase {
     protected ArrayList<Personagem> inimigos;
     protected Hero player;
     protected int[][] infoCenario;
-    protected BufferedImage[] imagens;
-    
-    public Fase(){
-        this.player = new Hero();
+    protected BufferedImage[] tileset;
+    protected BufferedImage[] background;
+
+    public Fase() {
+        this.player = new Hero(this);
     }
-    
-    public static BufferedImage importarImagem(String nome_da_imagem) { 
+
+    public abstract boolean isSolido(float x, float y);
+
+    public static BufferedImage importarImagem(String nome_da_imagem) {
         BufferedImage imagem = null;
         try {
             imagem = ImageIO.read(new File(new java.io.File(".").getCanonicalPath() + Consts.PATH + nome_da_imagem));
         } catch (IOException ex) {
-        System.err.println("Erro ao importar imagem: " + nome_da_imagem);
-        ex.printStackTrace();
-    }
+            System.err.println("Erro ao importar imagem: " + nome_da_imagem);
+            ex.printStackTrace();
+        }
         return imagem;
     }
-    
+
     protected abstract void carregarImagens();
 
-    public void atualizarFase(){
+    public void atualizarFase() {
         player.atualizarPersonagem();
     }
-    
+
     protected void desenharFase(Graphics g) {
-        for(int i=0;i<infoCenario[0].length;i++){
-            for(int j=0;j<infoCenario.length;j++){
-                g.drawImage(imagens[infoCenario[i][j]], j*32, i*32, 32, 32, null);
+        for(int i=0; i<background.length;i++){
+            g.drawImage(background[i],0,0,Consts.CELL_SIDE*Consts.MUNDO_LARGURA, Consts.CELL_SIDE*Consts.MUNDO_ALTURA,null);
+        }
+        for (int i = 0; i < infoCenario[0].length; i++) {
+            for (int j = 0; j < infoCenario.length; j++) {
+                g.drawImage(tileset[infoCenario[i][j]], j * Consts.CELL_SIDE, i * Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
             }
         }
         player.desenharPersonagem(g);
@@ -49,7 +56,8 @@ public abstract class Fase {
     public ArrayList<Personagem> getInimigos() {
         return inimigos;
     }
-    
-    
-    
+
+    public Hero getPlayer() {
+        return player;
+    }
 }

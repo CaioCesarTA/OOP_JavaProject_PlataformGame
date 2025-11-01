@@ -1,65 +1,29 @@
 package Auxiliar;
 
+import Controler.Fase;
+import com.sun.source.doctree.HiddenTree;
+
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 public class Posicao implements Serializable {
-    private int linha;
-    private int coluna;
-    
-    private int linhaAnterior;
-    private int colunaAnterior;
+    //Posicao
+    private float x;
+    private float y;
+    private Fase fase;
 
-    public Posicao(int linha, int coluna) {
-        this.setPosicao(linha, coluna);
+    public Posicao(float x, float y, Fase fase) {
+        this.fase = fase;
+        this.x = x;
+        this.y = y;
     }
 
-    public boolean setPosicao(int linha, int coluna) {
-        if (linha < 0 || linha >= Auxiliar.Consts.MUNDO_ALTURA)
-            return false;
-        linhaAnterior = this.linha;
-        this.linha = linha;
-
-        if (coluna < 0 || coluna >= Auxiliar.Consts.MUNDO_LARGURA)
-            return false;
-        colunaAnterior = this.coluna;
-        this.coluna = coluna;
-
-        return true;
+    public float getX() {
+        return x;
     }
 
-    public int getLinha() {
-        return linha;
+    public float getY() {
+        return y;
     }
 
-    public boolean volta() {
-        return this.setPosicao(linhaAnterior, colunaAnterior);
-    }
-
-    public int getColuna() {
-        return coluna;
-    }
-
-    public boolean igual(Posicao posicao) {
-        return (linha == posicao.getLinha() && coluna == posicao.getColuna());
-    }
-
-    public boolean copia(Posicao posicao) {
-        return this.setPosicao(posicao.getLinha(), posicao.getColuna());
-    }
-
-    public boolean moveUp() {
-        return this.setPosicao(this.getLinha() - 1, this.getColuna());
-    }
-
-    public boolean moveDown() {
-        return this.setPosicao(this.getLinha() + 1, this.getColuna());
-    }
-
-    public boolean moveRight() {
-        return this.setPosicao(this.getLinha(), this.getColuna() + 1);
-    }
-
-    public boolean moveLeft() {
-        return this.setPosicao(this.getLinha(), this.getColuna() - 1);
-    }
 }

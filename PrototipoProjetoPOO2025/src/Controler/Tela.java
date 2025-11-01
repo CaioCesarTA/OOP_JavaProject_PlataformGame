@@ -20,8 +20,11 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
     
     public Tela(ControleDeJogo cj) {
         this.cj = cj;
-        //Configura o tamanho do painel
-        this.setPreferredSize(new Dimension(32*Consts.RES,32*Consts.RES));
+        setFocusable(true);
+        requestFocusInWindow();
+        setPreferredSize(Consts.RES); //Configura o tamanho do painel
+        addKeyListener(this);
+        addMouseListener(this);
         faseAtual = 0;
         fases = new Fase[10];
         fases[0] = new Fase0();
@@ -71,11 +74,41 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+                fases[faseAtual].getPlayer().getDirecao().setEsquerda(true);
+                break;
+            case KeyEvent.VK_D:
+                fases[faseAtual].getPlayer().getDirecao().setDireita(true);
+                break;
+            case KeyEvent.VK_W:
+                fases[faseAtual].getPlayer().setPulando(true);
+                break;
+            case KeyEvent.VK_SHIFT:
+                fases[faseAtual].getPlayer().setCorrendo(true);
+                break;
+            case KeyEvent.VK_F:
+                fases[faseAtual].getPlayer().setSocando(true);
+                break;
+            case KeyEvent.VK_SPACE:
+                fases[faseAtual].getPlayer().setAtirando(true);
+                break;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+                fases[faseAtual].getPlayer().getDirecao().setEsquerda(false);
+                break;
+            case KeyEvent.VK_D:
+                fases[faseAtual].getPlayer().getDirecao().setDireita(false);
+                break;
+            case KeyEvent.VK_SHIFT:
+                fases[faseAtual].getPlayer().setCorrendo(false);
+                break;
+        }
     }
-
 
 }

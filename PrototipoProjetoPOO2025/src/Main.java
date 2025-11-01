@@ -6,4 +6,3 @@ public class Main {
         ControleDeJogo jogo = new ControleDeJogo();
     }
 }
-

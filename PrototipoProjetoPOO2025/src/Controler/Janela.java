@@ -11,5 +11,6 @@ public class Janela extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null); //Faz a janela aparecer no meio da tela
         this.setVisible(true);
+
     }
 }

@@ -1,5 +1,6 @@
 package Controler;
 
+import Auxiliar.Consts;
 import Auxiliar.Posicao;
 import Modelo.Personagem;
 import java.awt.Graphics;
@@ -11,8 +12,6 @@ public class ControleDeJogo implements Runnable {
     private Tela tela;
 
     private Thread threadJogo;
-    //Frames por segundo do jogo
-    public static final int FPS = 120;
 
     public ControleDeJogo(){
         inicializarClasses();
@@ -42,12 +41,12 @@ public class ControleDeJogo implements Runnable {
 
     @Override
     public void run() {
-        //Nanossegundos por frame
-        double tempoPorFrame = 1000000000.0 / FPS;
+        double umSegundo = 1000000000.0; //um segundo em nanossegundos
+        double tempoPorFrame = umSegundo / Consts.FPS; // nanossegundos por frame
         
         //Inicializa contadores de tempo
-        long ultimoTempo = System.nanoTime();
-        long tempoAtual;
+        long ultimaAtualizacao = System.nanoTime();
+        long agora;
         long ultimaChecagem = System.currentTimeMillis();
         
         //Contadores de frame
@@ -55,10 +54,10 @@ public class ControleDeJogo implements Runnable {
         double deltaFrame = 0;
         
         while(true){
-            tempoAtual = System.nanoTime();
+            agora = System.nanoTime();
 
-            deltaFrame += (tempoAtual - ultimoTempo)/tempoPorFrame;
-            ultimoTempo = tempoAtual;
+            deltaFrame += (agora - ultimaAtualizacao)/tempoPorFrame;
+            ultimaAtualizacao = agora;
             
             
             if(deltaFrame >= 1){
