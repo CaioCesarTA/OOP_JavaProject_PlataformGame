@@ -27,6 +27,7 @@ public class ControleDeJogo implements Runnable {
     }
 
     public void desenhaTudo(Graphics g){
+        tela.getFaseAtual().desenharCenario(g);
         tela.getFaseAtual().desenharFase(g);
     }
 

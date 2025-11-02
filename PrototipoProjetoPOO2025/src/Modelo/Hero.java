@@ -15,9 +15,9 @@ public class Hero extends Personagem {
     public static final int ATIRANDO = 5;
     public static final int ANDANDO = 6;
 
-    public Hero(Fase fase){
+    public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase);
-        posicaoInicial.setPosicao(160, 416);
+        posicaoInicial.setPosicao(xInicial, yInicial);
         carregarAnimacoes();
         inicializarHitbox();
     }
@@ -28,7 +28,7 @@ public class Hero extends Personagem {
     }
 
     @Override
-    public void desenharPersonagem(Graphics g) {
+    public void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY) {
         int posXimg = (int)(hitbox.x) + flipX - 48;
         int posYimg = (int)(hitbox.y) - 64;
         int larguraImg = 128 * flipW;
@@ -78,7 +78,7 @@ public class Hero extends Personagem {
 
     @Override
     protected final void carregarAnimacoes() {
-        BufferedImage temp = Fase.importarImagem("agent/agent.png");
+        BufferedImage temp = Fase.importarImagem("hero/hero.png");
         this.imagens = new BufferedImage[7][10];
         for(int i=0;i<7;i++){
             for(int j=0;j<10;j++){
@@ -150,6 +150,10 @@ public class Hero extends Personagem {
 
         if(acaoInicial != acaoAtual)
             resetAniTick();
+    }
+
+    public Rectangle2D.Float getHitbox(){
+        return hitbox;
     }
 
 }

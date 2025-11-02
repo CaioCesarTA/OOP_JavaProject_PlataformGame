@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public abstract class Personagem implements Serializable {
     protected boolean bTransponivel;
-    protected boolean bMortal; 
+    protected boolean bMortal;
     //Controle da posicao
     protected Posicao posicaoInicial;
     protected Direcao direcao;
@@ -19,7 +19,7 @@ public abstract class Personagem implements Serializable {
     protected float velocidadeX = 0.75f;
     protected float velocidadeAr = 0;
     protected float gravidade = 0.07f;
-    protected float velocidadePulo = -3.75f;
+    protected float velocidadePulo = -4.75f;
     protected float velocidadeQuedaPosColisao = 0.5f;
     //Controle de animacoes
     protected BufferedImage[][] imagens;
@@ -141,5 +141,15 @@ public abstract class Personagem implements Serializable {
     public void resetarPosicao(){
         hitbox.x = posicaoInicial.getX();
         hitbox.y = posicaoInicial.getY();
+    }
+
+    public void resetarPersonagem(){
+        resetAniTick();
+        resetarPosicao();
+        acaoAtual = 0;
+        pulando = false;
+        atirando = false;
+        socando = false;
+        correndo = false;
     }
 }

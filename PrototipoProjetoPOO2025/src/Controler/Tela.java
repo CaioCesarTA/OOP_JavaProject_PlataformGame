@@ -3,6 +3,8 @@ package Controler;
 import Fases.Fase0;
 import Fases.Fase;
 import Auxiliar.Consts;
+import Modelo.Projetil;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -12,11 +14,9 @@ import java.awt.Graphics;
 
 public class Tela extends JPanel implements MouseListener, KeyListener {
 
-    private ControleDeJogo cj;   
-    private int cameraLinha = 0;
-    private int cameraColuna = 0;
+    private ControleDeJogo cj;
     private Fase[] fases;
-    private int faseAtual;
+    private int IDfaseAtual;
     
     public Tela(ControleDeJogo cj) {
         this.cj = cj;
@@ -25,7 +25,7 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         setPreferredSize(Consts.RES); //Configura o tamanho do painel
         addKeyListener(this);
         addMouseListener(this);
-        faseAtual = 0;
+        IDfaseAtual = 0;
         fases = new Fase[10];
         fases[0] = new Fase0();
     }
@@ -35,17 +35,9 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         super.paintComponent(g);
         cj.desenhaTudo(g);
     }
-    
-    public int getCameraLinha() {
-        return cameraLinha;
-    }
-
-    public int getCameraColuna() {
-        return cameraColuna;
-    }
 
     public Fase getFaseAtual() {
-        return fases[faseAtual];
+        return fases[IDfaseAtual];
     }
     
     @Override
@@ -76,26 +68,26 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_A:
-                fases[faseAtual].getPlayer().getDirecao().setEsquerda(true);
+                fases[IDfaseAtual].getPlayer().getDirecao().setEsquerda(true);
                 break;
             case KeyEvent.VK_D:
-                fases[faseAtual].getPlayer().getDirecao().setDireita(true);
+                fases[IDfaseAtual].getPlayer().getDirecao().setDireita(true);
                 break;
             case KeyEvent.VK_W:
-                fases[faseAtual].getPlayer().setPulando(true);
+                fases[IDfaseAtual].getPlayer().setPulando(true);
                 break;
             case KeyEvent.VK_SHIFT:
-                fases[faseAtual].getPlayer().setCorrendo(true);
+                fases[IDfaseAtual].getPlayer().setCorrendo(true);
                 break;
             case KeyEvent.VK_F:
-                fases[faseAtual].getPlayer().setSocando(true);
+                fases[IDfaseAtual].getPlayer().setSocando(true);
                 break;
             case KeyEvent.VK_SPACE:
-                fases[faseAtual].getPlayer().setAtirando(true);
+                fases[IDfaseAtual].getPlayer().setAtirando(true);
+                getFaseAtual().addProjetil(new Projetil(getFaseAtual(),getFaseAtual().getPlayer().getHitbox().x+40,getFaseAtual().getPlayer().getHitbox().y+20));
                 break;
             case KeyEvent.VK_R:
-                //TODO: quando tiver inimigos e etc, isso vira fases[faseAtual].resetarFase()
-                fases[faseAtual].getPlayer().resetarPosicao();
+                fases[IDfaseAtual].resetarFase();
                 break;
         }
     }
@@ -104,13 +96,13 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_A:
-                fases[faseAtual].getPlayer().getDirecao().setEsquerda(false);
+                fases[IDfaseAtual].getPlayer().getDirecao().setEsquerda(false);
                 break;
             case KeyEvent.VK_D:
-                fases[faseAtual].getPlayer().getDirecao().setDireita(false);
+                fases[IDfaseAtual].getPlayer().getDirecao().setDireita(false);
                 break;
             case KeyEvent.VK_SHIFT:
-                fases[faseAtual].getPlayer().setCorrendo(false);
+                fases[IDfaseAtual].getPlayer().setCorrendo(false);
                 break;
         }
     }
