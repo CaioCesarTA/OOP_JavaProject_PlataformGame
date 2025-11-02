@@ -1,6 +1,6 @@
 package Modelo;
 
-import Controler.Fase;
+import Fases.Fase;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;

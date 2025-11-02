@@ -3,7 +3,6 @@ package Auxiliar;
 import java.io.Serializable;
 
 public class Posicao implements Serializable {
-    //Posicao
     private float x;
     private float y;
 

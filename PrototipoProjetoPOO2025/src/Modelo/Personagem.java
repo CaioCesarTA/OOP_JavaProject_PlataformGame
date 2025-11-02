@@ -2,7 +2,7 @@ package Modelo;
 
 import Auxiliar.Direcao;
 import Auxiliar.Posicao;
-import Controler.Fase;
+import Fases.Fase;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

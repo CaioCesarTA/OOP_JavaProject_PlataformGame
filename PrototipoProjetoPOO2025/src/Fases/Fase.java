@@ -1,4 +1,4 @@
-package Controler;
+package Fases;
 
 import Auxiliar.Consts;
 import Modelo.Hero;
@@ -40,7 +40,7 @@ public abstract class Fase {
         player.atualizarPersonagem();
     }
 
-    protected void desenharFase(Graphics g) {
+    public void desenharFase(Graphics g) {
         for(int i=0; i<background.length;i++){
             g.drawImage(background[i],0,0,Consts.CELL_SIDE*Consts.MUNDO_LARGURA, Consts.CELL_SIDE*Consts.MUNDO_ALTURA,null);
         }

@@ -1,5 +1,7 @@
 package Controler;
 
+import Fases.Fase0;
+import Fases.Fase;
 import Auxiliar.Consts;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
