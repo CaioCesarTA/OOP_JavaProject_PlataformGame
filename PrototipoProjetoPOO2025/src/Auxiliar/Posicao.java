@@ -12,6 +12,11 @@ public class Posicao implements Serializable {
         this.y = y;
     }
 
+    public void setPosicao(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+
     public float getX() {
         return x;
     }

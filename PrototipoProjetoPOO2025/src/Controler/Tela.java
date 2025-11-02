@@ -91,6 +91,10 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
             case KeyEvent.VK_SPACE:
                 fases[faseAtual].getPlayer().setAtirando(true);
                 break;
+            case KeyEvent.VK_R:
+                //TODO: quando tiver inimigos e etc, isso vira fases[faseAtual].resetarFase()
+                fases[faseAtual].getPlayer().resetarPosicao();
+                break;
         }
     }
 

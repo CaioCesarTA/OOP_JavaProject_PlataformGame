@@ -11,15 +11,10 @@ public class ControleDeJogo implements Runnable {
     private Thread threadJogo;
 
     public ControleDeJogo(){
-        inicializarClasses();
-        //Cria janela e painel
         tela = new Tela(this);
         janela = new Janela(tela);
         janela.setVisible(true);
         tela.requestFocus();
-    }
-
-    private void inicializarClasses(){
     }
 
     public void ComecarLoopJogo(){

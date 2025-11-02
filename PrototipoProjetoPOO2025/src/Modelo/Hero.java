@@ -17,13 +17,14 @@ public class Hero extends Personagem {
 
     public Hero(Fase fase){
         super(fase);
+        posicaoInicial.setPosicao(160, 416);
         carregarAnimacoes();
         inicializarHitbox();
     }
 
     @Override
     protected final void inicializarHitbox(){
-        hitbox = new Rectangle2D.Float(posicao.getX(),posicao.getY(),22,63);
+        hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),22,63);
     }
 
     @Override

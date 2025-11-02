@@ -13,7 +13,7 @@ public abstract class Personagem implements Serializable {
     protected boolean bTransponivel;
     protected boolean bMortal; 
     //Controle da posicao
-    protected Posicao posicao;
+    protected Posicao posicaoInicial;
     protected Direcao direcao;
     protected Fase fase;
     protected float velocidadeX = 0.75f;
@@ -41,7 +41,7 @@ public abstract class Personagem implements Serializable {
     public Personagem(Fase fase) {
         this.fase = fase;
         direcao = new Direcao();
-        posicao = new Posicao(100,100);
+        posicaoInicial = new Posicao(100,100);
     }
 
     protected abstract void inicializarHitbox();
@@ -131,8 +131,8 @@ public abstract class Personagem implements Serializable {
                 && !fase.isSolido(x + hitbox.width, y + hitbox.height / 2);
     }
 
-    public Posicao getPosicao(){
-        return posicao;
+    public Posicao getPosicaoInicial(){
+        return posicaoInicial;
     }
 
     public Direcao getDirecao(){
@@ -141,5 +141,10 @@ public abstract class Personagem implements Serializable {
 
     public void setPulando(boolean pulando){
         this.pulando = pulando;
+    }
+
+    public void resetarPosicao(){
+        hitbox.x = posicaoInicial.getX();
+        hitbox.y = posicaoInicial.getY();
     }
 }
