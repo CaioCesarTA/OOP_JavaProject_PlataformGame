@@ -36,9 +36,9 @@ public class Hero extends Personagem {
 
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
-        g.drawImage(imagemAtual, posXimg, posYimg, larguraImg, alturaImg, null);
-        //g.setColor(Color.BLUE);
-        //g.drawRect((int)hitbox.x,(int)hitbox.y,(int)hitbox.width,(int)hitbox.height);
+        g.drawImage(imagemAtual, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
+        g.setColor(Color.BLUE);
+        g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
     }
 
     @Override

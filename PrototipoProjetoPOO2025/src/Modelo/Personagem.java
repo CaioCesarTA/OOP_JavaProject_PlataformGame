@@ -54,7 +54,7 @@ public abstract class Personagem implements Serializable {
 
     protected abstract void atualizarPosicao();
 
-    public abstract void desenharPersonagem(Graphics g);
+    public abstract void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY);
 
     protected void atualizarTickAnimacao(){
         animation_tick++;

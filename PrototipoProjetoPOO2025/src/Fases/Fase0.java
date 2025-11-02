@@ -19,9 +19,9 @@ public class Fase0 extends Fase {
 
     @Override
     protected final void carregarImagens() {
-        BufferedImage temp = importarImagem("terreno/tiles_level0/1_Industrial_Tileset_1.png");
-        tileset = new BufferedImage[24];
-        for(int j=0;j<4;j++){
+        BufferedImage temp = importarImagem("terreno/tiles_level0/Nivel0_Tileset.png");
+        tileset = new BufferedImage[54];
+        for(int j=0;j<9;j++){
             for(int i=0;i<6;i++){
                 int indice = j*6 + i;
                 tileset[indice] = temp.getSubimage(i*Consts.CELL_SIDE, j*Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE);
@@ -58,7 +58,7 @@ public class Fase0 extends Fase {
     
     protected final void carregarInfoNivel(){
         BufferedImage temp = importarImagem("terreno/tiles_level0/infoNivel0.png");
-        infoCenario = new int[22][200];
+        infoCenario = new int[alturaFase][larguraFase];
         for(int i=0;i<temp.getHeight();i++){
             for(int j=0;j<temp.getWidth();j++){
                 Color cor = new Color(temp.getRGB(j,i));

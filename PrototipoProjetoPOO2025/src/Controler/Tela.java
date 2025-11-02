@@ -39,7 +39,7 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
     public Fase getFaseAtual() {
         return fases[IDfaseAtual];
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
