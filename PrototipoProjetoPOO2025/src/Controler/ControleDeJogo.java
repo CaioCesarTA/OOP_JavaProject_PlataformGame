@@ -15,15 +15,14 @@ public class ControleDeJogo implements Runnable {
         //Cria janela e painel
         tela = new Tela(this);
         janela = new Janela(tela);
+        janela.setVisible(true);
         tela.requestFocus();
-        //Comeca o loop de jogo
-        ComecarLoopJogo();
     }
 
     private void inicializarClasses(){
     }
 
-    private void ComecarLoopJogo(){
+    public void ComecarLoopJogo(){
         this.threadJogo = new Thread(this);
         this.threadJogo.start();
     }
@@ -44,32 +43,31 @@ public class ControleDeJogo implements Runnable {
         //Inicializa contadores de tempo
         long ultimaAtualizacao = System.nanoTime();
         long agora;
-        long ultimaChecagem = System.currentTimeMillis();
+        long ultimaChecagem = System.nanoTime(); //usado para verificar quantos quadros foram gerados em um segundo
         
         //Contadores de frame
         int frames = 0;
-        double deltaFrame = 0;
+        double deltaTempo = 0;
         
         while(true){
             agora = System.nanoTime();
 
-            deltaFrame += (agora - ultimaAtualizacao)/tempoPorFrame;
+            deltaTempo += (agora - ultimaAtualizacao)/tempoPorFrame;
             ultimaAtualizacao = agora;
             
-            
-            if(deltaFrame >= 1){
+            if(deltaTempo >= 1){
                 processaTudo();
                 tela.repaint();
                 frames++;
-                deltaFrame--;
+                deltaTempo--;
             }
             
             //Contador de FPS
-            if(System.currentTimeMillis() - ultimaChecagem >= 1000) {
-                ultimaChecagem = System.currentTimeMillis();
+            if(agora - ultimaChecagem >= umSegundo) {
+                ultimaChecagem = agora;
                 System.out.println("FPS: " + frames);
                 frames = 0;
-            }      
+            }
         }
     }
 }

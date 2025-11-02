@@ -5,7 +5,6 @@ import Modelo.Hero;
 import Modelo.Personagem;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.image.ComponentSampleModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

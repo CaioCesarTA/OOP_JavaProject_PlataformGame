@@ -4,9 +4,8 @@ import Controler.Fase;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
-public class Hero extends Personagem implements Serializable{
+public class Hero extends Personagem {
     //ID das animacoes do HERO
     public static final int SOCANDO = 0;
     public static final int MORRENDO = 1;
@@ -22,6 +21,7 @@ public class Hero extends Personagem implements Serializable{
         inicializarHitbox();
     }
 
+    @Override
     protected final void inicializarHitbox(){
         hitbox = new Rectangle2D.Float(posicao.getX(),posicao.getY(),22,63);
     }
@@ -76,8 +76,8 @@ public class Hero extends Personagem implements Serializable{
     }
 
     @Override
-    protected void carregarAnimacoes() {
-        BufferedImage temp = fase.importarImagem("agent/agent.png");
+    protected final void carregarAnimacoes() {
+        BufferedImage temp = Fase.importarImagem("agent/agent.png");
         this.imagens = new BufferedImage[7][10];
         for(int i=0;i<7;i++){
             for(int j=0;j<10;j++){
@@ -85,6 +85,7 @@ public class Hero extends Personagem implements Serializable{
             }
         }
     }
+    
     public void setCorrendo(boolean correndo){
         this.correndo = correndo;
     }
