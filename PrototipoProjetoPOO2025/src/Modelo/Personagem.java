@@ -94,6 +94,8 @@ public abstract class Personagem implements Serializable {
         }
         else noAr = true;
 
+        if(noAr) pulando = false;
+
         if (pulando && !noAr) velocidadeAr = velocidadePulo;
 
         if(isPosValida(hitbox.x,hitbox.y+velocidadeAr)){
@@ -104,9 +106,9 @@ public abstract class Personagem implements Serializable {
             if(velocidadeAr > 0){
                 noAr = false;
                 velocidadeAr = 0;
-                pulando = false;
             }
             else velocidadeAr = velocidadeQuedaPosColisao;
+            pulando = false;
         }
         if(isPersonagemNoChao())
             pulando = false;

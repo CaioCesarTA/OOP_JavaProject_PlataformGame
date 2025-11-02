@@ -37,8 +37,8 @@ public class Hero extends Personagem {
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
         g.drawImage(imagemAtual, posXimg, posYimg, larguraImg, alturaImg, null);
-        g.setColor(Color.BLUE);
-        g.drawRect((int)hitbox.x,(int)hitbox.y,(int)hitbox.width,(int)hitbox.height);
+        //g.setColor(Color.BLUE);
+        //g.drawRect((int)hitbox.x,(int)hitbox.y,(int)hitbox.width,(int)hitbox.height);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class Hero extends Personagem {
         if (acaoAtual == ANDANDO && correndo)
             acaoAtual = CORRENDO;
 
-        if (pulando)
+        if (noAr || pulando)
             acaoAtual = PULANDO;
 
         if (atirando)
