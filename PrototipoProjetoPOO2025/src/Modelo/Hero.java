@@ -66,7 +66,7 @@ public class Hero extends Personagem {
         animation_tick++;
         if(animation_tick >= animation_speed){
             animation_tick = 0;
-            animation_index++;
+            if(velocidadeAr<=0.5) animation_index++; //nao atualiza a animacao se estiver caindo
             if(animation_index >= getQtdSprites(acaoAtual)){
                 animation_index = 0;
                 if(atirando) atirando = false;
@@ -101,6 +101,11 @@ public class Hero extends Personagem {
 
     @Override
     protected void atualizarPosicao() {
+        
+        atualizarPosicaoY();
+
+        if(atirando || socando) return;
+
         float vx = velocidadeX;
         if(correndo) vx *= 2;
 
@@ -116,7 +121,6 @@ public class Hero extends Personagem {
             flipW = 1;
         }
 
-        atualizarPosicaoY();
     }
 
     @Override
@@ -136,11 +140,13 @@ public class Hero extends Personagem {
         if (noAr || pulando)
             acaoAtual = PULANDO;
 
-        if (atirando)
+        if (atirando && !noAr)
             acaoAtual = ATIRANDO;
+        if (atirando && noAr) atirando = false;
 
-        if (socando)
+        if (socando && !noAr)
             acaoAtual = SOCANDO;
+        if (socando && noAr) socando = false;
 
         if(acaoInicial != acaoAtual)
             resetAniTick();

@@ -88,10 +88,7 @@ public abstract class Personagem implements Serializable {
 
     protected void atualizarPosicaoY(){
         //Verifica se o personagem esta no chao
-        if(isPersonagemNoChao()) {
-            velocidadeAr = 0;
-            noAr = false;
-        }
+        if(isPersonagemNoChao()) noAr = false;
         else noAr = true;
 
         if(noAr) pulando = false;
@@ -108,11 +105,7 @@ public abstract class Personagem implements Serializable {
                 velocidadeAr = 0;
             }
             else velocidadeAr = velocidadeQuedaPosColisao;
-            pulando = false;
         }
-        if(isPersonagemNoChao())
-            pulando = false;
-
     }
 
     protected boolean isPersonagemNoChao(){
