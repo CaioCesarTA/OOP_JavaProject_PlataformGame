@@ -151,5 +151,7 @@ public abstract class Personagem implements Serializable {
         atirando = false;
         socando = false;
         correndo = false;
+        flipX = 0;
+        flipW = 1;
     }
 }

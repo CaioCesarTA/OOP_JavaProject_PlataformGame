@@ -81,8 +81,8 @@ public abstract class Fase {
     }
 
     public void desenharFase(Graphics g) {
-        player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
         portal.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+        player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
         if(!projeteis.isEmpty()) {
             for(Projetil p : projeteis){
                 p.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);

@@ -24,6 +24,7 @@ public class ControleDeJogo implements Runnable {
 
     public void processaTudo(){
         tela.getFaseAtual().atualizarFase();
+        janela.setTitle("x: " + (int)tela.getFaseAtual().getPlayer().getHitbox().x + ", y: " + (int)tela.getFaseAtual().getPlayer().getHitbox().y);
     }
 
     public void desenhaTudo(Graphics g){

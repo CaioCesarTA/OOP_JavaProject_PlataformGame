@@ -12,7 +12,7 @@ public class Fase0 extends Fase {
     public Fase0(){
         super(140,32);
         player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 10*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
+        portal = new Portal(this, 2400, 96);
         carregarImagens();
         carregarInfoNivel();
     }

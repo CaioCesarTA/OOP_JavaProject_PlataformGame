@@ -14,6 +14,7 @@ public class Portal extends Personagem {
 
     public Portal(Fase fase, float xInicial, float yInicial) {
         super(fase);
+        animation_speed = 15;
         posicaoInicial.setPosicao(xInicial, yInicial);
         acaoAtual = PARADO;
         carregarAnimacoes();
@@ -54,9 +55,9 @@ public class Portal extends Personagem {
 
     @Override
     public void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        int posXimg = (int)(hitbox.x) - 48;
+        int posXimg = (int)(hitbox.x) - 48 + 128;
         int posYimg = (int)(hitbox.y) - 48;
-        int larguraImg = 128;
+        int larguraImg = 128 * -1;
         int alturaImg = 128;
 
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
