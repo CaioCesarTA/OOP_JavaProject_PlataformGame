@@ -20,7 +20,7 @@ public abstract class Fase {
     protected Portal portal;
     protected int[][] infoCenario;
     protected BufferedImage[] tileset;
-    protected BufferedImage[] background;
+    protected BufferedImage background;
     //Controle da camera
     protected int cameraOffsetX = 0;
     protected int bordaCameraEsquerda = (int)(0.5 * Consts.MUNDO_LARGURA * Consts.CELL_SIDE);
@@ -70,9 +70,8 @@ public abstract class Fase {
     }
 
     public void desenharCenario(Graphics g){
-        for(int i=0; i<background.length;i++){
-            g.drawImage(background[i],0,0,Consts.CELL_SIDE*Consts.MUNDO_LARGURA, Consts.CELL_SIDE*Consts.MUNDO_ALTURA,null);
-        }
+        g.drawImage(background,0,0,Consts.CELL_SIDE*Consts.MUNDO_LARGURA, Consts.CELL_SIDE*Consts.MUNDO_ALTURA,null);
+        
         for (int i = 0; i < infoCenario.length; i++) {
             for (int j = 0; j < infoCenario[0].length; j++) {
                 g.drawImage(tileset[infoCenario[i][j]], j * Consts.CELL_SIDE - cameraOffsetX, i * Consts.CELL_SIDE - cameraOffsetY, Consts.CELL_SIDE, Consts.CELL_SIDE, null);

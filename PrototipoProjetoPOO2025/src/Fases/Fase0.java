@@ -19,7 +19,7 @@ public class Fase0 extends Fase {
 
     @Override
     protected final void carregarImagens() {
-        BufferedImage temp = importarImagem("terreno/tiles_level0/Nivel0_Tileset.png");
+        BufferedImage temp = importarImagem("fases/fase1/tilesetFase1.png");
         tileset = new BufferedImage[54];
         for(int j=0;j<9;j++){
             for(int i=0;i<6;i++){
@@ -27,17 +27,7 @@ public class Fase0 extends Fase {
                 tileset[indice] = temp.getSubimage(i*Consts.CELL_SIDE, j*Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE);
             }
         }
-        background = new BufferedImage[5];
-        temp = importarImagem("background/level0/1.png");
-        background[0] = temp;
-        temp = importarImagem("background/level0/2.png");
-        background[1] = temp;
-        temp = importarImagem("background/level0/3.png");
-        background[2] = temp;
-        temp = importarImagem("background/level0/4.png");
-        background[3] = temp;
-        temp = importarImagem("background/level0/5.png");
-        background[4] = temp;
+        background = importarImagem("fases/fase1/bgFase1.png");
     }
 
     public boolean isSolido(float x, float y){
@@ -57,7 +47,7 @@ public class Fase0 extends Fase {
     }
     
     protected final void carregarInfoNivel(){
-        BufferedImage temp = importarImagem("terreno/tiles_level0/infoNivel0.png");
+        BufferedImage temp = importarImagem("fases/fase1/infoFase1.png");
         infoCenario = new int[alturaFase][larguraFase];
         for(int i=0;i<temp.getHeight();i++){
             for(int j=0;j<temp.getWidth();j++){
