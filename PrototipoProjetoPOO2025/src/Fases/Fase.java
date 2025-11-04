@@ -100,7 +100,6 @@ public abstract class Fase {
 
     public void desenharFase(Graphics g) {
         portal.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
-        player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
         //Cria uma copia do array antes de desenhar para evitar percorrer o array enquanto o modifica
         ArrayList<Projetil> copiaProjeteis = new ArrayList<>(projeteis);
         if(!copiaProjeteis.isEmpty()) {
@@ -115,6 +114,7 @@ public abstract class Fase {
                 i.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
             }
         }
+        player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
     }
 
     public void resetarFase(){
