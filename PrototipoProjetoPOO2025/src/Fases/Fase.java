@@ -11,11 +11,20 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 
 public abstract class Fase {
-    protected ArrayList<Personagem> inimigos;
-    protected ArrayList<Projetil> projeteis;
+    protected ArrayList<Personagem> inimigos = new ArrayList<Personagem>();
+    //Arrays de "buffer" para evitar alteracoes no array de inimigos enquanto ele é percorrido:
+    protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<Personagem>();  
+    protected ArrayList<Personagem> inimigosParaAdicionar = new ArrayList<Personagem>();
+
+    protected ArrayList<Projetil> projeteis = new ArrayList<Projetil>();
+    //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
+    protected ArrayList<Projetil> projeteisParaRemover = new ArrayList<Projetil>();  
+    protected ArrayList<Projetil> projeteisParaAdicionar = new ArrayList<Projetil>();
+
     protected Hero player;
     protected Portal portal;
     protected int[][] infoCenario;
@@ -35,8 +44,6 @@ public abstract class Fase {
     protected int maxCameraOffsetY;
 
     public Fase(int larguraFase, int alturaFase) {
-        projeteis = new ArrayList<Projetil>();
-        inimigos = new ArrayList<Personagem>();
         this.larguraFase = larguraFase;
         this.alturaFase = alturaFase;
         maxCameraOffsetX = (larguraFase - Consts.MUNDO_LARGURA) * Consts.CELL_SIDE;
@@ -62,11 +69,21 @@ public abstract class Fase {
         player.atualizarPersonagem();
         portal.atualizarPersonagem();
         checarPlayerNaBorda();
+        //Atualiza inimigos
+        if(!inimigos.isEmpty()) {
+            for(Personagem i : inimigos) {
+                i.atualizarPersonagem();
+            }
+        }
+        //Atualiza projeteis
         if(!projeteis.isEmpty()) {
             for(Projetil p : projeteis) {
                 p.atualizarPersonagem();
             }
         }
+        //adiciona e remove projeteis e inimigos do array
+        atualizarArrayProjeteis(); 
+        atualizarArrayInimigos();
     }
 
     public void desenharCenario(Graphics g){
@@ -82,12 +99,20 @@ public abstract class Fase {
     public void desenharFase(Graphics g) {
         portal.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
         player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
-        if(!projeteis.isEmpty()) {
-            for(Projetil p : projeteis){
+        //Cria uma copia do array antes de desenhar para evitar percorrer o array enquanto o modifica
+        ArrayList<Projetil> copiaProjeteis = new ArrayList<>(projeteis);
+        if(!copiaProjeteis.isEmpty()) {
+            for(Projetil p : copiaProjeteis){
                 p.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
             }
         }
-
+        //Cria uma copia do array antes de desenhar para evitar percorrer o array enquanto o modifica
+        ArrayList<Personagem> copiaInimigos = new ArrayList<>(inimigos);
+        if(!copiaInimigos.isEmpty()) {
+            for(Personagem i : copiaInimigos){
+                i.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+            }
+        }
     }
 
     public void resetarFase(){
@@ -144,14 +169,32 @@ public abstract class Fase {
     }
 
     public void addProjetil(Projetil projetil){
-        projeteis.add(projetil);
+        projeteisParaAdicionar.add(projetil);
     }
 
-    public void removerProjetil(){
-        projeteis.remove(0);
+    public void removerProjetil(Projetil projetil){
+        projeteisParaRemover.add(projetil);
+    }
+
+    protected void atualizarArrayProjeteis(){
+        projeteis.removeAll(projeteisParaRemover);
+        projeteisParaRemover.clear();
+        projeteis.addAll(projeteisParaAdicionar);
+        projeteisParaAdicionar.clear();
     }
 
     public void addInimigo(Personagem inimigo){
-        inimigos.add(inimigo);
+        inimigosParaAdicionar.add(inimigo);
+    }
+
+    public void removerInimigo(Personagem inimigo){
+        inimigosParaRemover.add(inimigo);
+    }
+
+    protected void atualizarArrayInimigos(){
+        inimigos.removeAll(inimigosParaRemover);
+        inimigosParaRemover.clear();
+        inimigos.addAll(inimigosParaAdicionar);
+        inimigosParaAdicionar.clear();
     }
 }

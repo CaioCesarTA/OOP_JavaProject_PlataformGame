@@ -7,9 +7,9 @@ import Modelo.Portal;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Fase0 extends Fase {
+public class Fase1 extends Fase {
     
-    public Fase0(){
+    public Fase1(){
         super(140,32);
         player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
         portal = new Portal(this, 2400, 96);
@@ -57,6 +57,4 @@ public class Fase0 extends Fase {
             }
         }
     }
-    
-    
 }

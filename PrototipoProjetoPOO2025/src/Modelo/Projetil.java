@@ -41,7 +41,7 @@ public class Projetil extends Personagem{
         float posicaoAnterior = hitbox.x;
         atualizarPosicaoX(velocidadeProjetil);
         float novaPosicao = hitbox.x;
-        //if(posicaoAnterior == novaPosicao) fase.removerProjetil();
+        if(posicaoAnterior == novaPosicao) fase.removerProjetil(this);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package Controler;
 
-import Fases.Fase0;
+import Fases.Fase1;
 import Fases.Fase;
 import Auxiliar.Consts;
 import Modelo.Projetil;
@@ -27,7 +27,7 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         addMouseListener(this);
         IDfaseAtual = 0;
         fases = new Fase[10];
-        fases[0] = new Fase0();
+        fases[0] = new Fase1();
     }
     
     @Override
