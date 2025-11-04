@@ -11,8 +11,7 @@ public class Projetil extends Personagem{
     BufferedImage imagemProjetil;
 
     public Projetil(Fase fase, float xInicial, float yInicial) {
-        super(fase);
-        posicaoInicial.setPosicao(xInicial, yInicial);
+        super(fase, xInicial, yInicial);
         carregarAnimacoes();
         inicializarHitbox();
     }

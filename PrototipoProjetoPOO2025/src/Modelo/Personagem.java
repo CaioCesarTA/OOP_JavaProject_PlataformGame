@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 public abstract class Personagem implements Serializable {
-    protected boolean bTransponivel;
-    protected boolean bMortal;
+    protected boolean transponivel = false;
+    protected boolean mortal = true;
     //Controle da posicao
     protected Posicao posicaoInicial;
     protected Direcao direcao;
@@ -38,10 +38,10 @@ public abstract class Personagem implements Serializable {
     //Hitbox
     protected Rectangle2D.Float hitbox;
 
-    public Personagem(Fase fase) {
+    public Personagem(Fase fase, float xInicial, float yInicial) {
+        posicaoInicial = new Posicao(xInicial,yInicial);
         this.fase = fase;
         direcao = new Direcao();
-        posicaoInicial = new Posicao(100,100);
     }
 
     protected abstract void inicializarHitbox();
@@ -154,4 +154,13 @@ public abstract class Personagem implements Serializable {
         flipX = 0;
         flipW = 1;
     }
+
+    public Rectangle2D.Float getHitbox(){
+        return hitbox;
+    }
+
+    public boolean getTransponivel(){
+        return transponivel;
+    }
+
 }

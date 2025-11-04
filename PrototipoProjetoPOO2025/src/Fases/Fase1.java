@@ -2,6 +2,7 @@ package Fases;
 
 import Auxiliar.Consts;
 import Modelo.Hero;
+import Modelo.Personagem;
 import Modelo.Portal;
 
 import java.awt.*;
@@ -11,10 +12,15 @@ public class Fase1 extends Fase {
     
     public Fase1(){
         super(140,32);
-        player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 2400, 96);
         carregarImagens();
         carregarInfoNivel();
+        adicionarPersonagens();
+    }
+
+    protected void adicionarPersonagens(){
+        player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
+        portal = new Portal(this, 2400, 96);
+        addInimigo(new Portal(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
     }
 
     @Override
@@ -42,7 +48,13 @@ public class Fase1 extends Fase {
                 sprite != 11 && sprite<24) {
             return true;
         }
-        //if (sprite<24 && sp) return true;
+
+        for(Personagem i : inimigos){
+            if(!i.getTransponivel()){
+                if(i.getHitbox().contains(x,y)) return true;
+            }
+        }
+
         return false;
     }
     

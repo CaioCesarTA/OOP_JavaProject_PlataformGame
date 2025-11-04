@@ -16,8 +16,7 @@ public class Hero extends Personagem {
     public static final int ANDANDO = 6;
 
     public Hero(Fase fase, float xInicial, float yInicial) {
-        super(fase);
-        posicaoInicial.setPosicao(xInicial, yInicial);
+        super(fase, xInicial, yInicial);
         carregarAnimacoes();
         inicializarHitbox();
     }
@@ -150,10 +149,6 @@ public class Hero extends Personagem {
 
         if(acaoInicial != acaoAtual)
             resetAniTick();
-    }
-
-    public Rectangle2D.Float getHitbox(){
-        return hitbox;
     }
 
 }

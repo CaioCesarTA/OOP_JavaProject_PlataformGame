@@ -63,6 +63,8 @@ public abstract class Fase {
         return imagem;
     }
 
+    protected abstract void adicionarPersonagens();
+
     protected abstract void carregarImagens();
 
     public void atualizarFase() {

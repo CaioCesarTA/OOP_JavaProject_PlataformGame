@@ -13,10 +13,11 @@ public class Portal extends Personagem {
     public static final int FECHANDO = 2;
 
     public Portal(Fase fase, float xInicial, float yInicial) {
-        super(fase);
+        super(fase, xInicial, yInicial);
         animation_speed = 15;
-        posicaoInicial.setPosicao(xInicial, yInicial);
         acaoAtual = PARADO;
+        mortal = false;
+        transponivel = true;
         carregarAnimacoes();
         inicializarHitbox();
     }
