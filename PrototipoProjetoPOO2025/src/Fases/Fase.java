@@ -38,8 +38,8 @@ public abstract class Fase {
     protected int maxCameraOffsetX;
 
     protected int cameraOffsetY = 0;
-    protected int bordaCameraSuperior = (int)(0.2 * Consts.MUNDO_ALTURA * Consts.CELL_SIDE);
-    protected int bordaCameraInferior = (int)(0.8 * Consts.MUNDO_ALTURA * Consts.CELL_SIDE);
+    protected int bordaCameraSuperior = (int)(0.5 * Consts.MUNDO_ALTURA * Consts.CELL_SIDE);
+    protected int bordaCameraInferior = (int)(0.5 * Consts.MUNDO_ALTURA * Consts.CELL_SIDE);
     protected int alturaFase;
     protected int maxCameraOffsetY;
 

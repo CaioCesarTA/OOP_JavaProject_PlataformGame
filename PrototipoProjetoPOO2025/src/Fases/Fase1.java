@@ -19,7 +19,7 @@ public class Fase1 extends Fase {
 
     protected void adicionarPersonagens(){
         player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 2400, 96);
+        portal = new Portal(this, 4000, 384);
         addInimigo(new Portal(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
     }
 
@@ -37,8 +37,8 @@ public class Fase1 extends Fase {
     }
 
     public boolean isSolido(float x, float y){
-        if(x<0 || x>(larguraFase*Consts.CELL_SIDE)) return true;
-        if(y<0 || y>(alturaFase*Consts.CELL_SIDE)) return true;
+        if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
+        if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;
         int sprite = infoCenario[(int)(y/Consts.CELL_SIDE)][(int)(x/Consts.CELL_SIDE)];
 
         if (sprite != 13 &&
