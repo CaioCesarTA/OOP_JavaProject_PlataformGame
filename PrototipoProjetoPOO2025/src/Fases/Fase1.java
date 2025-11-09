@@ -12,14 +12,14 @@ public class Fase1 extends Fase {
     
     public Fase1(){
         super(140,32);
+        player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
+        portal = new Portal(this, 4000, 384);
         carregarImagens();
         carregarInfoNivel();
         adicionarPersonagens();
     }
 
     protected void adicionarPersonagens(){
-        player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 4000, 384);
         addInimigo(new Portal(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
     }
 

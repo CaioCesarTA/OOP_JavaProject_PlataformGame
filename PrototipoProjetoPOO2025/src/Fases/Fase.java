@@ -118,6 +118,16 @@ public abstract class Fase {
     }
 
     public void resetarFase(){
+        inimigos.clear();
+        inimigosParaAdicionar.clear();
+        inimigosParaRemover.clear();
+
+        projeteis.clear();
+        projeteisParaAdicionar.clear();
+        projeteisParaRemover.clear();
+
+        adicionarPersonagens();
+        portal.resetarPersonagem();
         player.resetarPersonagem();
     }
 

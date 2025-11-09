@@ -37,9 +37,20 @@ public class Projetil extends Personagem{
 
     @Override
     protected void atualizarPosicao() {
+        //Detecta colisao com inimigos
+        for(Personagem i : fase.getInimigos()){
+            if(i.getHitbox().contains(hitbox.x+hitbox.width+velocidadeProjetil,hitbox.y)
+            || i.getHitbox().contains(hitbox.x+velocidadeProjetil,hitbox.y)){
+                fase.removerInimigo(i);
+                fase.removerProjetil(this);
+                return;
+            }
+        }
+        //Detecta colisao com paredes
         float posicaoAnterior = hitbox.x;
         atualizarPosicaoX(velocidadeProjetil);
         float novaPosicao = hitbox.x;
+        
         if(posicaoAnterior == novaPosicao) fase.removerProjetil(this);
     }
 
