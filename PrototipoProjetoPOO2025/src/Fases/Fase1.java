@@ -1,9 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
-import Modelo.Hero;
-import Modelo.Personagem;
-import Modelo.Portal;
+import Modelo.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +18,7 @@ public class Fase1 extends Fase {
     }
 
     protected void adicionarPersonagens(){
-        addInimigo(new Portal(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
+        addInimigo(new Biker(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
     }
 
     @Override
@@ -47,12 +45,6 @@ public class Fase1 extends Fase {
                 sprite != 10 &&
                 sprite != 11 && sprite<24) {
             return true;
-        }
-
-        for(Personagem i : inimigos){
-            if(!i.getTransponivel()){
-                if(i.getHitbox().contains(x,y)) return true;
-            }
         }
 
         return false;

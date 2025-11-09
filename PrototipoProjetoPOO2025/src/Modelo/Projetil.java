@@ -3,7 +3,6 @@ package Modelo;
 import Fases.Fase;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Projetil extends Personagem{
@@ -13,12 +12,7 @@ public class Projetil extends Personagem{
     public Projetil(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         carregarAnimacoes();
-        inicializarHitbox();
-    }
-
-    @Override
-    protected void inicializarHitbox() {
-        hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),6,5);
+        inicializarHitbox(6,5);
     }
 
     @Override
@@ -39,11 +33,14 @@ public class Projetil extends Personagem{
     protected void atualizarPosicao() {
         //Detecta colisao com inimigos
         for(Personagem i : fase.getInimigos()){
-            if(i.getHitbox().contains(hitbox.x+hitbox.width+velocidadeProjetil,hitbox.y)
-            || i.getHitbox().contains(hitbox.x+velocidadeProjetil,hitbox.y)){
-                fase.removerInimigo(i);
-                fase.removerProjetil(this);
-                return;
+            if(i.isMortal()){
+                if(i.getHitbox().contains(hitbox.x+hitbox.width+velocidadeProjetil,hitbox.y)
+                    || i.getHitbox().contains(hitbox.x+velocidadeProjetil,hitbox.y))
+                {
+                    fase.removerInimigo(i);
+                    fase.removerProjetil(this);
+                    return;
+                }
             }
         }
         //Detecta colisao com paredes

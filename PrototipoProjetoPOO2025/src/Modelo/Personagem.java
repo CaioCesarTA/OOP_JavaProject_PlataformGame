@@ -44,7 +44,9 @@ public abstract class Personagem implements Serializable {
         direcao = new Direcao();
     }
 
-    protected abstract void inicializarHitbox();
+    protected final void inicializarHitbox(int largura, int altura){
+        hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
+    }
 
     public abstract int getQtdSprites(int id_acao);
 
@@ -118,12 +120,28 @@ public abstract class Personagem implements Serializable {
     }
 
     public boolean isPosValida(float x, float y){
-        return     !fase.isSolido(x, y)
-                && !fase.isSolido(x + hitbox.width, y + hitbox.height)
-                && !fase.isSolido(x + hitbox.width, y)
-                && !fase.isSolido(x, y + hitbox.height)
-                && !fase.isSolido(x, y + hitbox.height / 2)
-                && !fase.isSolido(x + hitbox.width, y + hitbox.height / 2);
+        //Checa colisao com o cenario
+        if(    fase.isSolido(x, y)
+            || fase.isSolido(x + hitbox.width, y + hitbox.height)
+            || fase.isSolido(x + hitbox.width, y)
+            || fase.isSolido(x, y + hitbox.height)
+            || fase.isSolido(x, y + hitbox.height / 2)
+            || fase.isSolido(x + hitbox.width, y + hitbox.height / 2)) return false;
+
+        Rectangle2D.Float hitboxFutura = new Rectangle2D.Float(x,y,hitbox.width,hitbox.height);
+
+        //Checa colisao com player, se o personagem nao for Hero
+        if(!this.equals(fase.getPlayer()) && hitboxFutura.intersects(fase.getPlayer().getHitbox())) return false;
+
+        //Checa colisao com outros personagens da fase
+        for(Personagem i : fase.getInimigos()){
+            if(!i.isTransponivel()){
+                if(!this.equals(i) && hitboxFutura.intersects(i.getHitbox())) return false;
+            }
+        }
+
+        //Se passou em todos os testes, a posicao eh valida
+        return true;
     }
 
     public Posicao getPosicaoInicial(){
@@ -159,8 +177,12 @@ public abstract class Personagem implements Serializable {
         return hitbox;
     }
 
-    public boolean getTransponivel(){
+    public boolean isTransponivel(){
         return transponivel;
+    }
+
+    public boolean isMortal(){
+        return mortal;
     }
 
 }

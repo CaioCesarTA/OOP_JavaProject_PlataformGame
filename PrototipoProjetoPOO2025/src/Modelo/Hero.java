@@ -2,7 +2,6 @@ package Modelo;
 
 import Fases.Fase;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Hero extends Personagem {
@@ -18,12 +17,7 @@ public class Hero extends Personagem {
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         carregarAnimacoes();
-        inicializarHitbox();
-    }
-
-    @Override
-    protected final void inicializarHitbox(){
-        hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),22,63);
+        inicializarHitbox(22,63);
     }
 
     @Override

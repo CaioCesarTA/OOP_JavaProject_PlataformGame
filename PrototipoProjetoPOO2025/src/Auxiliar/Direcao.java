@@ -25,4 +25,17 @@ public class Direcao {
         this.esquerda = esquerda;
     }
 
+    public void inverterDirecaoAtual(){
+        if((direita && esquerda) || (!direita && !esquerda)) return;
+        
+        if(direita){
+            direita = false;
+            esquerda = true;
+        } 
+        else if(esquerda){
+            esquerda = false;
+            direita = true;
+        }
+    }
+
 }

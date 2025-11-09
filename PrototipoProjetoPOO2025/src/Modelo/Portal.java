@@ -3,7 +3,6 @@ package Modelo;
 import Fases.Fase;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Portal extends Personagem {
@@ -19,12 +18,7 @@ public class Portal extends Personagem {
         mortal = false;
         transponivel = true;
         carregarAnimacoes();
-        inicializarHitbox();
-    }
-
-    @Override
-    protected void inicializarHitbox() {
-        hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),32,64);
+        inicializarHitbox(32,64);
     }
 
     @Override
@@ -42,7 +36,6 @@ public class Portal extends Personagem {
                 imagens[i][j] = temp.getSubimage(j*64, i*64, 64, 64);
             }
         }
-
     }
 
     @Override
