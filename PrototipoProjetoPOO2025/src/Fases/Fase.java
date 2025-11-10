@@ -209,4 +209,16 @@ public abstract class Fase {
         inimigos.addAll(inimigosParaAdicionar);
         inimigosParaAdicionar.clear();
     }
+
+    public int getCameraOffsetX(){
+        return cameraOffsetX;
+    }
+
+    public int getCameraOffsetY(){
+        return cameraOffsetY;
+    }
+
+    public Personagem getPortal(){
+        return portal;
+    }
 }

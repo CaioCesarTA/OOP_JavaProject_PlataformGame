@@ -26,8 +26,12 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
         addKeyListener(this);
         addMouseListener(this);
         IDfaseAtual = 0;
-        fases = new Fase[10];
+        fases = new Fase[5];
         fases[0] = new Fase1();
+        fases[1] = new Fase1();
+        fases[2] = new Fase1();
+        fases[3] = new Fase1();
+        fases[4] = new Fase1();
     }
     
     @Override
@@ -38,6 +42,24 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
 
     public Fase getFaseAtual() {
         return fases[IDfaseAtual];
+    }
+
+    public int getIDFaseAtual() {
+        return IDfaseAtual;
+    }
+
+    public void avancarFase() {
+        if(IDfaseAtual<4) {
+            IDfaseAtual++;
+            fases[IDfaseAtual].resetarFase();
+        }
+    }
+
+    private void voltarFase(){
+        if(IDfaseAtual>0) {
+            IDfaseAtual--;
+            fases[IDfaseAtual].resetarFase();
+        }
     }
 
     @Override
@@ -88,6 +110,12 @@ public class Tela extends JPanel implements MouseListener, KeyListener {
                 break;
             case KeyEvent.VK_R:
                 fases[IDfaseAtual].resetarFase();
+                break;
+            case KeyEvent.VK_P:
+                avancarFase();
+                break;
+            case KeyEvent.VK_O:
+                voltarFase();
                 break;
         }
     }

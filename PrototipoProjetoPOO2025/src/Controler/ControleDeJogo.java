@@ -7,7 +7,6 @@ public class ControleDeJogo implements Runnable {
     
     private Janela janela;
     private Tela tela;
-
     private Thread threadJogo;
 
     public ControleDeJogo(){
@@ -24,7 +23,15 @@ public class ControleDeJogo implements Runnable {
 
     public void processaTudo(){
         tela.getFaseAtual().atualizarFase();
-        janela.setTitle("x: " + (int)tela.getFaseAtual().getPlayer().getHitbox().x + ", y: " + (int)tela.getFaseAtual().getPlayer().getHitbox().y);
+
+        //Vai para a proxima fase se o Player entrar no portal
+        if(tela.getFaseAtual().getPortal().getHitbox().contains(tela.getFaseAtual().getPlayer().getHitbox())){
+            tela.avancarFase();
+        }
+        //Atualiza o titulo da janela
+        janela.setTitle("FASE " + (tela.getIDFaseAtual()+1) +
+                        " (x: " + (int)tela.getFaseAtual().getPlayer().getHitbox().x + 
+                        ", y: " + (int)tela.getFaseAtual().getPlayer().getHitbox().y + ")");
     }
 
     public void desenhaTudo(Graphics g){

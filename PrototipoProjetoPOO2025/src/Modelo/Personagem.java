@@ -171,6 +171,7 @@ public abstract class Personagem implements Serializable {
         correndo = false;
         flipX = 0;
         flipW = 1;
+        direcao.resetarDirecao();
     }
 
     public Rectangle2D.Float getHitbox(){

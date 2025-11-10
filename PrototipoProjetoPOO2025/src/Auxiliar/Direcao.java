@@ -25,6 +25,11 @@ public class Direcao {
         this.esquerda = esquerda;
     }
 
+    public void resetarDirecao(){
+        direita = false;
+        esquerda = false;
+    }
+
     public void inverterDirecaoAtual(){
         if((direita && esquerda) || (!direita && !esquerda)) return;
         
