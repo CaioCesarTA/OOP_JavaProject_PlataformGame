@@ -5,6 +5,8 @@ import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Consts;
+
 public class Projetil extends Personagem{
     protected float velocidadeProjetil = 4.0f;
     BufferedImage imagemProjetil;
@@ -59,7 +61,10 @@ public class Projetil extends Personagem{
         int alturaImg = 32;
 
         g.drawImage(imagemProjetil, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
-        g.setColor(Color.RED);
-        g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+
+        if(Consts.DESENHAR_HITBOX){
+            g.setColor(Color.RED);
+            g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+        }
     }
 }

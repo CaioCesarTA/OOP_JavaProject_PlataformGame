@@ -21,7 +21,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     public ControleDeJogo(){
         IDfaseAtual = 0;
         fases = new Fase[5];
-        //TODO: Trocar cada uma dessas pela fase
+        //TODO: Trocar cada uma dessas pela fase certa
         fases[0] = new Fase1();
         fases[1] = new Fase1();
         fases[2] = new Fase1();

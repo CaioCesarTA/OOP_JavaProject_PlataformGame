@@ -4,6 +4,8 @@ import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Consts;
+
 public class Hero extends Personagem {
     //ID das animacoes do HERO
     public static final int SOCANDO = 0;
@@ -30,8 +32,12 @@ public class Hero extends Personagem {
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
         g.drawImage(imagemAtual, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
-        g.setColor(Color.BLUE);
-        g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+        
+        if(Consts.DESENHAR_HITBOX){
+            g.setColor(Color.BLUE);
+            g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+        }
+
     }
 
     @Override

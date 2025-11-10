@@ -5,6 +5,8 @@ import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Consts;
+
 public class Portal extends Personagem {
     //ID das animacoes do Portal
     public static final int PARADO = 0;
@@ -57,7 +59,10 @@ public class Portal extends Personagem {
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
         g.drawImage(imagemAtual, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
-        g.setColor(Color.RED);
-        g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+
+        if(Consts.DESENHAR_HITBOX){
+            g.setColor(Color.RED);
+            g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+        }
     }
 }
