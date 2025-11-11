@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Consts;
 import Auxiliar.Direcao;
 import Auxiliar.Posicao;
 import Fases.Fase;
@@ -37,6 +38,10 @@ public abstract class Personagem implements Serializable {
     protected boolean noAr = false;
     //Hitbox
     protected Rectangle2D.Float hitbox;
+    //Tempo entre tiros e entre pulos (cooldown)
+    protected boolean podeAtirar = true;
+    public static final int tempoEntreTiros =  Consts.FPS / 2; // um tiro a cada 120 quadros == 1 segundos
+    public int cooldownTiro = 0;
 
     public Personagem(Fase fase, float xInicial, float yInicial) {
         posicaoInicial = new Posicao(xInicial,yInicial);
@@ -79,7 +84,18 @@ public abstract class Personagem implements Serializable {
     public void atualizarPersonagem(){
         atualizarAcaoAtual();
         atualizarPosicao();
+        atualizarCooldowns();
         atualizarTickAnimacao();
+    }
+
+    protected void atualizarCooldowns(){
+        if(!podeAtirar){
+            cooldownTiro++;
+            if(cooldownTiro >= tempoEntreTiros) {
+                podeAtirar = true;
+                cooldownTiro = 0;
+            }
+        }
     }
 
     protected void atualizarPosicaoX(float vx) {

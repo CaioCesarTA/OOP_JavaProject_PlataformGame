@@ -7,12 +7,13 @@ import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 
-public class Projetil extends Personagem{
+public class Projetil extends Personagem {
     protected float velocidadeProjetil = 4.0f;
     BufferedImage imagemProjetil;
 
-    public Projetil(Fase fase, float xInicial, float yInicial) {
+    public Projetil(Fase fase, float xInicial, float yInicial, int dir) {
         super(fase, xInicial, yInicial);
+        flipW = dir;
         carregarAnimacoes();
         inicializarHitbox(6,5);
     }
@@ -33,11 +34,15 @@ public class Projetil extends Personagem{
 
     @Override
     protected void atualizarPosicao() {
+
+        float vx = velocidadeProjetil;
+        vx *= flipW;
+
         //Detecta colisao com inimigos
         for(Personagem i : fase.getInimigos()){
             if(i.isMortal()){
-                if(i.getHitbox().contains(hitbox.x+hitbox.width+velocidadeProjetil,hitbox.y)
-                    || i.getHitbox().contains(hitbox.x+velocidadeProjetil,hitbox.y))
+                if(i.getHitbox().contains(hitbox.x+hitbox.width+vx,hitbox.y)
+                    || i.getHitbox().contains(hitbox.x+vx,hitbox.y))
                 {
                     fase.removerInimigo(i);
                     fase.removerProjetil(this);
@@ -47,7 +52,9 @@ public class Projetil extends Personagem{
         }
         //Detecta colisao com paredes
         float posicaoAnterior = hitbox.x;
-        atualizarPosicaoX(velocidadeProjetil);
+
+        atualizarPosicaoX(vx);
+        
         float novaPosicao = hitbox.x;
         
         if(posicaoAnterior == novaPosicao) fase.removerProjetil(this);

@@ -3,6 +3,7 @@ package Modelo;
 import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import Auxiliar.Consts;
 
@@ -99,11 +100,38 @@ public class Hero extends Personagem {
     }
 
     @Override
+    protected void atualizarPosicaoY(){
+        //Verifica se o personagem esta no chao
+        if(isPersonagemNoChao()) noAr = false;
+        else noAr = true;
+
+        if(noAr) pulando = false;
+
+        if(acaoAtual==ATIRANDO) pulando = false;
+
+        if (pulando && !noAr) velocidadeAr = velocidadePulo;
+
+        if(isPosValida(hitbox.x,hitbox.y+velocidadeAr)){
+            hitbox.y += velocidadeAr;
+            velocidadeAr += gravidade;
+        }
+        else{
+            if(velocidadeAr > 0){
+                noAr = false;
+                velocidadeAr = 0;
+            }
+            else velocidadeAr = velocidadeQuedaPosColisao;
+        }
+    }
+
+
+
+    @Override
     protected void atualizarPosicao() {
         
         atualizarPosicaoY();
 
-        if(atirando || socando) return;
+        if(acaoAtual==ATIRANDO || socando) return;
 
         float vx = velocidadeX;
         if(correndo) vx *= 2;
@@ -127,6 +155,7 @@ public class Hero extends Personagem {
         int acaoInicial = acaoAtual;
 
         acaoAtual = PARADO;
+
         if (direcao.isEsquerda() && !direcao.isDireita())
             acaoAtual = ANDANDO;
 
@@ -139,12 +168,22 @@ public class Hero extends Personagem {
         if (noAr || pulando)
             acaoAtual = PULANDO;
 
-        if (atirando && !noAr)
-            acaoAtual = ATIRANDO;
         if (atirando && noAr) atirando = false;
+
+        if (atirando && !noAr){
+            atirando = false;
+            if(podeAtirar){
+                acaoAtual = ATIRANDO;
+                fase.addProjetil(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW));
+                podeAtirar = false;
+            }
+        }
+
+        if(acaoInicial == ATIRANDO && cooldownTiro<getQtdSprites(ATIRANDO)*animation_speed) acaoAtual = ATIRANDO;
 
         if (socando && !noAr)
             acaoAtual = SOCANDO;
+
         if (socando && noAr) socando = false;
 
         if(acaoInicial != acaoAtual)

@@ -130,7 +130,6 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
                 break;
             case KeyEvent.VK_SPACE:
                 getFaseAtual().getPlayer().setAtirando(true);
-                getFaseAtual().addProjetil(new Projetil(getFaseAtual(),getFaseAtual().getPlayer().getHitbox().x+40,getFaseAtual().getPlayer().getHitbox().y+20));
                 break;
             case KeyEvent.VK_R:
                 getFaseAtual().resetarFase();
