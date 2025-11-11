@@ -38,9 +38,9 @@ public abstract class Personagem implements Serializable {
     protected boolean noAr = false;
     //Hitbox
     protected Rectangle2D.Float hitbox;
-    //Tempo entre tiros e entre pulos (cooldown)
+    //Tempo entre tiros (cooldown)
     protected boolean podeAtirar = true;
-    public static final int tempoEntreTiros =  Consts.FPS / 2; // um tiro a cada 120 quadros == 1 segundos
+    public static final int tempoEntreTiros =  Consts.FPS / 2; // um tiro a cada 60 quadros == 0.5 segundo
     public int cooldownTiro = 0;
 
     public Personagem(Fase fase, float xInicial, float yInicial) {
