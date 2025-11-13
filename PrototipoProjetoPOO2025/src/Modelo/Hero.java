@@ -8,22 +8,26 @@ import Auxiliar.Consts;
 
 public class Hero extends Personagem {
     //ID das animacoes do HERO
-    public static final int SOCANDO = 0;
-    public static final int MORRENDO = 1;
-    public static final int PARADO = 2;
-    public static final int PULANDO = 3;
-    public static final int CORRENDO = 4;
-    public static final int ATIRANDO = 5;
-    public static final int ANDANDO = 6;
+    private static final int SOCANDO = 0;
+    private static final int MORRENDO = 1;
+    private static final int PARADO = 2;
+    private static final int PULANDO = 3;
+    private static final int CORRENDO = 4;
+    private static final int ATIRANDO = 5;
+    private static final int ANDANDO = 6;
 
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         carregarAnimacoes("hero/hero.png",128);
         inicializarHitbox(22,63);
+        //TODO: TIRAR ESSA PORRA DPS
+        velocidadeX = 10;
+        velocidadePulo = -10;
     }
 
     @Override
-    public void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY) {
+    public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
+        if(!visivel) return;
         int posXimg = (int)(hitbox.x) + flipX - 48;
         int posYimg = (int)(hitbox.y) - 64;
         int larguraImg = 128 * flipW;
@@ -68,6 +72,7 @@ public class Hero extends Personagem {
             if(velocidadeAr<=0.5) animation_index++; //nao atualiza a animacao se estiver caindo
             if(animation_index >= getQtdSprites(acaoAtual)){
                 animation_index = 0;
+                if(morto) animation_index = getQtdSprites(MORRENDO)-1;
                 if(atirando) atirando = false;
                 if(socando) socando = false;
                 if(pulando) pulando = false;
@@ -90,14 +95,14 @@ public class Hero extends Personagem {
     @Override
     protected void atualizarPosicaoY(){
         //Verifica se o personagem esta no chao
-        if(isPersonagemNoChao()) noAr = false;
+        if(isEntidadeNoChao()) noAr = false;
         else noAr = true;
 
         if(noAr) pulando = false;
 
         if(acaoAtual==ATIRANDO) pulando = false;
 
-        if (pulando && !noAr) velocidadeAr = velocidadePulo;
+        if (pulando && !noAr && !morto) velocidadeAr = velocidadePulo;
 
         if(isPosValida(hitbox.x,hitbox.y+velocidadeAr)){
             hitbox.y += velocidadeAr;
@@ -116,10 +121,11 @@ public class Hero extends Personagem {
 
     @Override
     protected void atualizarPosicao() {
-        
+        if(!visivel) return; //se tiver invisivel nao se move mais
+
         atualizarPosicaoY();
 
-        if(acaoAtual==ATIRANDO || socando) return;
+        if(acaoAtual==ATIRANDO || socando || morto) return;
 
         float vx = velocidadeX;
         if(correndo) vx *= 2;
@@ -160,9 +166,9 @@ public class Hero extends Personagem {
 
         if (atirando && !noAr){
             atirando = false;
-            if(podeAtirar){
+            if(podeAtirar && !morto && visivel){
                 acaoAtual = ATIRANDO;
-                fase.addProjetil(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW));
+                fase.addProjetil(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano));
                 podeAtirar = false;
             }
         }
@@ -173,6 +179,14 @@ public class Hero extends Personagem {
             acaoAtual = SOCANDO;
 
         if (socando && noAr) socando = false;
+
+        if(morto) {
+            acaoAtual = MORRENDO;
+        }
+
+        if(acaoInicial == MORRENDO) {
+            acaoAtual = MORRENDO;
+        }
 
         if(acaoInicial != acaoAtual)
             resetAniTick();

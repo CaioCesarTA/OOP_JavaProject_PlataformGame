@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Modelo.Entidade;
 import Modelo.Hero;
 import Modelo.Personagem;
 import Modelo.Portal;
@@ -21,10 +22,10 @@ public abstract class Fase {
     protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<Personagem>();  
     protected ArrayList<Personagem> inimigosParaAdicionar = new ArrayList<Personagem>();
 
-    protected ArrayList<Projetil> projeteis = new ArrayList<Projetil>();
+    protected ArrayList<Entidade> entidades = new ArrayList<>();
     //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
-    protected ArrayList<Projetil> projeteisParaRemover = new ArrayList<Projetil>();  
-    protected ArrayList<Projetil> projeteisParaAdicionar = new ArrayList<Projetil>();
+    protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
+    protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
 
     protected Hero player;
     protected Portal portal;
@@ -67,23 +68,23 @@ public abstract class Fase {
     }
 
     public void atualizarFase() {
-        player.atualizarPersonagem();
-        portal.atualizarPersonagem();
+        player.atualizarEntidade();
+        portal.atualizarEntidade();
         checarPlayerNaBorda();
         //Atualiza inimigos
         if(!inimigos.isEmpty()) {
             for(Personagem i : inimigos) {
-                i.atualizarPersonagem();
+                i.atualizarEntidade();
             }
         }
         //Atualiza projeteis
-        if(!projeteis.isEmpty()) {
-            for(Projetil p : projeteis) {
-                p.atualizarPersonagem();
+        if(!entidades.isEmpty()) {
+            for(Entidade e : entidades) {
+                e.atualizarEntidade();
             }
         }
         //adiciona e remove projeteis e inimigos do array
-        atualizarArrayProjeteis(); 
+        atualizarArrayEntidades(); 
         atualizarArrayInimigos();
     }
 
@@ -98,22 +99,22 @@ public abstract class Fase {
     }
 
     public void desenharFase(Graphics g) {
-        portal.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+        portal.desenharEntidade(g, cameraOffsetX, cameraOffsetY);
         //Cria uma copia do array antes de desenhar para evitar percorrer o array enquanto o modifica
-        ArrayList<Projetil> copiaProjeteis = new ArrayList<>(projeteis);
-        if(!copiaProjeteis.isEmpty()) {
-            for(Projetil p : copiaProjeteis){
-                p.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+        ArrayList<Entidade> copiaEntidades = new ArrayList<>(entidades);
+        if(!copiaEntidades.isEmpty()) {
+            for(Entidade e : copiaEntidades){
+                e.desenharEntidade(g, cameraOffsetX, cameraOffsetY);
             }
         }
         //Cria uma copia do array antes de desenhar para evitar percorrer o array enquanto o modifica
         ArrayList<Personagem> copiaInimigos = new ArrayList<>(inimigos);
         if(!copiaInimigos.isEmpty()) {
             for(Personagem i : copiaInimigos){
-                i.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+                i.desenharEntidade(g, cameraOffsetX, cameraOffsetY);
             }
         }
-        player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+        player.desenharEntidade(g, cameraOffsetX, cameraOffsetY);
     }
 
     protected final void carregarInfoNivel(String pathInfoNivel){
@@ -147,9 +148,9 @@ public abstract class Fase {
         inimigosParaAdicionar.clear();
         inimigosParaRemover.clear();
 
-        projeteis.clear();
-        projeteisParaAdicionar.clear();
-        projeteisParaRemover.clear();
+        entidades.clear();
+        entidadesParaAdicionar.clear();
+        entidadesParaRemover.clear();
 
         adicionarPersonagens();
         portal.resetarPersonagem();
@@ -158,6 +159,13 @@ public abstract class Fase {
 
     public ArrayList<Personagem> getInimigos() {
         return inimigos;
+    }
+
+    public ArrayList<Personagem> getPersonagens(){
+        ArrayList<Personagem> personagemsFase = new ArrayList<>();
+        personagemsFase.addAll(inimigos);
+        personagemsFase.add(player);
+        return personagemsFase;
     }
 
     public Hero getPlayer() {
@@ -206,18 +214,18 @@ public abstract class Fase {
     }
 
     public void addProjetil(Projetil projetil){
-        projeteisParaAdicionar.add(projetil);
+        entidadesParaAdicionar.add(projetil);
     }
 
     public void removerProjetil(Projetil projetil){
-        projeteisParaRemover.add(projetil);
+        entidadesParaRemover.add(projetil);
     }
 
-    protected void atualizarArrayProjeteis(){
-        projeteis.removeAll(projeteisParaRemover);
-        projeteisParaRemover.clear();
-        projeteis.addAll(projeteisParaAdicionar);
-        projeteisParaAdicionar.clear();
+    protected void atualizarArrayEntidades(){
+        entidades.removeAll(entidadesParaRemover);
+        entidadesParaRemover.clear();
+        entidades.addAll(entidadesParaAdicionar);
+        entidadesParaAdicionar.clear();
     }
 
     public void addInimigo(Personagem inimigo){
@@ -243,7 +251,7 @@ public abstract class Fase {
         return cameraOffsetY;
     }
 
-    public Personagem getPortal(){
+    public Portal getPortal(){
         return portal;
     }
 }

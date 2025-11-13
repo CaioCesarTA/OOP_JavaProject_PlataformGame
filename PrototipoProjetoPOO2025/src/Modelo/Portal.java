@@ -9,9 +9,12 @@ import Auxiliar.Consts;
 
 public class Portal extends Personagem {
     //ID das animacoes do Portal
-    public static final int PARADO = 0;
-    public static final int ABRINDO = 1;
-    public static final int FECHANDO = 2;
+    private static final int PARADO = 0;
+    private static final int ABRINDO = 1;
+    private static final int FECHANDO = 2;
+    //Controle de avancar fase
+    private boolean avancarFase = false;
+    private int tempoAnimacaoFechando = 0;
 
     public Portal(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
@@ -31,7 +34,17 @@ public class Portal extends Personagem {
 
     @Override
     protected void atualizarAcaoAtual() {
-        acaoAtual = PARADO;
+        //Vai para a proxima fase se o Player entrar no portal
+        if(hitbox.contains(fase.getPlayer().getHitbox())){
+            acaoAtual = FECHANDO;
+            fase.getPlayer().setVisivel(false);
+            tempoAnimacaoFechando++;
+            if(tempoAnimacaoFechando >= getQtdSprites(FECHANDO)*animation_speed) avancarFase = true;
+        }
+    }
+
+    public boolean podeAvancarFase(){
+        return avancarFase;
     }
 
     @Override
@@ -39,7 +52,7 @@ public class Portal extends Personagem {
     }
 
     @Override
-    public void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY) {
+    public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
         int posXimg = (int)(hitbox.x) - 48 + 128;
         int posYimg = (int)(hitbox.y) - 48;
         int larguraImg = 128 * -1;

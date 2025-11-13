@@ -10,12 +10,13 @@ import Auxiliar.Consts;
 
 public class Biker extends Personagem {
     //ID das animacoes do Biker
-    public static final int PARADO = 0;
-    public static final int ATACANDO = 1;
-    public static final int ANDANDO = 2;
+    private static final int PARADO = 0;
+    private static final int ATACANDO = 1;
+    private static final int ANDANDO = 2;
     
     public Biker(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
+        vidaMaxima = vidaAtual = 3;
         animation_speed = 15;
         acaoAtual = PARADO;
         direcao.setDireita(true);
@@ -33,6 +34,7 @@ public class Biker extends Personagem {
 
     @Override
     protected void atualizarAcaoAtual() {
+        if(vidaAtual<=0) fase.removerInimigo(this);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class Biker extends Personagem {
     }
 
     @Override
-    public void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY) {
+    public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
         int posXimg = (int)(hitbox.x) - 10 + flipX;
         int posYimg = (int)(hitbox.y) - 25;
         int larguraImg = 88 * flipW;
@@ -77,6 +79,10 @@ public class Biker extends Personagem {
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }
 
+    }
+
+    public void ataca(){
+        
     }
     
 }

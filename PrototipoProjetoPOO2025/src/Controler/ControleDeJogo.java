@@ -41,13 +41,15 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
         getFaseAtual().atualizarFase();
 
         //Vai para a proxima fase se o Player entrar no portal
-        if(getFaseAtual().getPortal().getHitbox().contains(getFaseAtual().getPlayer().getHitbox())){
+        if(getFaseAtual().getPortal().podeAvancarFase()) {
             avancarFase();
         }
+
         //Atualiza o titulo da janela
         janela.setTitle("FASE " + (IDfaseAtual+1) +
                         " (x: " + (int)getFaseAtual().getPlayer().getHitbox().x + 
-                        ", y: " + (int)getFaseAtual().getPlayer().getHitbox().y + ")");
+                        ", y: " + (int)getFaseAtual().getPlayer().getHitbox().y + ")" +
+                        " Vida: " + getFaseAtual().getPlayer().getVidaAtual() + "/5");
     }
 
     public void desenhaTudo(Graphics g){
@@ -139,6 +141,8 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
             case KeyEvent.VK_O:
                 voltarFase();
                 break;
+            case KeyEvent.VK_M:
+                getFaseAtual().getPlayer().sofrerDano(1);
         }
     }
 
