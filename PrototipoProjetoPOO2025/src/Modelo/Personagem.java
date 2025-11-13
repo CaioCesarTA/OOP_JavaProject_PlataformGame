@@ -138,6 +138,7 @@ public abstract class Personagem extends Entidade {
 
     public void resetarPersonagem(){
         morto = false;
+        visivel = true;
         vidaAtual = vidaMaxima;
         resetAniTick();
         resetarPosicao();

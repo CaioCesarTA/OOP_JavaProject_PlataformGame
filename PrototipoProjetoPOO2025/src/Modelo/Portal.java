@@ -34,17 +34,28 @@ public class Portal extends Personagem {
 
     @Override
     protected void atualizarAcaoAtual() {
+        int acaoInicial = acaoAtual;
         //Vai para a proxima fase se o Player entrar no portal
         if(hitbox.contains(fase.getPlayer().getHitbox())){
+            animation_speed = 20;
             acaoAtual = FECHANDO;
+            if(acaoInicial!=acaoAtual) resetAniTick();
             fase.getPlayer().setVisivel(false);
             tempoAnimacaoFechando++;
-            if(tempoAnimacaoFechando >= getQtdSprites(FECHANDO)*animation_speed) avancarFase = true;
+            if(tempoAnimacaoFechando >= getQtdSprites(FECHANDO)*animation_speed) {
+                avancarFase = true;
+                animation_speed = 15;
+                tempoAnimacaoFechando = 0;
+            }
         }
     }
 
     public boolean podeAvancarFase(){
-        return avancarFase;
+        if(avancarFase == true){
+            avancarFase = false;
+            return true;
+        }
+        return false;
     }
 
     @Override

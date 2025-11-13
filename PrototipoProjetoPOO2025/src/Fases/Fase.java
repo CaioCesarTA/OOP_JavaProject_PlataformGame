@@ -22,7 +22,7 @@ public abstract class Fase {
     protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<Personagem>();  
     protected ArrayList<Personagem> inimigosParaAdicionar = new ArrayList<Personagem>();
 
-    protected ArrayList<Entidade> entidades = new ArrayList<>();
+    protected ArrayList<Entidade> entidades = new ArrayList<>(); //inclui projeteis e outras entidades que nao sao personagens
     //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
     protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
     protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
@@ -213,12 +213,12 @@ public abstract class Fase {
         checarPlayerNaBordaY();
     }
 
-    public void addProjetil(Projetil projetil){
-        entidadesParaAdicionar.add(projetil);
+    public void addEntidade(Entidade e){
+        entidadesParaAdicionar.add(e);
     }
 
-    public void removerProjetil(Projetil projetil){
-        entidadesParaRemover.add(projetil);
+    public void removerEntidade(Entidade e){
+        entidadesParaRemover.add(e);
     }
 
     protected void atualizarArrayEntidades(){

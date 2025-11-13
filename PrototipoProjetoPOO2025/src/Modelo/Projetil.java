@@ -34,7 +34,7 @@ public class Projetil extends Entidade {
             if(i.isMortal() && hitbox.intersects(i.getHitbox())) {
                 System.out.println("dano");
                 i.sofrerDano(dano);
-                fase.removerProjetil(this);
+                fase.removerEntidade(this);
                 return;
             }
         }
@@ -53,7 +53,7 @@ public class Projetil extends Entidade {
         
         float novaPosicao = hitbox.x;
         
-        if(posicaoAnterior == novaPosicao) fase.removerProjetil(this);
+        if(posicaoAnterior == novaPosicao) fase.removerEntidade(this);
     }
 
     @Override

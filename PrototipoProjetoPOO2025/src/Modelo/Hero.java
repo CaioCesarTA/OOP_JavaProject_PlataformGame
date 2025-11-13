@@ -21,7 +21,7 @@ public class Hero extends Personagem {
         carregarAnimacoes("hero/hero.png",128);
         inicializarHitbox(22,63);
         //TODO: TIRAR ESSA PORRA DPS
-        velocidadeX = 10;
+        velocidadeX = 12;
         velocidadePulo = -10;
     }
 
@@ -168,7 +168,7 @@ public class Hero extends Personagem {
             atirando = false;
             if(podeAtirar && !morto && visivel){
                 acaoAtual = ATIRANDO;
-                fase.addProjetil(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano));
+                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano));
                 podeAtirar = false;
             }
         }
