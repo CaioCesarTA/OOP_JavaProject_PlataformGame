@@ -18,7 +18,7 @@ public class Hero extends Personagem {
 
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
-        carregarAnimacoes();
+        carregarAnimacoes("hero/hero.png",128);
         inicializarHitbox(22,63);
     }
 
@@ -71,17 +71,6 @@ public class Hero extends Personagem {
                 if(atirando) atirando = false;
                 if(socando) socando = false;
                 if(pulando) pulando = false;
-            }
-        }
-    }
-
-    @Override
-    protected final void carregarAnimacoes() {
-        BufferedImage temp = Fase.importarImagem("hero/hero.png");
-        this.imagens = new BufferedImage[7][10];
-        for(int i=0;i<7;i++){
-            for(int j=0;j<10;j++){
-                imagens[i][j] = temp.getSubimage(j*128, i*128, 128, 128);
             }
         }
     }

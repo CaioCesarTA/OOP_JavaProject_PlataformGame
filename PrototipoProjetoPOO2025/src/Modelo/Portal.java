@@ -19,7 +19,7 @@ public class Portal extends Personagem {
         acaoAtual = PARADO;
         mortal = false;
         transponivel = true;
-        carregarAnimacoes();
+        carregarAnimacoes("portal/portal.png",64);
         inicializarHitbox(32,64);
     }
 
@@ -27,17 +27,6 @@ public class Portal extends Personagem {
     public int getQtdSprites(int id_acao) {
         if(id_acao == FECHANDO) return 6;
         return 8;
-    }
-
-    @Override
-    protected void carregarAnimacoes() {
-        BufferedImage temp = Fase.importarImagem("portal/portal.png");
-        this.imagens = new BufferedImage[3][8];
-        for(int i=0;i<3;i++){
-            for(int j=0;j<8;j++){
-                imagens[i][j] = temp.getSubimage(j*64, i*64, 64, 64);
-            }
-        }
     }
 
     @Override

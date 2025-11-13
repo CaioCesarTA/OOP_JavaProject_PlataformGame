@@ -19,7 +19,7 @@ public class Biker extends Personagem {
         animation_speed = 15;
         acaoAtual = PARADO;
         direcao.setDireita(true);
-        carregarAnimacoes();
+        carregarAnimacoes("inimigos/biker.png",48);
         inicializarHitbox(25,63);
     }
 
@@ -29,17 +29,6 @@ public class Biker extends Personagem {
         if(id_acao == ATACANDO) return 6;
         if(id_acao == ANDANDO) return 6;
         return 0;
-    }
-
-    @Override
-    protected final void carregarAnimacoes() {
-        BufferedImage temp = Fase.importarImagem("inimigos/biker.png");
-        this.imagens = new BufferedImage[3][6];
-        for(int i=0;i<3;i++){
-            for(int j=0;j<6;j++){
-                imagens[i][j] = temp.getSubimage(j*48, i*48, 48, 48);
-            }
-        }
     }
 
     @Override

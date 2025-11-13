@@ -55,13 +55,23 @@ public abstract class Personagem implements Serializable {
 
     public abstract int getQtdSprites(int id_acao);
 
-    protected abstract void carregarAnimacoes();
-
     protected abstract void atualizarAcaoAtual();
 
     protected abstract void atualizarPosicao();
 
     public abstract void desenharPersonagem(Graphics g, int cameraOffsetX, int cameraOffsetY);
+
+    protected final void carregarAnimacoes(String pathSpritesheet, int tamSprite) {
+        BufferedImage temp = Fase.importarImagem(pathSpritesheet);
+        int alturaImg = temp.getHeight() / tamSprite;
+        int larguraImg = temp.getWidth() / tamSprite;
+        this.imagens = new BufferedImage[alturaImg][larguraImg];
+        for(int i=0;i<alturaImg;i++){
+            for(int j=0;j<larguraImg;j++){
+                imagens[i][j] = temp.getSubimage(j*tamSprite, i*tamSprite, tamSprite, tamSprite);
+            }
+        }
+    }
 
     protected void atualizarTickAnimacao(){
         animation_tick++;

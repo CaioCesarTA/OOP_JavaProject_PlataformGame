@@ -14,18 +14,13 @@ public class Projetil extends Personagem {
     public Projetil(Fase fase, float xInicial, float yInicial, int dir) {
         super(fase, xInicial, yInicial);
         flipW = dir;
-        carregarAnimacoes();
+        imagemProjetil = Fase.importarImagem("projeteis/bullet.png");
         inicializarHitbox(6,5);
     }
 
     @Override
     public int getQtdSprites(int id_acao) {
         return 0;
-    }
-
-    @Override
-    protected void carregarAnimacoes() {
-        imagemProjetil = Fase.importarImagem("projeteis/bullet.png");
     }
 
     @Override
