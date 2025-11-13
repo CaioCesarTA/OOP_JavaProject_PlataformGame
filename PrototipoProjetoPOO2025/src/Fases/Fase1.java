@@ -3,22 +3,21 @@ package Fases;
 import Auxiliar.Consts;
 import Modelo.*;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Fase1 extends Fase {
     
     public Fase1(){
-        super(140,32);
-        player = new Hero(this, 4*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 4000, 384);
+        super(140,36);
+        player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
+        portal = new Portal(this, 4000, 512);
         carregarImagens();
-        carregarInfoNivel();
+        carregarInfoNivel("fases/fase1/infoFase1.png");
         adicionarPersonagens();
     }
 
     protected void adicionarPersonagens(){
-        addInimigo(new Biker(this, 14*Consts.CELL_SIDE, (32-5)*Consts.CELL_SIDE));
+        addInimigo(new Biker(this, 14*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE));
     }
 
     @Override
@@ -48,17 +47,5 @@ public class Fase1 extends Fase {
         }
 
         return false;
-    }
-    
-    protected final void carregarInfoNivel(){
-        BufferedImage temp = importarImagem("fases/fase1/infoFase1.png");
-        infoCenario = new int[alturaFase][larguraFase];
-        for(int i=0;i<temp.getHeight();i++){
-            for(int j=0;j<temp.getWidth();j++){
-                Color cor = new Color(temp.getRGB(j,i));
-                int valor = cor.getRed();
-                infoCenario[i][j] = valor;
-            }
-        }
     }
 }

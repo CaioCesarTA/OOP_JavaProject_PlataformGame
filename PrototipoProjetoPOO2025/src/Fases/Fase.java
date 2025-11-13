@@ -6,6 +6,7 @@ import Modelo.Personagem;
 import Modelo.Portal;
 import Modelo.Projetil;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -115,6 +116,18 @@ public abstract class Fase {
             }
         }
         player.desenharPersonagem(g, cameraOffsetX, cameraOffsetY);
+    }
+
+    protected final void carregarInfoNivel(String pathInfoNivel){
+        BufferedImage temp = importarImagem(pathInfoNivel);
+        infoCenario = new int[alturaFase][larguraFase];
+        for(int i=0;i<temp.getHeight();i++){
+            for(int j=0;j<temp.getWidth();j++){
+                Color cor = new Color(temp.getRGB(j,i));
+                int valor = cor.getRed();
+                infoCenario[i][j] = valor;
+            }
+        }
     }
 
     public void resetarFase(){
