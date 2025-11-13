@@ -20,9 +20,6 @@ public class Hero extends Personagem {
         super(fase, xInicial, yInicial);
         carregarAnimacoes("hero/hero.png",128);
         inicializarHitbox(22,63);
-        //TODO: TIRAR ESSA PORRA DPS
-        velocidadeX = 12;
-        velocidadePulo = -10;
     }
 
     @Override

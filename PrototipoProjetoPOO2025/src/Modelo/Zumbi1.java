@@ -8,28 +8,41 @@ import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 
-public class Biker extends Personagem {
-    //ID das animacoes do Biker
+public class Zumbi1 extends Personagem {
+    //ID das animacoes do Zumbi1
     private static final int PARADO = 0;
-    private static final int ATACANDO = 1;
-    private static final int ANDANDO = 2;
+    private static final int ANDANDO = 1;
+    private static final int ATACANDO = 2;
+    private static final int LEVANDO_DANO = 3;
+    private static final int MORRENDO = 4;
     
-    public Biker(Fase fase, float xInicial, float yInicial) {
+    public Zumbi1(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 3;
-        animation_speed = 15;
         acaoAtual = PARADO;
+        animation_speed = 30;
+        velocidadeX = 0.25f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/biker.png",48);
+        carregarAnimacoes("inimigos/zumbi1.png",128);
         inicializarHitbox(25,63);
     }
 
     @Override
     public int getQtdSprites(int id_acao) {
-        if(id_acao == PARADO) return 4;
-        if(id_acao == ATACANDO) return 6;
-        if(id_acao == ANDANDO) return 6;
-        return 0;
+        switch (id_acao) {
+            case PARADO:
+                return 6;
+            case ANDANDO:
+                return 10;
+            case ATACANDO:
+                return 5;
+            case LEVANDO_DANO:
+                return 4;
+            case MORRENDO:
+                return 5;
+            default:
+                return 0;
+        }
     }
 
     @Override
@@ -46,7 +59,7 @@ public class Biker extends Personagem {
         float vx = velocidadeX;
         if(direcao.isEsquerda()) {
             vx *= -1;
-            flipX = 40;
+            flipX = 120;
             flipW = -1;
         }
         else{
@@ -65,10 +78,10 @@ public class Biker extends Personagem {
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        int posXimg = (int)(hitbox.x) - 10 + flipX;
-        int posYimg = (int)(hitbox.y) - 25;
-        int larguraImg = 88 * flipW;
-        int alturaImg = 88;
+        int posXimg = (int)(hitbox.x) - 48 + flipX;
+        int posYimg = (int)(hitbox.y) - 64;
+        int larguraImg = 128 * flipW;
+        int alturaImg = 128;
 
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
