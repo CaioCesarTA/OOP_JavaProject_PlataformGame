@@ -53,6 +53,8 @@ public abstract class Fase {
 
     public abstract boolean isSolido(float x, float y);
 
+    protected abstract void adicionarPersonagens();
+
     public static BufferedImage importarImagem(String nome_da_imagem) {
         BufferedImage imagem = null;
         try {
@@ -63,10 +65,6 @@ public abstract class Fase {
         }
         return imagem;
     }
-
-    protected abstract void adicionarPersonagens();
-
-    protected abstract void carregarImagens();
 
     public void atualizarFase() {
         player.atualizarPersonagem();
@@ -128,6 +126,20 @@ public abstract class Fase {
                 infoCenario[i][j] = valor;
             }
         }
+    }
+
+    protected final void carregarImagens(String pathTileset, String pathBackground) {
+        BufferedImage temp = importarImagem(pathTileset);
+        int larguraImg = temp.getWidth()/Consts.CELL_SIDE;
+        int alturaImg = temp.getHeight()/Consts.CELL_SIDE;
+        tileset = new BufferedImage[larguraImg * alturaImg];
+        for(int j=0;j<alturaImg;j++){
+            for(int i=0;i<larguraImg;i++){
+                int indice = j*larguraImg + i;
+                tileset[indice] = temp.getSubimage(i*Consts.CELL_SIDE, j*Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE);
+            }
+        }
+        background = importarImagem(pathBackground);
     }
 
     public void resetarFase(){

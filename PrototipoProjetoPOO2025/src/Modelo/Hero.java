@@ -3,7 +3,6 @@ package Modelo;
 import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import Auxiliar.Consts;
 

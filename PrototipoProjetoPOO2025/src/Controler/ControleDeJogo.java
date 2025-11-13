@@ -3,7 +3,6 @@ package Controler;
 import Auxiliar.Consts;
 import Fases.Fase;
 import Fases.Fase1;
-import Modelo.Projetil;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
