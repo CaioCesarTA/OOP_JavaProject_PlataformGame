@@ -28,13 +28,11 @@ public class Projetil extends Entidade {
     }
 
     protected void detectarColisao() {
-        //TODO: projetil tem que ter o personagem que atirou ele, ou o dano do personagem que atirou ele
         //Detecta colisao com personagens e da dano
         for(Personagem i : fase.getPersonagens()){
-            if(i.isMortal() && hitbox.intersects(i.getHitbox())) {
-                System.out.println("dano");
-                i.sofrerDano(dano);
-                fase.removerEntidade(this);
+            if(hitbox.intersects(i.getHitbox())) {
+                if(i.isMortal()) i.sofrerDano(dano);
+                if(!i.isTransponivel()) fase.removerEntidade(this);
                 return;
             }
         }

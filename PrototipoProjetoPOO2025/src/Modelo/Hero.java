@@ -147,10 +147,15 @@ public class Hero extends Personagem {
 
         acaoAtual = PARADO;
 
-        if (direcao.isEsquerda() && !direcao.isDireita())
+        if(acaoInicial == ATIRANDO) {
+            acaoAtual = ATIRANDO;
+            if(animation_index>=getQtdSprites(ATIRANDO)-1) acaoAtual = PARADO;
+        }
+
+        else if (direcao.isEsquerda() && !direcao.isDireita())
             acaoAtual = ANDANDO;
 
-        if (!direcao.isEsquerda() && direcao.isDireita())
+        else if (!direcao.isEsquerda() && direcao.isDireita())
             acaoAtual = ANDANDO;
 
         if (acaoAtual == ANDANDO && correndo)
@@ -167,19 +172,16 @@ public class Hero extends Personagem {
                 acaoAtual = ATIRANDO;
                 fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano));
                 podeAtirar = false;
+                resetAniTick();
             }
         }
-
-        if(acaoInicial == ATIRANDO && cooldownTiro<getQtdSprites(ATIRANDO)*animation_speed) acaoAtual = ATIRANDO;
 
         if (socando && !noAr)
             acaoAtual = SOCANDO;
 
         if (socando && noAr) socando = false;
 
-        if(morto) {
-            acaoAtual = MORRENDO;
-        }
+        if(morto) acaoAtual = MORRENDO;
 
         if(acaoInicial == MORRENDO) {
             acaoAtual = MORRENDO;

@@ -19,8 +19,7 @@ public class Zumbi1 extends Personagem {
     public Zumbi1(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 3;
-        acaoAtual = PARADO;
-        animation_speed = 30;
+        animation_speed = 20;
         velocidadeX = 0.25f;
         direcao.setDireita(true);
         carregarAnimacoes("inimigos/zumbi1.png",128);
@@ -47,14 +46,36 @@ public class Zumbi1 extends Personagem {
 
     @Override
     protected void atualizarAcaoAtual() {
-        if(vidaAtual<=0) fase.removerInimigo(this);
+        if(morto) {
+            acaoAtual = MORRENDO;
+            if(animation_index>=getQtdSprites(MORRENDO)-1) fase.removerInimigo(this);
+            return;
+        }
+
+        int acaoInicial = acaoAtual;
+        acaoAtual = PARADO;
+
+        if(acaoInicial == LEVANDO_DANO){
+            acaoAtual = LEVANDO_DANO;
+            if(animation_index>=getQtdSprites(LEVANDO_DANO)-1) acaoAtual = PARADO;
+        }
+
+        else if (direcao.isEsquerda() && !direcao.isDireita())
+            acaoAtual = ANDANDO;
+
+        else if (!direcao.isEsquerda() && direcao.isDireita())
+            acaoAtual = ANDANDO;           
+
+        if(acaoAtual!=acaoInicial) 
+            resetAniTick();
     }
 
     @Override
     protected void atualizarPosicao() {
-        acaoAtual = ANDANDO;
-        
+
         atualizarPosicaoY();
+
+        if(morto || acaoAtual==LEVANDO_DANO) return;
 
         float vx = velocidadeX;
         if(direcao.isEsquerda()) {
@@ -72,7 +93,6 @@ public class Zumbi1 extends Personagem {
         
         if(posicaoAnterior==novaPosicao) {
             direcao.inverterDirecaoAtual();
-            acaoAtual = PARADO;
         }
     }
 
@@ -92,6 +112,15 @@ public class Zumbi1 extends Personagem {
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }
 
+    }
+
+    @Override
+    public void sofrerDano(int dano){
+        if(vidaAtual<=0) return;
+        vidaAtual -= dano;
+        acaoAtual = LEVANDO_DANO;
+        resetAniTick();
+        if(vidaAtual <= 0) morto = true;
     }
 
     public void ataca(){
