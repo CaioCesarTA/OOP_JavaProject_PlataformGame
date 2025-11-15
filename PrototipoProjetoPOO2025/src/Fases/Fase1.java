@@ -16,6 +16,8 @@ public class Fase1 extends Fase {
 
     protected void adicionarPersonagens(){
         addInimigo(new Zumbi1(this, 1600, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi1(this, 2000, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi1(this, 2400, (alturaFase-5)*Consts.CELL_SIDE));
     }
 
     
