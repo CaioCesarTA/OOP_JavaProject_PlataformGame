@@ -5,7 +5,6 @@ import Modelo.Entidade;
 import Modelo.Hero;
 import Modelo.Personagem;
 import Modelo.Portal;
-import Modelo.Projetil;
 
 import java.awt.Color;
 import java.awt.Graphics;

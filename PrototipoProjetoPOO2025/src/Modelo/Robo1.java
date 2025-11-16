@@ -74,7 +74,7 @@ public class Robo1 extends Personagem {
         if(vendoPlayer()) {
             if(podeAtirar && !morto){
                 acaoAtual = ATIRANDO;
-                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+3,flipW,dano));
+                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+3,flipW,dano,"projeteis/bullet2.png"));
                 podeAtirar = false;
                 resetAniTick();
             }

@@ -170,7 +170,7 @@ public class Hero extends Personagem {
             atirando = false;
             if(podeAtirar && !morto && visivel){
                 acaoAtual = ATIRANDO;
-                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano));
+                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano,"projeteis/bullet.png"));
                 podeAtirar = false;
                 resetAniTick();
             }

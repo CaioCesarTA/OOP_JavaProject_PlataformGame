@@ -13,10 +13,10 @@ public class Projetil extends Entidade {
     int dano;
     int flipW;
 
-    public Projetil(Fase fase, float xInicial, float yInicial, int dir, int dano) {
+    public Projetil(Fase fase, float xInicial, float yInicial, int dir, int dano, String pathImagem) {
         super(fase, xInicial, yInicial);
         flipW = dir;
-        imagemProjetil = Fase.importarImagem("projeteis/bullet.png");
+        imagemProjetil = Fase.importarImagem(pathImagem);
         inicializarHitbox(6,5);
         transponivel = true;
         this.dano = dano;
