@@ -45,9 +45,9 @@ public class Terminal extends Entidade {
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        int posXimg = (int)(hitbox.x) - 25 + 74;
+        int posXimg = (int)(hitbox.x) - 25 /*+ 74*/;
         int posYimg = (int)(hitbox.y) - 25;
-        int larguraImg = 72 * -1;
+        int larguraImg = 72 /* *-1 */;
         int alturaImg = 72;
 
         g.drawImage(sprites[indiceImagem], posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
