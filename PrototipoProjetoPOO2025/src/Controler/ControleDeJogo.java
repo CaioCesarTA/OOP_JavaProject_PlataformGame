@@ -1,8 +1,7 @@
 package Controler;
 
 import Auxiliar.Consts;
-import Fases.Fase;
-import Fases.Fase1;
+import Fases.*;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -22,7 +21,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
         fases = new Fase[5];
         //TODO: Trocar cada uma dessas pela fase certa
         fases[0] = new Fase1();
-        fases[1] = new Fase1();
+        fases[1] = new Fase2();
         fases[2] = new Fase1();
         fases[3] = new Fase1();
         fases[4] = new Fase1();

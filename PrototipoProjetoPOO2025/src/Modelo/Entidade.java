@@ -14,6 +14,11 @@ public abstract class Entidade implements Serializable{
     protected boolean transponivel = false;
     protected boolean mortal = true;
     protected boolean visivel = true;
+    //Controle da vida
+    protected int vidaMaxima = 5;
+    protected int vidaAtual = vidaMaxima;
+    protected int dano = 1;
+    protected boolean morto = false;
     //Controle da posicao
     protected boolean noAr = false;
     protected Posicao posicaoInicial;
@@ -42,8 +47,14 @@ public abstract class Entidade implements Serializable{
     protected final void inicializarHitbox(int largura, int altura){
         hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
     } 
+
+    public void sofrerDano(int dano){
+        if(vidaAtual<=0) return;
+        vidaAtual -= dano;
+        if(vidaAtual <= 0) morto = true;
+    }
     
-        protected void atualizarPosicaoX(float vx) {
+    protected void atualizarPosicaoX(float vx) {
         if(isPosValida(hitbox.x+vx,hitbox.y)){
             hitbox.x += vx;
         }
@@ -68,12 +79,21 @@ public abstract class Entidade implements Serializable{
     }
 
     protected boolean isEntidadeNoChao(){
-        //Checar pixel inferior esquerdo e inferior direito
-        if(!fase.isSolido(hitbox.x,hitbox.y+hitbox.height+1)
-           && !fase.isSolido(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)){
-                return false;
+        //Checa colisao com o cenario
+        if(fase.isSolido(hitbox.x,hitbox.y+hitbox.height+1)
+           || fase.isSolido(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)){
+                return true;
         }
-        return true;
+        
+        //Checa colisao com outras entidades da fase
+        for(Entidade e : fase.getEntidades()){
+            if(!e.isTransponivel() && !this.equals(e)){
+                if(e.getHitbox().contains(hitbox.x,hitbox.y+hitbox.height+1)
+                || e.getHitbox().contains(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)) return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean isPosValida(float x, float y){
@@ -85,15 +105,15 @@ public abstract class Entidade implements Serializable{
             || fase.isSolido(x, y + hitbox.height / 2)
             || fase.isSolido(x + hitbox.width, y + hitbox.height / 2)) return false;
 
-        //se esse personagem eh transponivel, ele nao tem colisao com outros personagens
+        //se esse personagem eh transponivel, ele nao tem colisao com outras entidades
         if(this.isTransponivel()) return true; 
         
-        //caso contrario, checa colisao com outros personagens da fase
+        //caso contrario, checa colisao com outras entidades da fase
         Rectangle2D.Float hitboxFutura = new Rectangle2D.Float(x,y,hitbox.width,hitbox.height);
 
-        for(Personagem i : fase.getPersonagens()){
-            if(!i.isTransponivel()){
-                if(!this.equals(i) && hitboxFutura.intersects(i.getHitbox())) return false;
+        for(Entidade e : fase.getEntidades()){
+            if(!e.isTransponivel() && !this.equals(e)){
+                if(hitboxFutura.intersects(e.getHitbox())) return false;
             }
         }
 
@@ -111,5 +131,25 @@ public abstract class Entidade implements Serializable{
 
     public void setVisivel(boolean visivel){
         this.visivel = visivel;
+    }
+
+    public boolean isMortal(){
+        return mortal;
+    }
+
+    public boolean isMorto(){
+        return morto;
+    }
+
+    public void setMorto(boolean morto){
+        this.morto = morto;
+    }
+
+    public int getDano(){
+        return dano;
+    }
+
+    public int getVidaAtual(){
+        return vidaAtual;
     }
 }

@@ -10,17 +10,12 @@ import Auxiliar.Posicao;
 import Fases.Fase;
 
 public abstract class Personagem extends Entidade {
-//Controle das acoes do personagem
+    //Controle das acoes do personagem
     protected int acaoAtual = 0;
     protected boolean atirando = false;
     protected boolean correndo = false;
     protected boolean pulando = false;
     protected boolean socando = false;
-    protected boolean morto = false;
-    //Controle da vida
-    protected int vidaMaxima = 5;
-    protected int vidaAtual = vidaMaxima;
-    protected int dano = 1;
     //Controle de animacoes
     protected BufferedImage[][] imagens;
     protected int animation_tick = 0;
@@ -113,12 +108,6 @@ public abstract class Personagem extends Entidade {
         }
     }
 
-    public void sofrerDano(int dano){
-        if(vidaAtual<=0) return;
-        vidaAtual -= dano;
-        if(vidaAtual <= 0) morto = true;
-    }
-
     public Posicao getPosicaoInicial(){
         return posicaoInicial;
     }
@@ -150,25 +139,5 @@ public abstract class Personagem extends Entidade {
         flipX = 0;
         flipW = 1;
         direcao.resetarDirecao();
-    }
-
-    public boolean isMortal(){
-        return mortal;
-    }
-
-    public boolean isMorto(){
-        return morto;
-    }
-
-    public void setMorto(boolean morto){
-        this.morto = morto;
-    }
-
-    public int getDano(){
-        return dano;
-    }
-
-    public int getVidaAtual(){
-        return vidaAtual;
     }
 }

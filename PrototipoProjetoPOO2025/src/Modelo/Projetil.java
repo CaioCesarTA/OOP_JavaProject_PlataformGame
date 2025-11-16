@@ -29,10 +29,11 @@ public class Projetil extends Entidade {
 
     protected void detectarColisao() {
         //Detecta colisao com personagens e da dano
-        for(Personagem i : fase.getPersonagens()){
-            if(hitbox.intersects(i.getHitbox())) {
-                if(i.isMortal()) i.sofrerDano(dano);
-                if(!i.isTransponivel()) fase.removerEntidade(this);
+        for(Entidade e : fase.getEntidades()){
+            if(hitbox.intersects(e.getHitbox())) {
+                if(e.equals(this)) continue;
+                if(e.isMortal()) e.sofrerDano(dano);
+                if(!e.isTransponivel()) fase.removerEntidade(this);
                 return;
             }
         }

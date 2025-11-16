@@ -69,6 +69,7 @@ public abstract class Fase {
 
     public void atualizarFase() {
         player.atualizarEntidade();
+        if(player.getHitbox().y+player.getHitbox().height+1 >= alturaFase*Consts.CELL_SIDE) resetarFase();
         portal.atualizarEntidade();
         checarPlayerNaBorda();
         //Atualiza inimigos
@@ -161,11 +162,12 @@ public abstract class Fase {
         return inimigos;
     }
 
-    public ArrayList<Personagem> getPersonagens(){
-        ArrayList<Personagem> personagemsFase = new ArrayList<>();
-        personagemsFase.addAll(inimigos);
-        personagemsFase.add(player);
-        return personagemsFase;
+    public ArrayList<Entidade> getEntidades(){
+        ArrayList<Entidade> entidadesFase = new ArrayList<>();
+        entidadesFase.addAll(inimigos);
+        entidadesFase.addAll(entidades);
+        entidadesFase.add(player);
+        return entidadesFase;
     }
 
     public Hero getPlayer() {
