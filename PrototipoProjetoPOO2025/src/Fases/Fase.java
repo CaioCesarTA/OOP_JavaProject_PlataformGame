@@ -152,9 +152,9 @@ public abstract class Fase {
         entidadesParaAdicionar.clear();
         entidadesParaRemover.clear();
 
-        adicionarPersonagens();
         portal.resetarPersonagem();
         player.resetarPersonagem();
+        adicionarPersonagens();
     }
 
     public ArrayList<Personagem> getInimigos() {
