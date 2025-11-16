@@ -16,8 +16,10 @@ public abstract class Personagem extends Entidade {
     protected boolean correndo = false;
     protected boolean pulando = false;
     protected boolean socando = false;
+    protected boolean jaAtacou = false;
     //Controle de animacoes
     protected BufferedImage[][] imagens;
+    protected BufferedImage vida;
     protected int animation_tick = 0;
     protected int animation_index = 0;
     protected int animation_speed = 10;
@@ -27,6 +29,10 @@ public abstract class Personagem extends Entidade {
     protected boolean podeAtirar = true;
     protected int tempoEntreTiros =  Consts.FPS / 2; // um tiro a cada 60 quadros == 0.5 segundo
     protected int cooldownTiro = 0;
+    //Tempo entre socos
+    protected boolean podeSocar = true;
+    protected int tempoEntreSocos =  Consts.FPS / 2; // um tiro a cada 60 quadros == 0.5 segundo
+    protected int cooldownSoco = 0;
 
 
     public Personagem(Fase fase, float xInicial, float yInicial) {
@@ -36,6 +42,10 @@ public abstract class Personagem extends Entidade {
     public abstract int getQtdSprites(int id_acao);
 
     protected abstract void atualizarAcaoAtual();
+
+    protected final void carregarVida(String pathVida){
+        vida = Fase.importarImagem(pathVida);
+    }
 
     protected final void carregarAnimacoes(String pathSpritesheet, int tamSprite) {
         BufferedImage temp = Fase.importarImagem(pathSpritesheet);
@@ -73,7 +83,10 @@ public abstract class Personagem extends Entidade {
         atualizarPosicao();
         atualizarCooldowns();
         atualizarTickAnimacao();
+        atalizarAtaqueDePerto();
     }
+
+    protected void atalizarAtaqueDePerto(){}
 
     protected void atualizarCooldowns(){
         if(!podeAtirar){
@@ -139,5 +152,12 @@ public abstract class Personagem extends Entidade {
         flipX = 0;
         flipW = 1;
         direcao.resetarDirecao();
+    }
+
+    public void ataca(Rectangle2D.Float hitbox,Rectangle2D.Float ataquePerto){
+        if (intercecta(fase.getPlayer().hitbox, ataquePerto)){
+            fase.getPlayer().sofrerDano(dano);
+            jaAtacou = true;
+        }
     }
 }

@@ -3,6 +3,7 @@ package Modelo;
 import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import Auxiliar.Consts;
 
@@ -19,7 +20,10 @@ public class Hero extends Personagem {
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         carregarAnimacoes("hero/hero.png",128);
+        carregarVida("hero/vida.png");
         inicializarHitbox(22,63);
+        inicializarataquePerto(40,20);
+
     }
 
     @Override
@@ -29,14 +33,24 @@ public class Hero extends Personagem {
         int posYimg = (int)(hitbox.y) - 64;
         int larguraImg = 128 * flipW;
         int alturaImg = 128;
+        int posXvida = 10;
+        int posYvida = 10;
+        int larguravida = 32;
+        int alturavida = 32;
 
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
         g.drawImage(imagemAtual, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
-        
+
+        for(int i = 0; i < vidaAtual; i++){
+            g.drawImage(vida, posXvida + (i * (larguravida + 10)), posYvida , larguravida, alturavida, null);
+        }
+
         if(Consts.DESENHAR_HITBOX){
             g.setColor(Color.BLUE);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
+            g.setColor(Color.red);
+            g.drawRect((int) ataquePerto.x - cameraOffsetX, (int) ataquePerto.y - cameraOffsetY, (int) ataquePerto.width, (int) ataquePerto.height);
         }
 
     }
@@ -87,6 +101,17 @@ public class Hero extends Personagem {
 
     public void setSocando(boolean socando){
         this.socando = socando;
+    }
+
+    @Override
+    public void atalizarAtaqueDePerto(){
+        if (direcao.isDireita()){
+            ataquePerto.x = hitbox.x - flipX +25;
+        }
+        else if (direcao.isEsquerda()){
+            ataquePerto.x = hitbox.x - flipX + 80;
+        }
+        ataquePerto.y = hitbox.y + 10;
     }
 
     @Override
@@ -176,8 +201,15 @@ public class Hero extends Personagem {
             }
         }
 
-        if (socando && !noAr)
+        if (socando && !noAr) {
             acaoAtual = SOCANDO;
+
+            if(animation_index == 0)
+                jaAtacou = false;
+            if (animation_index == 1 && !jaAtacou){
+                socar(fase.getInimigos());
+            }
+        }
 
         if (socando && noAr) socando = false;
 
@@ -189,6 +221,15 @@ public class Hero extends Personagem {
 
         if(acaoInicial != acaoAtual)
             resetAniTick();
+    }
+
+    public void socar(ArrayList<Personagem> inimigos){
+        for(Personagem p: fase.getInimigos()){
+            if(ataquePerto.intersects(p.hitbox)){
+                p.sofrerDano(3);
+            }
+        }
+        jaAtacou = true;
     }
 
 }

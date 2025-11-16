@@ -8,21 +8,22 @@ import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 
-public class Zumbi1 extends Personagem {
+public class Mumia extends Personagem {
     //ID das animacoes do Zumbi1
     private static final int PARADO = 0;
     private static final int ANDANDO = 1;
     private static final int ATACANDO = 2;
-    private static final int LEVANDO_DANO = 3;
-    private static final int MORRENDO = 4;
-    
-    public Zumbi1(Fase fase, float xInicial, float yInicial) {
+    private static final int LEVANDO_DANO = 4;
+    private static final int MORRENDO = 3;
+
+    public Mumia(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
-        vidaMaxima = vidaAtual = 3;
+        vidaMaxima = vidaAtual = 5;
+        dano = 2;
         animation_speed = 20;
-        velocidadeX = 0.25f;
+        velocidadeX = 0.5f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/zumbi1.png",128);
+        carregarAnimacoes("inimigos/mumia.png",48);
         inicializarHitbox(25,63);
         inicializarataquePerto(40,20);
     }
@@ -31,15 +32,15 @@ public class Zumbi1 extends Personagem {
     public int getQtdSprites(int id_acao) {
         switch (id_acao) {
             case PARADO:
-                return 6;
-            case ANDANDO:
-                return 10;
-            case ATACANDO:
-                return 5;
-            case LEVANDO_DANO:
                 return 4;
+            case ANDANDO:
+                return 6;
+            case ATACANDO:
+                return 6;
+            case LEVANDO_DANO:
+                return 2;
             case MORRENDO:
-                return 5;
+                return 6;
             default:
                 return 0;
         }
@@ -78,20 +79,19 @@ public class Zumbi1 extends Personagem {
             }
         }
 
-        if(acaoAtual!=acaoInicial) 
+        if(acaoAtual!=acaoInicial)
             resetAniTick();
     }
 
     @Override
     protected void atualizarPosicao() {
 
-
         if(morto || acaoAtual==LEVANDO_DANO || acaoAtual==ATACANDO) return;
 
         float vx = velocidadeX;
         if(direcao.isEsquerda()) {
             vx *= -1;
-            flipX = 120;
+            flipX = 60;
             flipW = -1;
         }
         else{
@@ -106,7 +106,7 @@ public class Zumbi1 extends Personagem {
         float posicaoAnterior = hitbox.x;
         atualizarPosicaoX(vx);
         float novaPosicao = hitbox.x;
-        
+
         if(posicaoAnterior==novaPosicao) {
             direcao.inverterDirecaoAtual();
         }
@@ -117,17 +117,17 @@ public class Zumbi1 extends Personagem {
             ataquePerto.x = hitbox.x - flipX +25;
         }
         else if (direcao.isEsquerda()){
-            ataquePerto.x = hitbox.x - flipX + 80;
+            ataquePerto.x = hitbox.x - flipX  + 18;
         }
         ataquePerto.y = hitbox.y + 10;
     }
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        int posXimg = (int)(hitbox.x) - 48 + flipX;
-        int posYimg = (int)(hitbox.y) - 64;
-        int larguraImg = 128 * flipW;
-        int alturaImg = 128;
+        int posXimg = (int)(hitbox.x) -15 + flipX;
+        int posYimg = (int)(hitbox.y) - 38;
+        int larguraImg = 100 * flipW;
+        int alturaImg = 100;
 
         BufferedImage imagemAtual = imagens[acaoAtual][animation_index];
 
@@ -152,7 +152,7 @@ public class Zumbi1 extends Personagem {
     }
 
     public void ataca(){
-        
+
     }
-    
+
 }

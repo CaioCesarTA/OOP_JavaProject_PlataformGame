@@ -31,6 +31,7 @@ public abstract class Entidade implements Serializable{
     protected float velocidadeQuedaPosColisao = 0.5f;
     //Hitbox
     protected Rectangle2D.Float hitbox;
+    protected Rectangle2D.Float ataquePerto;
 
     public Entidade(Fase fase, float xInicial, float yInicial){
         posicaoInicial = new Posicao(xInicial,yInicial);
@@ -46,7 +47,19 @@ public abstract class Entidade implements Serializable{
 
     protected final void inicializarHitbox(int largura, int altura){
         hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
-    } 
+    }
+
+    protected final void inicializarataquePerto(int largura, int altura){
+        ataquePerto = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
+    }
+
+    protected boolean intercecta(Rectangle2D.Float hitbox,Rectangle2D.Float ataquePerto){
+        boolean estaDentro;
+        if (ataquePerto.intersects(hitbox)) {
+            return estaDentro = true;
+        }
+        return estaDentro = false;
+    }
 
     public void sofrerDano(int dano){
         if(vidaAtual<=0) return;
@@ -57,6 +70,7 @@ public abstract class Entidade implements Serializable{
     protected void atualizarPosicaoX(float vx) {
         if(isPosValida(hitbox.x+vx,hitbox.y)){
             hitbox.x += vx;
+
         }
     }
 
@@ -67,6 +81,7 @@ public abstract class Entidade implements Serializable{
 
         if(isPosValida(hitbox.x,hitbox.y+velocidadeAr)){
             hitbox.y += velocidadeAr;
+            ataquePerto.y += velocidadeAr;
             velocidadeAr += gravidade;
         }
         else{
