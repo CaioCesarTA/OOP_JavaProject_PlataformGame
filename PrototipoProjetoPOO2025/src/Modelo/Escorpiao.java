@@ -1,31 +1,30 @@
 package Modelo;
 
+import Auxiliar.Consts;
 import Fases.Fase;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import Auxiliar.Consts;
-
-public class Mumia extends Personagem {
-    //ID das animacoes da Mumia
+public class Escorpiao extends Personagem{
+    //ID das animacoes do escorpiao
     private static final int PARADO = 0;
     private static final int ANDANDO = 1;
     private static final int ATACANDO = 2;
-    private static final int LEVANDO_DANO = 4;
     private static final int MORRENDO = 3;
+    private static final int LEVANDO_DANO = 4;
 
-    public Mumia(Fase fase, float xInicial, float yInicial) {
+
+    public Escorpiao(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
-        vidaMaxima = vidaAtual = 5;
-        dano = 2;
+        vidaMaxima = vidaAtual = 1;
+        dano = 4;
         animation_speed = 20;
-        velocidadeX = 0.5f;
+        velocidadeX = 1.6f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/mumia.png",48);
-        inicializarHitbox(25,63);
-        inicializarataquePerto(40,20);
+        carregarAnimacoes("inimigos/escorpiao.png",48);
+        inicializarHitbox(45,63);
+        inicializarataquePerto(70,20);
     }
 
     @Override
@@ -34,18 +33,17 @@ public class Mumia extends Personagem {
             case PARADO:
                 return 4;
             case ANDANDO:
-                return 6;
+                return 4;
             case ATACANDO:
-                return 6;
+                return 4;
             case LEVANDO_DANO:
                 return 2;
             case MORRENDO:
-                return 6;
+                return 4;
             default:
                 return 0;
         }
     }
-
     @Override
     protected void atualizarAcaoAtual() {
         if(morto) {
@@ -114,10 +112,10 @@ public class Mumia extends Personagem {
     @Override
     public void atalizarAtaqueDePerto(){
         if (direcao.isDireita()){
-            ataquePerto.x = hitbox.x - flipX +25;
+            ataquePerto.x = hitbox.x - flipX +50;
         }
         else if (direcao.isEsquerda()){
-            ataquePerto.x = hitbox.x - flipX  + 18;
+            ataquePerto.x = hitbox.x - flipX  -10;
         }
         ataquePerto.y = hitbox.y + 10;
     }

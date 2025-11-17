@@ -17,10 +17,13 @@ public class Fase3 extends Fase {
     protected void adicionarPersonagens(){
         addInimigo(new Mumia(this, 52*Consts.CELL_SIDE, 29*Consts.CELL_SIDE));
         addInimigo(new Mumia(this, 10*Consts.CELL_SIDE, 28*Consts.CELL_SIDE));
-        addInimigo(new Mumia(this, 12*Consts.CELL_SIDE, 22*Consts.CELL_SIDE));
+        addInimigo(new Escorpiao(this, 12*Consts.CELL_SIDE, 22*Consts.CELL_SIDE));
         addInimigo(new Mumia(this, 28*Consts.CELL_SIDE, 19*Consts.CELL_SIDE));
-        addInimigo(new Mumia(this, 50*Consts.CELL_SIDE, 18*Consts.CELL_SIDE));
+        addInimigo(new Escorpiao(this, 50*Consts.CELL_SIDE, 18*Consts.CELL_SIDE));
         addInimigo(new Mumia(this, 83*Consts.CELL_SIDE, 19*Consts.CELL_SIDE));
+        addInimigo(new Escorpiao(this, 116*Consts.CELL_SIDE, 18*Consts.CELL_SIDE));
+        addInimigo(new Escorpiao(this, 120*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));
+        addInimigo(new Mumia(this, 133*Consts.CELL_SIDE, 15*Consts.CELL_SIDE));
 
 
 
