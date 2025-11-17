@@ -29,6 +29,7 @@ public class Labubu extends Personagem {
     private Bau bau;
     private PortaCastelo portaAbre;
     private PortaCastelo portaFecha;
+    private Chave chave;
     
     public Labubu(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
@@ -60,10 +61,12 @@ public class Labubu extends Personagem {
         bau = new Bau(fase, 47*Consts.CELL_SIDE, 18*Consts.CELL_SIDE);
         portaAbre = new PortaCastelo(fase, 62*Consts.CELL_SIDE, 27*Consts.CELL_SIDE, false, 1);
         portaFecha = new PortaCastelo(fase, 31*Consts.CELL_SIDE, 27*Consts.CELL_SIDE,true, -1);
+        chave = new Chave(fase,bau.getHitbox().x,bau.getHitbox().y-32,portaAbre);
 
         fase.addEntidade(bau);
         fase.addEntidade(portaAbre);
         fase.addEntidade(portaFecha);
+        fase.addEntidade(chave);
     }
 
     @Override
@@ -93,10 +96,10 @@ public class Labubu extends Personagem {
         if(morto) {
             acaoAtual = MORRENDO;
             if(animation_index>=getQtdSprites(MORRENDO)-1) {
-                //fase.removerInimigo(this);
+                transponivel = true;
                 visivel = false;
                 bau.mudarEstado();
-                fase.addEntidade(new Chave(fase,bau.getHitbox().x,bau.getHitbox().y-32,portaAbre));
+                chave.mudarEstado();
             }
             return;
         }
