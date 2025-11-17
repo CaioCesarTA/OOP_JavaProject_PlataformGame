@@ -36,9 +36,9 @@ public class Porta extends Entidade implements Controlado {
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        int posXimg = (int)(hitbox.x)-25;
+        int posXimg = (int)(hitbox.x) - 25 + 96;
         int posYimg = (int)(hitbox.y);
-        int larguraImg = 96;
+        int larguraImg = 96 * -1;
         int alturaImg = 96;
 
         g.drawImage(sprites[indiceImagem], posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
