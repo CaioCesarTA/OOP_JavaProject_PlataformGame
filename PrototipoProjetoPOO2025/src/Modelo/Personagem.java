@@ -83,10 +83,15 @@ public abstract class Personagem extends Entidade {
         atualizarPosicao();
         atualizarCooldowns();
         atualizarTickAnimacao();
-        atalizarAtaqueDePerto();
+        atualizarAtaqueDePerto();
     }
 
-    protected void atalizarAtaqueDePerto(){}
+    protected final void atualizarAtaqueDePerto(){
+        if(ataquePerto==null) return;
+        ataquePerto.x = hitbox.x + hitbox.width;
+        if(flipW == -1) ataquePerto.x = hitbox.x - ataquePerto.width;  
+        ataquePerto.y = hitbox.y + 10;
+    }
 
     protected void atualizarCooldowns(){
         if(!podeAtirar){
@@ -152,6 +157,7 @@ public abstract class Personagem extends Entidade {
         flipX = 0;
         flipW = 1;
         direcao.resetarDirecao();
+        atualizarAtaqueDePerto();
     }
 
     public void ataca(Rectangle2D.Float hitbox,Rectangle2D.Float ataquePerto){

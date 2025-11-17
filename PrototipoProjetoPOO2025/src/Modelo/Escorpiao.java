@@ -109,16 +109,6 @@ public class Escorpiao extends Personagem{
             direcao.inverterDirecaoAtual();
         }
     }
-    @Override
-    public void atalizarAtaqueDePerto(){
-        if (direcao.isDireita()){
-            ataquePerto.x = hitbox.x - flipX +50;
-        }
-        else if (direcao.isEsquerda()){
-            ataquePerto.x = hitbox.x - flipX  -10;
-        }
-        ataquePerto.y = hitbox.y + 10;
-    }
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {

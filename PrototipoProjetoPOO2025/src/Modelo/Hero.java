@@ -104,17 +104,6 @@ public class Hero extends Personagem {
     }
 
     @Override
-    public void atalizarAtaqueDePerto(){
-        if (direcao.isDireita()){
-            ataquePerto.x = hitbox.x - flipX +25;
-        }
-        else if (direcao.isEsquerda()){
-            ataquePerto.x = hitbox.x - flipX + 80;
-        }
-        ataquePerto.y = hitbox.y + 10;
-    }
-
-    @Override
     protected void atualizarPosicaoY(){
         //Verifica se o personagem esta no chao
         if(isEntidadeNoChao()) noAr = false;

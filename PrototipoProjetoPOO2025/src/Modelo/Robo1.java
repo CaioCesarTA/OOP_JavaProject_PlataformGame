@@ -152,4 +152,5 @@ public class Robo1 extends Personagem {
         resetAniTick();
         if(vidaAtual <= 0) morto = true;
     }
+
 }

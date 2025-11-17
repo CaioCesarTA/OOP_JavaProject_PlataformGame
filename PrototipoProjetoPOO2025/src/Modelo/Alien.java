@@ -151,4 +151,5 @@ public class Alien extends Personagem {
         resetAniTick();
         if(vidaAtual <= 0) morto = true;
     }
+
 }
