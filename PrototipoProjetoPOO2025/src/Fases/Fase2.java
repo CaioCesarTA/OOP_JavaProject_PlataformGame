@@ -1,12 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
-import Modelo.Hero;
-import Modelo.Plataforma;
-import Modelo.Porta;
-import Modelo.Portal;
-import Modelo.Robo1;
-import Modelo.Terminal;
+import Modelo.*;
 
 public class Fase2 extends Fase {
 
@@ -21,7 +16,7 @@ public class Fase2 extends Fase {
 
     @Override
     protected final void adicionarPersonagens(){
-        Porta porta1 = new Porta(this, 46*Consts.CELL_SIDE, 26*Consts.CELL_SIDE);
+        PortaFuturo porta1 = new PortaFuturo(this, 46*Consts.CELL_SIDE, 26*Consts.CELL_SIDE,false);
         Terminal terminal1 = new Terminal(this,  44*Consts.CELL_SIDE+5, 8*Consts.CELL_SIDE-15);
         terminal1.addControlado(porta1);
         addEntidade(terminal1);
@@ -34,12 +29,12 @@ public class Fase2 extends Fase {
             terminal2.addControlado(plataformas[i]);
             addEntidade(plataformas[i]);
         }
-        addInimigo(new Robo1(this, 40*Consts.CELL_SIDE, 17*Consts.CELL_SIDE));
-        addInimigo(new Robo1(this, 79*Consts.CELL_SIDE, 21*Consts.CELL_SIDE));
-        addInimigo(new Robo1(this, 63*Consts.CELL_SIDE, 16*Consts.CELL_SIDE));
-        addInimigo(new Robo1(this, 76*Consts.CELL_SIDE, 11*Consts.CELL_SIDE));
-        addInimigo(new Robo1(this, 131*Consts.CELL_SIDE, 21*Consts.CELL_SIDE));
-        addInimigo(new Robo1(this, 114*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 40*Consts.CELL_SIDE, 17*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 79*Consts.CELL_SIDE, 21*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 63*Consts.CELL_SIDE, 16*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 76*Consts.CELL_SIDE, 11*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 131*Consts.CELL_SIDE, 21*Consts.CELL_SIDE));
+        addInimigo(new Robo(this, 114*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));
     }
 
     @Override

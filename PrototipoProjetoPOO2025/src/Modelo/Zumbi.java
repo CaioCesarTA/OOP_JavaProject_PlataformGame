@@ -8,15 +8,15 @@ import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 
-public class Zumbi1 extends Personagem {
-    //ID das animacoes do Zumbi1
+public class Zumbi extends Personagem {
+    //ID das animacoes do Zumbi
     private static final int PARADO = 0;
     private static final int ANDANDO = 1;
     private static final int ATACANDO = 2;
     private static final int LEVANDO_DANO = 3;
     private static final int MORRENDO = 4;
     
-    public Zumbi1(Fase fase, float xInicial, float yInicial) {
+    public Zumbi(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 3;
         animation_speed = 6;

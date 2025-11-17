@@ -221,4 +221,8 @@ public class Hero extends Personagem {
         jaAtacou = true;
     }
 
+    public int getFlipW(){
+        return flipW;
+    }
+
 }

@@ -68,7 +68,6 @@ public abstract class Entidade implements Serializable{
     protected void atualizarPosicaoX(float vx) {
         if(isPosValida(hitbox.x+vx,hitbox.y)){
             hitbox.x += vx;
-
         }
     }
 
@@ -100,7 +99,7 @@ public abstract class Entidade implements Serializable{
         
         //Checa colisao com outras entidades da fase
         for(Entidade e : fase.getEntidades()){
-            if(!e.isTransponivel() && !this.equals(e)){
+            if(!e.isTransponivel() && !this.equals(e) && !(e instanceof Personagem)){
                 if(e.getHitbox().contains(hitbox.x,hitbox.y+hitbox.height+1)
                 || e.getHitbox().contains(hitbox.x+hitbox.width,hitbox.y+hitbox.height+1)) return true;
             }

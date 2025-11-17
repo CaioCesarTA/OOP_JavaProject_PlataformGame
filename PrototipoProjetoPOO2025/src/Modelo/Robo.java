@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
 import Fases.Fase;
 
-public class Robo1 extends Personagem {
-    //ID das animacoes do Robo1
+public class Robo extends Personagem {
+    //ID das animacoes do Robo
     private static final int PARADO = 0;
     private static final int ANDANDO = 1;
     private static final int ATIRANDO = 2;
@@ -18,7 +18,7 @@ public class Robo1 extends Personagem {
     //Area de visao
     private Rectangle2D.Float areaVisao;
     
-    public Robo1(Fase fase, float xInicial, float yInicial) {
+    public Robo(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 4;
         animation_speed = 5;

@@ -15,21 +15,21 @@ public class Fase1 extends Fase {
     }
 
     protected void adicionarPersonagens(){
-        addInimigo(new Zumbi1(this, 1600, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 1772, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 2000, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 2400, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 2300, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 4362, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 4200, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 3210, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 2916, (alturaFase-5)*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 129*Consts.CELL_SIDE, 16*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 103*Consts.CELL_SIDE, 12*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 140*Consts.CELL_SIDE, 6*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 53*Consts.CELL_SIDE, 11*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 59*Consts.CELL_SIDE, 27*Consts.CELL_SIDE));
-        addInimigo(new Zumbi1(this, 31*Consts.CELL_SIDE, 23*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 1600, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 1772, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 2000, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 2400, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 2300, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 4362, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 4200, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 3210, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 2916, (alturaFase-5)*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 129*Consts.CELL_SIDE, 16*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 103*Consts.CELL_SIDE, 12*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 140*Consts.CELL_SIDE, 6*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 53*Consts.CELL_SIDE, 11*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 59*Consts.CELL_SIDE, 27*Consts.CELL_SIDE));
+        addInimigo(new Zumbi(this, 31*Consts.CELL_SIDE, 23*Consts.CELL_SIDE));
     }
 
     

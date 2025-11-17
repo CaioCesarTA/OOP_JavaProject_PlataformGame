@@ -1,0 +1,13 @@
+package Modelo;
+
+public class PortaCastelo extends Porta{
+
+    public PortaCastelo(Fase fase, float xInicial, float yInicial){
+        super(fase,xInicial,yInicial);
+        BufferedImage temp = Fase.importarImagem("fases/fase5/tilesetFase5.png");
+        mortal = false;
+        sprites[0] = temp.getSubimage(384, 96, 32, 64);
+        sprites[1] = temp.getSubimage(400, 96, 32, 64);
+        inicializarHitbox(44, 96);
+    }
+}
