@@ -19,7 +19,6 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     public ControleDeJogo(){
         IDfaseAtual = 0;
         fases = new Fase[5];
-        //TODO: Trocar cada uma dessas pela fase certa
         fases[0] = new Fase1();
         fases[1] = new Fase2();
         fases[2] = new Fase3();
@@ -58,12 +57,38 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     @Override
     public void run() {
-        int delay = 1000 / Consts.FPS; // intervalo em ms para atingir o FPS desejado
+        double umSegundo = 1000000000.0; //um segundo em nanossegundos
+        double tempoPorFrame = umSegundo / Consts.FPS; // nanossegundos por frame
+        
+        //Inicializa contadores de tempo
+        long ultimaAtualizacao = System.nanoTime();
+        long agora;
+        long ultimaChecagem = System.nanoTime(); //usado para verificar quantos quadros foram gerados em um segundo
+        
+        //Contadores de frame
+        int frames = 0;
+        double deltaTempo = 0;
+        
+        while(true){
+            agora = System.nanoTime();
 
-        new javax.swing.Timer(delay, e -> {
-            processaTudo();
-            tela.repaint();
-        }).start();
+            deltaTempo += (agora - ultimaAtualizacao)/tempoPorFrame;
+            ultimaAtualizacao = agora;
+            
+            if(deltaTempo >= 1){
+                processaTudo();
+                tela.repaint();
+                frames++;
+                deltaTempo--;
+            }
+            
+            //Contador de FPS
+            if(agora - ultimaChecagem >= umSegundo) {
+                ultimaChecagem = agora;
+                System.out.println("FPS: " + frames);
+                frames = 0;
+            }
+        }
     }
 
     private Fase getFaseAtual() {

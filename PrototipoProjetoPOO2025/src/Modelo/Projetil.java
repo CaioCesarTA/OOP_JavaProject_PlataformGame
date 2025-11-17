@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
 
 public class Projetil extends Entidade {
-    protected float velocidadeProjetil = 8.0f;
+    protected float velocidadeProjetil = 4.0f;
     BufferedImage imagemProjetil;
     int dano;
     int flipW;

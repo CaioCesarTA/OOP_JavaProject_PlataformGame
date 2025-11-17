@@ -24,11 +24,11 @@ public abstract class Entidade implements Serializable{
     protected Posicao posicaoInicial;
     protected Direcao direcao;
     protected Fase fase;
-    protected float velocidadeX = 2.75f;
+    protected float velocidadeX = 1;
     protected float velocidadeAr = 0;
     protected float gravidade;
-    protected float velocidadePulo = -13.75f;
-    protected float velocidadeQuedaPosColisao = 0.3f;
+    protected float velocidadePulo = -4.75f;
+    protected float velocidadeQuedaPosColisao = 0.5f;
     //Hitbox
     protected Rectangle2D.Float hitbox;
     protected Rectangle2D.Float ataquePerto;

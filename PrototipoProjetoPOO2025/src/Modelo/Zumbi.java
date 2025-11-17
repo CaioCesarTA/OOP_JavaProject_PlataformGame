@@ -19,8 +19,8 @@ public class Zumbi extends Personagem {
     public Zumbi(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 3;
-        animation_speed = 6;
-        velocidadeX = 0.5f;
+        animation_speed = 20;
+        velocidadeX = 0.25f;
         direcao.setDireita(true);
         carregarAnimacoes("inimigos/zumbi1.png",128);
         inicializarHitbox(25,63);

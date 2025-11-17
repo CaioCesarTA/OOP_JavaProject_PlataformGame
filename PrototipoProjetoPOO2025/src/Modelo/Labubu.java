@@ -34,10 +34,11 @@ public class Labubu extends Personagem {
     public Labubu(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         mortal = false;
-        vidaMaxima = vidaAtual = 1;
+        vidaMaxima = vidaAtual = 50;
         dano = 2;
-        cooldownTiro = 1;
-        velocidadeX = 3.75f;
+        tempoEntreTiros = Consts.FPS; //um tiro por segundo
+        animation_speed = 15;
+        velocidadeX = 1.75f;
         direcao.setEsquerda(true);
         flipW = -1;
         flipX = 116;
@@ -118,7 +119,7 @@ public class Labubu extends Personagem {
 
         if(vendoPlayer() && podeAtirar && !morto){
             acaoAtual = ATIRANDO;
-            fase.addEntidade(new Projetil(fase,hitbox.x+50*flipW,hitbox.y+10,flipW,-1,"projeteis/bullet3.png"));
+            
             podeAtirar = false;
             resetAniTick();
             return;
@@ -131,7 +132,10 @@ public class Labubu extends Personagem {
         }
         if(acaoInicial == ATIRANDO) {
             acaoAtual = ATIRANDO;
-            if(animation_index>=getQtdSprites(ATIRANDO)-1) acaoAtual = PARADO;
+            if(animation_index>=getQtdSprites(ATIRANDO)-1) {
+                acaoAtual = PARADO;
+                fase.addEntidade(new Projetil(fase,hitbox.x+70*flipW,hitbox.y+10,flipW,5,"projeteis/bullet3.png"));
+            }
             return;
         }
 
@@ -172,19 +176,19 @@ public class Labubu extends Personagem {
         ) return;
 
         //Teleporta para as plataformas
-        if(plataformas[0].contains(fase.getPlayer().getHitbox()) && !plataformas[0].contains(hitbox)) {
+        if(plataformas[0].contains(fase.getPlayer().getHitbox()) && !plataformas[0].intersects(hitbox)) {
             hitbox.x = (float) plataformas[0].getCenterX();
             hitbox.y = (float) plataformas[0].getMaxY() - hitbox.height - 1;
         }
-        else if(plataformas[3].contains(fase.getPlayer().getHitbox()) && !plataformas[3].contains(hitbox)) {
+        else if(plataformas[3].contains(fase.getPlayer().getHitbox()) && !plataformas[3].intersects(hitbox)) {
             hitbox.x = (float) plataformas[3].getCenterX();
             hitbox.y = (float) plataformas[3].getMaxY() - hitbox.height - 1;
         }
-        else if(plataformas[1].contains(fase.getPlayer().getHitbox()) && !plataformas[1].contains(hitbox)) {
+        else if(plataformas[1].contains(fase.getPlayer().getHitbox()) && !plataformas[1].intersects(hitbox)) {
             hitbox.x = (float) plataformas[1].getX();
             hitbox.y = (float) plataformas[1].getMaxY() - hitbox.height - 1;
         }
-        else if(plataformas[2].contains(fase.getPlayer().getHitbox()) && !plataformas[2].contains(hitbox)) {
+        else if(plataformas[2].contains(fase.getPlayer().getHitbox()) && !plataformas[2].intersects(hitbox)) {
             hitbox.x = (float) plataformas[2].getMaxX() - hitbox.width;
             hitbox.y = (float) plataformas[2].getMaxY() - hitbox.height - 1;
         }
@@ -199,6 +203,8 @@ public class Labubu extends Personagem {
             flipX = 0;
             flipW = 1;
         }
+
+        if(!fase.isSolido(hitbox.x+vx, hitbox.y+hitbox.height+1)) vx=0;
 
         float posicaoAnterior = hitbox.x;
         atualizarPosicaoX(vx);

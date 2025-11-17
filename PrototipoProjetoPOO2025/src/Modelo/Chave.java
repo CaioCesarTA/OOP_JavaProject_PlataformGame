@@ -11,7 +11,7 @@ public class Chave extends Entidade implements Controlado {
     private Porta portaControlada;
     private BufferedImage imagemChave;
     private boolean acompanharPlayer;
-    private float velocidadeY = 0.25f;
+    private float velocidadeY = 0.125f;
     private int flipW = 1, flipX = 0;
 
     public Chave(Fase fase, float xInicial, float yInicial, Porta portaControlada){
@@ -40,7 +40,7 @@ public class Chave extends Entidade implements Controlado {
         }
         else{
             hitbox.y -= velocidadeY;
-            if(Math.abs(hitbox.y - posicaoInicial.getY()) > 10) velocidadeY *= -1;
+            if(Math.abs(hitbox.y - posicaoInicial.getY()) > 5) velocidadeY *= -1;
         }
     }
 

@@ -28,6 +28,7 @@ public class Alien extends Personagem {
         carregarAnimacoes("inimigos/alien.png",128);
         inicializarHitbox(25,63);
         areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,550,50);
+        tempoEntreTiros = Consts.FPS; //um tiro por segundo
     }
 
     @Override

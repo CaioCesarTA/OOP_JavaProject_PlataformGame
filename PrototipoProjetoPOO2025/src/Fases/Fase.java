@@ -26,7 +26,7 @@ public abstract class Fase {
     protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
     protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
     
-    protected float gravidade = 0.45f;
+    protected float gravidade = 0.07f;
     protected Hero player;
     protected Portal portal;
     protected int[][] infoCenario;
