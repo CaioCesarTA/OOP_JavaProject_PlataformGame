@@ -23,7 +23,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
         fases[0] = new Fase1();
         fases[1] = new Fase2();
         fases[2] = new Fase3();
-        fases[3] = new Fase1();
+        fases[3] = new Fase4();
         fases[4] = new Fase1();
         tela = new Tela(this);
         janela = new Janela(tela);

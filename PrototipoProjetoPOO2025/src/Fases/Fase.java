@@ -25,7 +25,8 @@ public abstract class Fase {
     //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
     protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
     protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
-
+    
+    protected float gravidade = 0.07f;
     protected Hero player;
     protected Portal portal;
     protected int[][] infoCenario;
@@ -254,5 +255,9 @@ public abstract class Fase {
 
     public Portal getPortal(){
         return portal;
+    }
+
+    public float getGravidade(){
+        return gravidade;
     }
 }

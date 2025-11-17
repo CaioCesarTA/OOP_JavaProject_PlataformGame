@@ -26,7 +26,7 @@ public abstract class Entidade implements Serializable{
     protected Fase fase;
     protected float velocidadeX = 0.75f;
     protected float velocidadeAr = 0;
-    protected float gravidade = 0.07f;
+    protected float gravidade;
     protected float velocidadePulo = -4.75f;
     protected float velocidadeQuedaPosColisao = 0.5f;
     //Hitbox
@@ -34,6 +34,7 @@ public abstract class Entidade implements Serializable{
     protected Rectangle2D.Float ataquePerto;
 
     public Entidade(Fase fase, float xInicial, float yInicial){
+        gravidade = fase.getGravidade();
         posicaoInicial = new Posicao(xInicial,yInicial);
         this.fase = fase;
         direcao = new Direcao();
