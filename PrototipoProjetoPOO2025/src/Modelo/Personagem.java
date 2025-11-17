@@ -22,7 +22,7 @@ public abstract class Personagem extends Entidade {
     protected BufferedImage vida;
     protected int animation_tick = 0;
     protected int animation_index = 0;
-    protected int animation_speed = 10;
+    protected int animation_speed = 6;
     protected int flipX = 0;
     protected int flipW = 1;
     //Tempo entre tiros (cooldown)

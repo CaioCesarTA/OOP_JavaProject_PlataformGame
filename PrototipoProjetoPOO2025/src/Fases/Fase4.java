@@ -7,7 +7,7 @@ public class Fase4 extends Fase {
 
     public Fase4(){
         super(106,36);
-        gravidade = 0.035f;
+        gravidade = 0.45f/2;
         player = new Hero(this, 30*Consts.CELL_SIDE,28*Consts.CELL_SIDE);
         portal = new Portal(this, 10*Consts.CELL_SIDE,28*Consts.CELL_SIDE);
         carregarImagens("fases/fase4/tilesetFase4.png","fases/fase4/bgFase4.png");

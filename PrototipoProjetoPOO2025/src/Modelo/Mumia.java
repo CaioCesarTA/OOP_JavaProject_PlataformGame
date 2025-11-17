@@ -20,8 +20,8 @@ public class Mumia extends Personagem {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 5;
         dano = 2;
-        animation_speed = 20;
-        velocidadeX = 0.5f;
+        animation_speed = 8;
+        velocidadeX = 0.75f;
         direcao.setDireita(true);
         carregarAnimacoes("inimigos/mumia.png",48);
         inicializarHitbox(25,63);
@@ -74,7 +74,7 @@ public class Mumia extends Personagem {
                 acaoAtual = ANDANDO;
             if(animation_index == 0)
                 jaAtacou = false;
-            if (animation_index == 3 && !jaAtacou){
+            if (animation_index == 4 && !jaAtacou){
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
         }

@@ -7,7 +7,7 @@ public class Fase3 extends Fase {
 
     public Fase3(){
         super(140,32);
-        player = new Hero(this, 10, 10);
+        player = new Hero(this, Consts.CELL_SIDE, 4*Consts.CELL_SIDE);
         portal = new Portal(this, 4444, 128);
         carregarImagens("fases/fase3/tilesetFase3.png","fases/fase3/bgFase3.png");
         carregarInfoNivel("fases/fase3/infoFase3.png");

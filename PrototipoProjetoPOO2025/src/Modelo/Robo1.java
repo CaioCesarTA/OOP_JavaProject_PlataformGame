@@ -21,7 +21,7 @@ public class Robo1 extends Personagem {
     public Robo1(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 4;
-        animation_speed = 15;
+        animation_speed = 5;
         velocidadeX = 0.75f;
         direcao.setDireita(true);
         carregarAnimacoes("inimigos/robo1.png",128);

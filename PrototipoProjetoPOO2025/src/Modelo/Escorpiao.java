@@ -19,8 +19,8 @@ public class Escorpiao extends Personagem{
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 1;
         dano = 4;
-        animation_speed = 20;
-        velocidadeX = 1.6f;
+        animation_speed = 6;
+        velocidadeX = 2.0f;
         direcao.setDireita(true);
         carregarAnimacoes("inimigos/escorpiao.png",48);
         inicializarHitbox(45,63);

@@ -1,0 +1,34 @@
+package Fases;
+
+import Auxiliar.Consts;
+import Modelo.*;
+
+public class Fase5 extends Fase {
+
+    public Fase5(){
+        super(96,32);
+        player = new Hero(this, 2*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
+        portal = new Portal(this, 4444, 128);
+        carregarImagens("fases/fase5/tilesetFase5.png","fases/fase5/bgFase5.png");
+        carregarInfoNivel("fases/fase5/infoFase5.png");
+        adicionarPersonagens();
+    }
+
+    protected void adicionarPersonagens(){
+
+    }
+
+
+    public boolean isSolido(float x, float y){
+        if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
+        if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;
+        int sprite = infoCenario[(int)(y/Consts.CELL_SIDE)][(int)(x/Consts.CELL_SIDE)];
+
+
+        int[] transponivel = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,39, 47,48,49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 73, 74};
+        for(int i : transponivel){
+            if(sprite==i) return false;
+        }
+        return true;
+    }
+}
