@@ -4,27 +4,30 @@ import Fases.Fase;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 
-public class Zumbi1 extends Personagem {
-    //ID das animacoes do Zumbi1
+public class Alien extends Personagem {
+    //ID das animacoes do Alien
     private static final int PARADO = 0;
     private static final int ANDANDO = 1;
-    private static final int ATACANDO = 2;
+    private static final int ATIRANDO = 2;
     private static final int LEVANDO_DANO = 3;
     private static final int MORRENDO = 4;
+    //Area de visao
+    private Rectangle2D.Float areaVisao;
     
-    public Zumbi1(Fase fase, float xInicial, float yInicial) {
+    public Alien(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         vidaMaxima = vidaAtual = 3;
         animation_speed = 20;
         velocidadeX = 0.25f;
-        direcao.setDireita(true);
-        carregarAnimacoes("inimigos/zumbi1.png",128);
+        direcao.setEsquerda(true);
+        carregarAnimacoes("inimigos/alien.png",128);
         inicializarHitbox(25,63);
-        inicializarataquePerto(40,20);
+        areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,550,50);
     }
 
     @Override
@@ -34,8 +37,8 @@ public class Zumbi1 extends Personagem {
                 return 6;
             case ANDANDO:
                 return 10;
-            case ATACANDO:
-                return 5;
+            case ATIRANDO:
+                return 4;
             case LEVANDO_DANO:
                 return 4;
             case MORRENDO:
@@ -65,29 +68,33 @@ public class Zumbi1 extends Personagem {
             acaoAtual = ANDANDO;
 
         else if (!direcao.isEsquerda() && direcao.isDireita())
-            acaoAtual = ANDANDO;
+            acaoAtual = ANDANDO;           
 
-        if (intersecta(fase.getPlayer().hitbox, ataquePerto)) {
-            acaoAtual = ATACANDO;
-            if (fase.getPlayer().isMorto())
-                acaoAtual = ANDANDO;
-            if(animation_index == 0)
-                jaAtacou = false;
-            if (animation_index == 3 && !jaAtacou){
-                ataca(fase.getPlayer().hitbox, ataquePerto);
+
+        if(vendoPlayer()) {
+            if(podeAtirar && !morto){
+                acaoAtual = ATIRANDO;
+                fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+10,flipW,dano,"projeteis/bullet2.png"));
+                podeAtirar = false;
+                resetAniTick();
             }
+            else acaoAtual = PARADO;
+        }
+        if(acaoInicial == ATIRANDO) {
+            acaoAtual = ATIRANDO;
+            if(animation_index>=getQtdSprites(ATIRANDO)-1) acaoAtual = PARADO;
         }
 
         if(acaoAtual!=acaoInicial) 
             resetAniTick();
     }
 
+    public boolean vendoPlayer(){
+        return fase.getPlayer().getHitbox().intersects(areaVisao) && !fase.getPlayer().isMorto();
+    }
+
     @Override
     protected void atualizarPosicao() {
-
-
-        if(morto || acaoAtual==LEVANDO_DANO || acaoAtual==ATACANDO) return;
-
         float vx = velocidadeX;
         if(direcao.isEsquerda()) {
             vx *= -1;
@@ -102,6 +109,7 @@ public class Zumbi1 extends Personagem {
         if(!fase.isSolido(hitbox.x+vx, hitbox.y+hitbox.height+1)) vx=0;
         atualizarPosicaoY();
 
+        if(morto || acaoAtual==LEVANDO_DANO || acaoAtual==ATIRANDO || vendoPlayer()) return;
 
         float posicaoAnterior = hitbox.x;
         atualizarPosicaoX(vx);
@@ -110,16 +118,10 @@ public class Zumbi1 extends Personagem {
         if(posicaoAnterior==novaPosicao) {
             direcao.inverterDirecaoAtual();
         }
-    }
-    @Override
-    public void atalizarAtaqueDePerto(){
-        if (direcao.isDireita()){
-            ataquePerto.x = hitbox.x - flipX +25;
-        }
-        else if (direcao.isEsquerda()){
-            ataquePerto.x = hitbox.x - flipX + 80;
-        }
-        ataquePerto.y = hitbox.y + 10;
+
+        areaVisao.x = hitbox.x;
+        if(flipW==-1) areaVisao.x -= areaVisao.width - hitbox.width;
+        areaVisao.y = hitbox.y;
     }
 
     @Override
@@ -137,9 +139,8 @@ public class Zumbi1 extends Personagem {
             g.setColor(Color.BLUE);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
             g.setColor(Color.RED);
-            g.drawRect((int) ataquePerto.x - cameraOffsetX, (int) ataquePerto.y - cameraOffsetY, (int) ataquePerto.width, (int) ataquePerto.height);
+            g.drawRect((int)areaVisao.x- cameraOffsetX, (int)areaVisao.y- cameraOffsetY, (int)areaVisao.width, (int)areaVisao.height);
         }
-
     }
 
     @Override
@@ -150,9 +151,4 @@ public class Zumbi1 extends Personagem {
         resetAniTick();
         if(vidaAtual <= 0) morto = true;
     }
-
-    public void ataca(){
-        
-    }
-    
 }

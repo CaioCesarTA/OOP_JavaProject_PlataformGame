@@ -68,7 +68,7 @@ public class Mumia extends Personagem {
         else if (!direcao.isEsquerda() && direcao.isDireita())
             acaoAtual = ANDANDO;
 
-        if (intercecta(fase.getPlayer().hitbox, ataquePerto)) {
+        if (intersecta(fase.getPlayer().hitbox, ataquePerto)) {
             acaoAtual = ATACANDO;
             if (fase.getPlayer().isMorto())
                 acaoAtual = ANDANDO;
@@ -150,9 +150,4 @@ public class Mumia extends Personagem {
         resetAniTick();
         if(vidaAtual <= 0) morto = true;
     }
-
-    public void ataca(){
-
-    }
-
 }

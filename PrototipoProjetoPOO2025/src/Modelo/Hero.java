@@ -207,7 +207,7 @@ public class Hero extends Personagem {
             if(animation_index == 0)
                 jaAtacou = false;
             if (animation_index == 1 && !jaAtacou){
-                socar(fase.getInimigos());
+                socar();
             }
         }
 
@@ -223,7 +223,7 @@ public class Hero extends Personagem {
             resetAniTick();
     }
 
-    public void socar(ArrayList<Personagem> inimigos){
+    public void socar(){
         for(Personagem p: fase.getInimigos()){
             if(ataquePerto.intersects(p.hitbox)){
                 p.sofrerDano(3);
