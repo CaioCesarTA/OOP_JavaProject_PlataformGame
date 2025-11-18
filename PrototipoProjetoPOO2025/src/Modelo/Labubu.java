@@ -259,4 +259,9 @@ public class Labubu extends Personagem {
         resetAniTick();
         if(vidaAtual <= 0) morto = true;
     }
+
+    @Override
+    public int getAcaoIdle(){
+        return PARADO;
+    }
 }

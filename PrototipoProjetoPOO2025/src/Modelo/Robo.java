@@ -153,4 +153,9 @@ public class Robo extends Personagem {
         if(vidaAtual <= 0) morto = true;
     }
 
+    @Override
+    public int getAcaoIdle(){
+        return PARADO;
+    }
+
 }

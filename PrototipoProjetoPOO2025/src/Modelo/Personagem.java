@@ -37,6 +37,7 @@ public abstract class Personagem extends Entidade {
 
     public Personagem(Fase fase, float xInicial, float yInicial) {
         super(fase,xInicial,yInicial);
+        acaoAtual = getAcaoIdle();
     }
 
     public abstract int getQtdSprites(int id_acao);
@@ -150,13 +151,15 @@ public abstract class Personagem extends Entidade {
         hitbox.y = posicaoInicial.getY();
     }
 
+    public abstract int getAcaoIdle();
+
     public void resetarPersonagem(){
         morto = false;
         visivel = true;
         vidaAtual = vidaMaxima;
         resetAniTick();
         resetarPosicao();
-        acaoAtual = 0;
+        acaoAtual = getAcaoIdle();
         pulando = false;
         atirando = false;
         socando = false;

@@ -44,10 +44,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
         }
 
         //Atualiza o titulo da janela
-        janela.setTitle("FASE " + (IDfaseAtual+1) +
-                        " (x: " + (int)getFaseAtual().getPlayer().getHitbox().x + 
-                        ", y: " + (int)getFaseAtual().getPlayer().getHitbox().y + ")" +
-                        " Vida: " + getFaseAtual().getPlayer().getVidaAtual() + "/5");
+        janela.setTitle("FASE " + (IDfaseAtual+1));
     }
 
     public void desenhaTudo(Graphics g){

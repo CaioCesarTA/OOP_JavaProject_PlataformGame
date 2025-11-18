@@ -23,7 +23,6 @@ public class Hero extends Personagem {
         carregarVida("hero/vida.png");
         inicializarHitbox(22,63);
         inicializarataquePerto(40,20);
-
     }
 
     @Override
@@ -197,7 +196,6 @@ public class Hero extends Personagem {
             }
         }
 
-        System.out.println(podeSocar);
         if (socando && !noAr && podeSocar && !morto && visivel){
             socando = false;
             acaoAtual = SOCANDO;
@@ -228,6 +226,11 @@ public class Hero extends Personagem {
 
     public int getFlipW(){
         return flipW;
+    }
+
+    @Override
+    public int getAcaoIdle(){
+        return PARADO;
     }
 
 }

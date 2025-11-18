@@ -78,4 +78,9 @@ public class Portal extends Personagem {
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }
     }
+
+    @Override
+    public int getAcaoIdle(){
+        return PARADO;
+    }
 }

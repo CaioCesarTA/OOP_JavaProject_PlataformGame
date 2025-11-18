@@ -141,8 +141,9 @@ public class Zumbi extends Personagem {
         if(vidaAtual <= 0) morto = true;
     }
 
-    public void ataca(){
-        
+    @Override
+    public int getAcaoIdle(){
+        return PARADO;
     }
     
 }
