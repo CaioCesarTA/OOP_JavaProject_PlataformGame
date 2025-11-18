@@ -23,6 +23,7 @@ public class Labubu extends Personagem {
     private static final int ATIRANDO = 6;
     //Controle dos ataques do Labubu
     private Rectangle2D.Float areaVisao;
+    private Rectangle2D.Float virar;
     private boolean comecouBossfight = false;
     //Controle do cenario
     private Rectangle2D.Float[] plataformas;
@@ -48,6 +49,8 @@ public class Labubu extends Personagem {
 
         areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,200,50);
         atualizarAreaVisao();
+        virar = new Rectangle2D.Float(hitbox.x,hitbox.y,30,60);
+        atualizarvirar();
 
         plataformas = new Rectangle2D.Float[4];
         //chao
@@ -174,7 +177,9 @@ public class Labubu extends Personagem {
         || acaoAtual == ATIRANDO
         || acaoAtual == PARADO
         ) return;
-
+        if (virar.intersects(fase.getPlayer().getHitbox())) {
+            direcao.inverterDirecaoAtual();
+        }
         //Teleporta para as plataformas
         if(plataformas[0].contains(fase.getPlayer().getHitbox()) && !plataformas[0].intersects(hitbox)) {
             hitbox.x = (float) plataformas[0].getCenterX();
@@ -219,6 +224,7 @@ public class Labubu extends Personagem {
     public void atualizarEntidade(){
         super.atualizarEntidade();
         atualizarAreaVisao();
+        atualizarvirar();
     }
 
     @Override
@@ -242,6 +248,8 @@ public class Labubu extends Personagem {
             g.drawRect((int)areaVisao.x - cameraOffsetX, (int)areaVisao.y- cameraOffsetY, (int)areaVisao.width, (int)areaVisao.height);
             g.setColor(Color.BLUE);
             for(Rectangle2D.Float r : plataformas) g.drawRect((int)r.x - cameraOffsetX,(int)r.y - cameraOffsetY, (int)r.width, (int)r.height);
+            g.setColor(Color.GREEN);
+            g.drawRect((int) virar.x - cameraOffsetX, (int) virar.y - cameraOffsetY, (int) virar.width, (int) virar.height);
         }
     }
 
@@ -249,6 +257,12 @@ public class Labubu extends Personagem {
         areaVisao.x = hitbox.x + 200;
         if(flipW==-1) areaVisao.x -= areaVisao.width - hitbox.width + 400;
         areaVisao.y = hitbox.y;
+    }
+
+    private void atualizarvirar(){
+        virar.x = hitbox.x - 30;
+        if(flipW==-1) virar.x -= virar.width - hitbox.width - 60;
+        virar.y = hitbox.y;
     }
 
     @Override
