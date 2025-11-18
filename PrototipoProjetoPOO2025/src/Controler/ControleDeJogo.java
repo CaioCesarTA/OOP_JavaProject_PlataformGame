@@ -126,14 +126,14 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         if(getFaseAtual() instanceof FaseInicial) avancarFase();
         else if(getFaseAtual() instanceof FaseFinal) voltarFase();
 
-        else if(e.getKeyCode() == KeyEvent.VK_K){
+        else if(e.getKeyCode() == KeyEvent.VK_S){
             Hero heroiAtual = (Hero) getFaseAtual().getPlayer();
             ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
             SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, inimigosAtuais);
-            LoadSave.salvarJogo("jogoZipado.zip", save);
+            LoadSave.salvarJogo("SAVE/save.zip", save);
         }
         else if (e.getKeyCode() == KeyEvent.VK_L){
-            SaveGame save = LoadSave.carregarSave("jogoZipado.zip");
+            SaveGame save = LoadSave.carregarSave("SAVE/save.zip");
             if(save != null) {
                 this.IDfaseAtual = save.idFaseAtual;
                 Fase faseCarregada = getFaseAtual();
@@ -152,12 +152,12 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
                     }
                 }
 
-                System.out.println("Jogo carregado na fase: " + IDfaseAtual);
+                System.out.println("Jogo carregado na fase " + IDfaseAtual);
                 tela.repaint();
             }
         }
-        else if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
-        else if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
+        else if(e.getKeyCode() == KeyEvent.VK_N) avancarFase();
+        else if(e.getKeyCode() == KeyEvent.VK_B) voltarFase();
 
         else getFaseAtual().keyPressed(e);
     }

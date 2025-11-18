@@ -18,7 +18,7 @@ public class Fase1 extends Fase {
         adicionarPersonagens();
         carregarImagensFase();
 
-        LoadSave.salvarEntidade("zumbi.zip", new Zumbi(this, 0, 0));
+        LoadSave.salvarEntidade("ENTIDADES/zumbi.zip", new Zumbi(this, 0, 0));
     }
 
     @Override

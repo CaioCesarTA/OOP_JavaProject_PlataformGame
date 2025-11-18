@@ -13,8 +13,8 @@ public class Fase3 extends Fase {
         carregarImagensFase();
         adicionarPersonagens();
 
-        LoadSave.salvarEntidade("mumia.zip", new Mumia(this, 0, 0));
-        LoadSave.salvarEntidade("escorpiao.zip", new Escorpiao(this, 0, 0));
+        LoadSave.salvarEntidade("ENTIDADES/mumia.zip", new Mumia(this, 0, 0));
+        LoadSave.salvarEntidade("ENTIDADES/escorpiao.zip", new Escorpiao(this, 0, 0));
     }
 
     @Override

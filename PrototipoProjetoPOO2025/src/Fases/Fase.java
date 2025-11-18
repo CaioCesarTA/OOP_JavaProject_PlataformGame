@@ -266,22 +266,22 @@ public abstract class Fase implements Serializable {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 player.getDirecao().setEsquerda(true);
                 break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 player.getDirecao().setDireita(true);
                 break;
-            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
                 player.setPulando(true);
                 break;
             case KeyEvent.VK_SHIFT:
                 player.setCorrendo(true);
                 break;
-            case KeyEvent.VK_F:
+            case KeyEvent.VK_X:
                 player.setSocando(true);
                 break;
-            case KeyEvent.VK_SPACE:
+            case KeyEvent.VK_Z:
                 player.setAtirando(true);
                 break;
             case KeyEvent.VK_R:
@@ -292,10 +292,10 @@ public abstract class Fase implements Serializable {
 
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 player.getDirecao().setEsquerda(false);
                 break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 player.getDirecao().setDireita(false);
                 break;
             case KeyEvent.VK_SHIFT:

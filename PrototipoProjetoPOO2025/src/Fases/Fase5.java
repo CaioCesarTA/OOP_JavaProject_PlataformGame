@@ -13,8 +13,10 @@ public class Fase5 extends Fase {
         carregarImagensFase();
         adicionarPersonagens();
 
-        LoadSave.salvarEntidade("labubu.zip", new Labubu(this, 0, 0));
-        LoadSave.salvarEntidade("chave.zip", new Chave(this, 0, 0,null));
+        LoadSave.salvarEntidade("ENTIDADES/labubu.zip", new Labubu(this, 0, 0));
+        LoadSave.salvarEntidade("ENTIDADES/chave.zip", new Chave(this, 0, 0,null));
+        LoadSave.salvarEntidade("ENTIDADES/bau.zip", new Bau(this,0,0));
+        LoadSave.salvarEntidade("ENTIDADES/portaCastelo.zip", new PortaCastelo(this,0,0,false,1));
     }
 
     @Override
