@@ -97,7 +97,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     }
 
     private void avancarFase() {
-        if(IDfaseAtual<6) {
+        if(IDfaseAtual<(fases.length-1)) {
             IDfaseAtual++;
             getFaseAtual().resetarFase();
         }

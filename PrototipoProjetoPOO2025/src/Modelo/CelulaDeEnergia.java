@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class CelulaDeEnergia extends Entidade {
@@ -14,7 +15,7 @@ public class CelulaDeEnergia extends Entidade {
 
     public CelulaDeEnergia(Fase fase, float xInicial, float yInicial, Controlado entidadeControlada){
         super(fase,xInicial,yInicial);
-        imagemCelula = Fase.importarImagem("entidades/celulaEnergia.png");
+        imagemCelula = LoadSave.importarImagem("entidades/celulaEnergia.png");
         transponivel = true;
         mortal = false;
         this.entidadeControlada = entidadeControlada;

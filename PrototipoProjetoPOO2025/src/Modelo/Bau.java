@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class Bau extends Entidade implements Controlado{
@@ -13,7 +14,7 @@ public class Bau extends Entidade implements Controlado{
 
     public Bau(Fase fase, float xInicial, float yInicial){
         super(fase,xInicial,yInicial);
-        BufferedImage temp = Fase.importarImagem("fases/fase5/tilesetFase5.png");
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         mortal = false;
         sprites[0] = temp.getSubimage(160, 96, 32, 32);
         sprites[1] = temp.getSubimage(192, 96, 32, 32);

@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 
 public class Projetil extends Entidade {
     protected float velocidadeProjetil = 4.0f;
@@ -16,7 +17,7 @@ public class Projetil extends Entidade {
     public Projetil(Fase fase, float xInicial, float yInicial, int dir, int dano, String pathImagem) {
         super(fase, xInicial, yInicial);
         flipW = dir;
-        imagemProjetil = Fase.importarImagem(pathImagem);
+        imagemProjetil = LoadSave.importarImagem(pathImagem);
         inicializarHitbox(6,5);
         transponivel = true;
         this.dano = dano;

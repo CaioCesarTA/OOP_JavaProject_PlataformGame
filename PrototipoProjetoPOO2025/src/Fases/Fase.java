@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Modelo.Entidade;
 import Modelo.Hero;
 import Modelo.Personagem;
@@ -59,17 +60,6 @@ public abstract class Fase {
 
     protected abstract int getSpriteVazio();
 
-    public static BufferedImage importarImagem(String nome_da_imagem) {
-        BufferedImage imagem = null;
-        try {
-            imagem = ImageIO.read(new File(new java.io.File(".").getCanonicalPath() + Consts.PATH + nome_da_imagem));
-        } catch (IOException ex) {
-            System.err.println("Erro ao importar imagem: " + nome_da_imagem);
-            ex.printStackTrace();
-        }
-        return imagem;
-    }
-
     public void atualizarFase() {
         player.atualizarEntidade();
         if(player.getHitbox().y+player.getHitbox().height+1 >= alturaFase*Consts.CELL_SIDE) resetarFase();
@@ -124,7 +114,7 @@ public abstract class Fase {
     }
 
     protected final void carregarInfoNivel(String pathInfoNivel){
-        BufferedImage temp = importarImagem(pathInfoNivel);
+        BufferedImage temp = LoadSave.importarImagem(pathInfoNivel);
         infoCenario = new int[alturaFase][larguraFase];
         for(int i=0;i<temp.getHeight();i++){
             for(int j=0;j<temp.getWidth();j++){
@@ -136,7 +126,7 @@ public abstract class Fase {
     }
 
     protected final void carregarImagens(String pathTileset, String pathBackground) {
-        BufferedImage temp = importarImagem(pathTileset);
+        BufferedImage temp = LoadSave.importarImagem(pathTileset);
         int larguraImg = temp.getWidth()/Consts.CELL_SIDE;
         int alturaImg = temp.getHeight()/Consts.CELL_SIDE;
         tileset = new BufferedImage[larguraImg * alturaImg];
@@ -146,7 +136,7 @@ public abstract class Fase {
                 tileset[indice] = temp.getSubimage(i*Consts.CELL_SIDE, j*Consts.CELL_SIDE, Consts.CELL_SIDE, Consts.CELL_SIDE);
             }
         }
-        background = importarImagem(pathBackground);
+        background = LoadSave.importarImagem(pathBackground);
     }
 
     public void resetarFase(){
@@ -305,5 +295,4 @@ public abstract class Fase {
                 break;
         }
     }
-
 }

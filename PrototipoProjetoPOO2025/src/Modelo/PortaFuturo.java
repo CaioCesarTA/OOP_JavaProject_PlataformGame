@@ -4,13 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class PortaFuturo extends Porta {
 
     public PortaFuturo(Fase fase, float xInicial, float yInicial,boolean aberto){
         super(fase,xInicial,yInicial,aberto);
-        BufferedImage temp = Fase.importarImagem("entidades/porta.png");
+        BufferedImage temp = LoadSave.importarImagem("entidades/porta.png");
         mortal = false;
         sprites[0] = temp.getSubimage(0, 0, 64, 64);
         sprites[1] = temp.getSubimage(64, 0, 64, 64);

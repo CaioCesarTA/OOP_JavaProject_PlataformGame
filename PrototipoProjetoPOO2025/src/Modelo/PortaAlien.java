@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class PortaAlien extends Porta {
@@ -16,7 +17,7 @@ public class PortaAlien extends Porta {
         transponivel = false;
         sprites = new BufferedImage[7];
         inicializarHitbox(32, 96);
-        BufferedImage temp = Fase.importarImagem("entidades/portaAlien.png");
+        BufferedImage temp = LoadSave.importarImagem("entidades/portaAlien.png");
         for(int i=0;i<7;i++){
             sprites[i] = temp.getSubimage(32*i, 0, 32, 96);
         }

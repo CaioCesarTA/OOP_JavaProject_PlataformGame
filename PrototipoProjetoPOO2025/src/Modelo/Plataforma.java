@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class Plataforma extends Entidade implements Controlado{
@@ -13,7 +14,7 @@ public class Plataforma extends Entidade implements Controlado{
 
     public Plataforma(Fase fase, float xInicial, float yInicial){
         super(fase,xInicial,yInicial);
-        BufferedImage temp = Fase.importarImagem("entidades/plataforma.png");
+        BufferedImage temp = LoadSave.importarImagem("entidades/plataforma.png");
         mortal = false;
         transponivel = true;
         sprites[0] = temp.getSubimage(0, 0, 32, 32);

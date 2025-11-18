@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class Terminal extends Entidade {
@@ -17,7 +18,7 @@ public class Terminal extends Entidade {
         super(fase,xInicial,yInicial);
         transponivel = true;
         mortal = false;
-        BufferedImage temp = Fase.importarImagem("entidades/terminal.png");
+        BufferedImage temp = LoadSave.importarImagem("entidades/terminal.png");
         sprites[0] = temp.getSubimage(0, 0, 64, 64);
         sprites[1] = temp.getSubimage(64, 0, 64, 64);
         inicializarHitbox(24, 46);

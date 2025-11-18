@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class PortaCastelo extends Porta{
@@ -12,7 +13,7 @@ public class PortaCastelo extends Porta{
 
     public PortaCastelo(Fase fase, float xInicial, float yInicial, boolean aberto, int dir){
         super(fase,xInicial,yInicial,aberto);
-        BufferedImage temp = Fase.importarImagem("fases/fase5/tilesetFase5.png");
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         mortal = false;
         flipW = dir;
         if(flipW==-1) flipX = 32;

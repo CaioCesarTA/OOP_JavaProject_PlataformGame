@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import Auxiliar.Consts;
 import Auxiliar.Direcao;
 import Auxiliar.Posicao;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public abstract class Personagem extends Entidade {
@@ -45,11 +46,11 @@ public abstract class Personagem extends Entidade {
     protected abstract void atualizarAcaoAtual();
 
     protected final void carregarVida(String pathVida){
-        vida = Fase.importarImagem(pathVida);
+        vida = LoadSave.importarImagem(pathVida);
     }
 
     protected final void carregarAnimacoes(String pathSpritesheet, int tamSprite) {
-        BufferedImage temp = Fase.importarImagem(pathSpritesheet);
+        BufferedImage temp = LoadSave.importarImagem(pathSpritesheet);
         int alturaImg = temp.getHeight() / tamSprite;
         int larguraImg = temp.getWidth() / tamSprite;
         this.imagens = new BufferedImage[alturaImg][larguraImg];

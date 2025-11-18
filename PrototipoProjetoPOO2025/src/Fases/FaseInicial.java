@@ -1,6 +1,8 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
+
 import java.awt.event.KeyEvent;
 
 import java.awt.*;
@@ -9,7 +11,7 @@ public class FaseInicial extends Fase{
 
     public FaseInicial() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
-        this.background = Fase.importarImagem("fases/cenas/msgInicio.png");
+        this.background = LoadSave.importarImagem("fases/cenas/msgInicio.png");
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Fases.Fase;
 
 public class Chave extends Entidade implements Controlado {
@@ -20,7 +21,7 @@ public class Chave extends Entidade implements Controlado {
         mortal = false;
         transponivel = true;
         acompanharPlayer = false;
-        BufferedImage temp = Fase.importarImagem("fases/fase5/tilesetFase5.png");
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         imagemChave = temp.getSubimage(224,96,32,32);
         inicializarHitbox(30, 8);
         visivel = false;
