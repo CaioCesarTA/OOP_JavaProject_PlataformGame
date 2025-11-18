@@ -93,6 +93,7 @@ public class LoadSave {
                 save = (SaveGame) ois.readObject();
                 zipIn.closeEntry();
                 save.recuperarImagens();
+                ois.close();
             }
 
             zipIn.close();
@@ -118,6 +119,7 @@ public class LoadSave {
                 entidade = (Entidade) ois.readObject();
                 zipIn.closeEntry();
                 entidade.carregarImagens();
+                ois.close();
             }
 
             zipIn.close();

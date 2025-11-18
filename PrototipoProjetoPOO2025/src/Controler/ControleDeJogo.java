@@ -123,14 +123,21 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
 
     @Override
     public void keyPressed(KeyEvent e) {
+        getFaseAtual().keyPressed(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
         if(getFaseAtual() instanceof FaseInicial) avancarFase();
-        else if(getFaseAtual() instanceof FaseFinal) voltarFase();
+        else if(getFaseAtual() instanceof FaseFinal) System.exit(0);
 
         else if(e.getKeyCode() == KeyEvent.VK_S){
+            getFaseAtual().isSalvando = true;
             Hero heroiAtual = (Hero) getFaseAtual().getPlayer();
             ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
             SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, inimigosAtuais);
             LoadSave.salvarJogo("SAVE/save.zip", save);
+            getFaseAtual().isSalvando = false;
         }
         else if (e.getKeyCode() == KeyEvent.VK_L){
             SaveGame save = LoadSave.carregarSave("SAVE/save.zip");
@@ -158,13 +165,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         }
         else if(e.getKeyCode() == KeyEvent.VK_N) avancarFase();
         else if(e.getKeyCode() == KeyEvent.VK_B) voltarFase();
-
-        else getFaseAtual().keyPressed(e);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        getFaseAtual().keyReleased(e);
+        else getFaseAtual().keyReleased(e);
     }
 
     @Override

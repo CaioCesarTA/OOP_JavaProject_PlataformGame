@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public abstract class Fase implements Serializable {
-    protected ArrayList<Personagem> inimigos = new ArrayList<Personagem>();
+    protected ArrayList<Personagem> inimigos = new ArrayList<>();
     //Arrays de "buffer" para evitar alteracoes no array de inimigos enquanto ele é percorrido:
-    protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<Personagem>();  
-    protected ArrayList<Personagem> inimigosParaAdicionar = new ArrayList<Personagem>();
+    protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<>();  
+    protected ArrayList<Personagem> inimigosParaAdicionar = new ArrayList<>();
 
     protected ArrayList<Entidade> entidades = new ArrayList<>(); //inclui projeteis e outras entidades que nao sao personagens
     //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
@@ -47,6 +47,8 @@ public abstract class Fase implements Serializable {
     protected int bordaCameraInferior = (int)(0.5 * Consts.MUNDO_ALTURA * Consts.CELL_SIDE);
     protected int alturaFase;
     protected int maxCameraOffsetY;
+    //Pausa a fase enquanto esta salvando
+    public boolean isSalvando = false;
 
     public Fase(int larguraFase, int alturaFase) {
         this.larguraFase = larguraFase;
@@ -64,6 +66,10 @@ public abstract class Fase implements Serializable {
     protected abstract void carregarImagensFase();
 
     public void atualizarFase() {
+        if(isSalvando) {
+            System.out.println("Salvando fase...");
+            return;
+        }
         player.atualizarEntidade();
         if(player.getHitbox().y+player.getHitbox().height+1 >= alturaFase*Consts.CELL_SIDE) resetarFase();
         portal.atualizarEntidade();
@@ -284,9 +290,6 @@ public abstract class Fase implements Serializable {
             case KeyEvent.VK_Z:
                 player.setAtirando(true);
                 break;
-            case KeyEvent.VK_R:
-                resetarFase();
-                break;
         }
     }
 
@@ -300,6 +303,9 @@ public abstract class Fase implements Serializable {
                 break;
             case KeyEvent.VK_SHIFT:
                 player.setCorrendo(false);
+                break;
+            case KeyEvent.VK_R:
+                resetarFase();
                 break;
         }
     }
