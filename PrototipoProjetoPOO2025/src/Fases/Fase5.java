@@ -9,7 +9,7 @@ public class Fase5 extends Fase {
     public Fase5(){
         super(96,32);
         player = new Hero(this, 2*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
-        portal = new Portal(this, 4444, 128);
+        portal = new Portal(this, 82*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
         carregarImagensFase();
         adicionarPersonagens();
 
