@@ -48,7 +48,7 @@ public class LoadSave {
             zipOut.closeEntry();
             serializador.close();
 
-            System.out.println("Entidade salva com sucesso em: " + nomeArqDestino);
+            System.out.println("Entidade salva: " + nomeArqDestino);
 
         } catch (IOException error) {
             System.out.println("Erro ao salvar entidade: " + error.getMessage());

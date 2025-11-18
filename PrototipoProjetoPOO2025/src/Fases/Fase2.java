@@ -14,6 +14,9 @@ public class Fase2 extends Fase {
         adicionarPersonagens();
 
         LoadSave.salvarEntidade("robo.zip", new Robo(this, 0, 0));
+        LoadSave.salvarEntidade("terminal.zip", new Terminal(this, 0,0));
+        LoadSave.salvarEntidade("portaFuturo.zip", new PortaFuturo(this, 0, 0, false));
+        LoadSave.salvarEntidade("plataforma.zip", new Plataforma(this, 0, 0));
     }
 
     @Override

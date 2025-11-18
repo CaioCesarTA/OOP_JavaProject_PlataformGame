@@ -34,6 +34,7 @@ public class PortaFuturo extends Porta {
 
     @Override
     public void carregarImagens() {
+        sprites = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("entidades/porta.png");
         sprites[0] = temp.getSubimage(0, 0, 64, 64);
         sprites[1] = temp.getSubimage(64, 0, 64, 64);

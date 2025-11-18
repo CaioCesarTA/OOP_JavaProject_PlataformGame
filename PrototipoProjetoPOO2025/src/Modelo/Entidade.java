@@ -180,12 +180,16 @@ public abstract class Entidade implements Serializable{
         return vidaAtual;
     }
 
-    public void setPosicao(float x, float y){
-        hitbox.x = x + fase.getCameraOffsetX();
-        hitbox.y = y + fase.getCameraOffsetY();
+    public void setPosicaoHitbox(float x, float y){
+        hitbox.x = x;
+        hitbox.y = y;
     }
 
     public void setFase(Fase fase){
         this.fase = fase;
+    }
+
+    public Posicao getPosicaoInicial(){
+        return posicaoInicial;
     }
 }

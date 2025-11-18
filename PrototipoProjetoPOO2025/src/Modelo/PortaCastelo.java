@@ -37,6 +37,7 @@ public class PortaCastelo extends Porta{
 
     @Override
     public void carregarImagens() {
+        sprites = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         sprites[1] = temp.getSubimage(384, 96, 32, 64);
         sprites[0] = temp.getSubimage(352, 96, 32, 64);

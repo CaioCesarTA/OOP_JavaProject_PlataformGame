@@ -9,7 +9,7 @@ import Controler.LoadSave;
 import Fases.Fase;
 
 public class Plataforma extends Entidade implements Controlado{
-    private transient BufferedImage[] sprites = new BufferedImage[2];
+    private transient BufferedImage[] sprites;
     private int indiceImagem = 0;
 
     public Plataforma(Fase fase, float xInicial, float yInicial){
@@ -51,6 +51,7 @@ public class Plataforma extends Entidade implements Controlado{
 
     @Override
     public void carregarImagens() {
+        sprites  = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("entidades/plataforma.png");
         sprites[0] = temp.getSubimage(0, 0, 32, 32);
         sprites[1] = temp.getSubimage(32, 0, 32, 32);

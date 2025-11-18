@@ -9,7 +9,7 @@ import Fases.Fase;
 
 public class Bau extends Entidade implements Controlado{
     private int indiceImagem = 0;
-    private transient BufferedImage[] sprites = new BufferedImage[2];
+    private transient BufferedImage[] sprites;
     private boolean aberto = false;
 
     public Bau(Fase fase, float xInicial, float yInicial){
@@ -53,6 +53,7 @@ public class Bau extends Entidade implements Controlado{
 
     @Override
     public void carregarImagens() {
+        sprites = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         mortal = false;
         sprites[0] = temp.getSubimage(160, 96, 32, 32);

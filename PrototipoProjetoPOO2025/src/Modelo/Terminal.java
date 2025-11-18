@@ -11,7 +11,7 @@ import Fases.Fase;
 
 public class Terminal extends Entidade {
     private ArrayList<Controlado> entidadesControladas = new ArrayList<>();
-    private transient BufferedImage[] sprites = new BufferedImage[2];
+    private transient BufferedImage[] sprites;
     private int indiceImagem = 0;
     
     public Terminal(Fase fase, float xInicial, float yInicial){
@@ -60,6 +60,7 @@ public class Terminal extends Entidade {
 
     @Override
     public void carregarImagens() {
+        sprites = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("entidades/terminal.png");
         sprites[0] = temp.getSubimage(0, 0, 64, 64);
         sprites[1] = temp.getSubimage(64, 0, 64, 64);

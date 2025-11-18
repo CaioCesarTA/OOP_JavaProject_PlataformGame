@@ -179,15 +179,16 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
 
             File zip = lista.get(0);
 
-            float x = dtde.getLocation().x;
-            float y = dtde.getLocation().y;
+            float x = dtde.getLocation().x + getFaseAtual().getCameraOffsetX();
+            float y = dtde.getLocation().y + getFaseAtual().getCameraOffsetY();
 
             // Carrega entidade a partir do ZIP
             Entidade novaEntidade = LoadSave.carregarEntidade(zip.getAbsolutePath());
 
             if (novaEntidade != null) {
                 novaEntidade.setFase(getFaseAtual());
-                novaEntidade.setPosicao(x,y);
+                novaEntidade.setPosicaoHitbox(x, y);
+                novaEntidade.getPosicaoInicial().setPosicao(x,y);
 
                 if(novaEntidade instanceof Personagem){
                     Personagem inimigo = (Personagem) novaEntidade;

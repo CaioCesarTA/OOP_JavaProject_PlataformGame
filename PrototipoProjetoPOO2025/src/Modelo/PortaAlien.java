@@ -15,7 +15,6 @@ public class PortaAlien extends Porta {
         super(fase, xInicial, yInicial, false);
         indiceImagem = 0;
         transponivel = false;
-        sprites = new BufferedImage[7];
         carregarImagens();
         inicializarHitbox(32, 96);
     }
@@ -50,6 +49,7 @@ public class PortaAlien extends Porta {
 
     @Override
     public void carregarImagens() {
+        sprites = new BufferedImage[7];
         BufferedImage temp = LoadSave.importarImagem("entidades/portaAlien.png");
         for(int i=0;i<7;i++){
             sprites[i] = temp.getSubimage(32*i, 0, 32, 96);
