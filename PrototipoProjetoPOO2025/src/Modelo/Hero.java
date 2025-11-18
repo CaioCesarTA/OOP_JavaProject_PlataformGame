@@ -136,7 +136,7 @@ public class Hero extends Personagem {
 
         atualizarPosicaoY();
 
-        if(acaoAtual==ATIRANDO || socando || morto) return;
+        if(acaoAtual==ATIRANDO || acaoAtual==SOCANDO || morto) return;
 
         float vx = velocidadeX;
         if(correndo) vx *= 2;
@@ -164,6 +164,13 @@ public class Hero extends Personagem {
         if(acaoInicial == ATIRANDO) {
             acaoAtual = ATIRANDO;
             if(animation_index>=getQtdSprites(ATIRANDO)-1) acaoAtual = PARADO;
+            return;
+        }
+
+        if(acaoInicial == SOCANDO){
+            acaoAtual = SOCANDO;
+            if(animation_index>=getQtdSprites(SOCANDO)-1) acaoAtual = PARADO;
+            return;
         }
 
         else if (direcao.isEsquerda() && !direcao.isDireita())
@@ -190,14 +197,13 @@ public class Hero extends Personagem {
             }
         }
 
-        if (socando && !noAr) {
+        System.out.println(podeSocar);
+        if (socando && !noAr && podeSocar && !morto && visivel){
+            socando = false;
             acaoAtual = SOCANDO;
-
-            if(animation_index == 0)
-                jaAtacou = false;
-            if (animation_index == 1 && !jaAtacou){
-                socar();
-            }
+            podeSocar = false;
+            socar();
+            System.out.println("socou");
         }
 
         if (socando && noAr) socando = false;
@@ -218,7 +224,6 @@ public class Hero extends Personagem {
                 p.sofrerDano(3);
             }
         }
-        jaAtacou = true;
     }
 
     public int getFlipW(){

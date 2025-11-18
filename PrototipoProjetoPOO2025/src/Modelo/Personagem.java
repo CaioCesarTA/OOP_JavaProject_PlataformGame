@@ -31,7 +31,7 @@ public abstract class Personagem extends Entidade {
     protected int cooldownTiro = 0;
     //Tempo entre socos
     protected boolean podeSocar = true;
-    protected int tempoEntreSocos =  Consts.FPS / 2; // um tiro a cada 60 quadros == 0.5 segundo
+    protected int tempoEntreSocos =  Consts.FPS; // um soco a cada 120 quadros == 1 segundo
     protected int cooldownSoco = 0;
 
 
@@ -99,6 +99,13 @@ public abstract class Personagem extends Entidade {
             if(cooldownTiro >= tempoEntreTiros) {
                 podeAtirar = true;
                 cooldownTiro = 0;
+            }
+        }
+        if(!podeSocar){
+            cooldownSoco++;
+            if(cooldownSoco >= tempoEntreSocos) {
+                podeSocar = true;
+                cooldownSoco = 0;
             }
         }
     }

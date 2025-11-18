@@ -124,7 +124,7 @@ public abstract class Entidade implements Serializable{
         Rectangle2D.Float hitboxFutura = new Rectangle2D.Float(x,y,hitbox.width,hitbox.height);
 
         for(Entidade e : fase.getEntidades()){
-            if(!e.isTransponivel() && !this.equals(e)){
+            if(!e.isTransponivel() && !this.equals(e) && !e.isMorto()){
                 if(hitboxFutura.intersects(e.getHitbox())) return false;
             }
         }

@@ -22,10 +22,10 @@ public class Labubu extends Personagem {
     private static final int MORRENDO = 5;
     private static final int ATIRANDO = 6;
     //Controle dos ataques do Labubu
-    private Rectangle2D.Float[] plataformas;
     private Rectangle2D.Float areaVisao;
     private boolean comecouBossfight = false;
     //Controle do cenario
+    private Rectangle2D.Float[] plataformas;
     private Bau bau;
     private PortaCastelo portaAbre;
     private PortaCastelo portaFecha;
