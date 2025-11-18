@@ -26,7 +26,7 @@ public class Escorpiao extends Personagem{
         tamSprite = 48;
         carregarAnimacoes();
         inicializarHitbox(45,63);
-        inicializarataquePerto(70,20);
+        inicializarAtaquePerto(70,20);
     }
 
     @Override

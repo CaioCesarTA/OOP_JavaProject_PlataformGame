@@ -74,7 +74,7 @@ public class Projetil extends Entidade {
     }
 
     @Override
-    protected void carregarImagens() {
+    public void carregarImagens() {
         imagemProjetil = LoadSave.importarImagem(pathImagem);
     }
 }

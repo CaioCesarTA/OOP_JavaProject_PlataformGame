@@ -46,15 +46,15 @@ public abstract class Entidade implements Serializable{
 
     public abstract void atualizarEntidade();
 
-    protected abstract void carregarImagens();
+    public abstract void carregarImagens();
 
     public abstract void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY);
 
-    protected final void inicializarHitbox(int largura, int altura){
+    public final void inicializarHitbox(int largura, int altura){
         hitbox = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
     }
 
-    protected final void inicializarataquePerto(int largura, int altura){
+    public final void inicializarAtaquePerto(int largura, int altura){
         ataquePerto = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
     }
 
@@ -178,5 +178,14 @@ public abstract class Entidade implements Serializable{
 
     public int getVidaAtual(){
         return vidaAtual;
+    }
+
+    public void setPosicao(float x, float y){
+        hitbox.x = x + fase.getCameraOffsetX();
+        hitbox.y = y + fase.getCameraOffsetY();
+    }
+
+    public void setFase(Fase fase){
+        this.fase = fase;
     }
 }

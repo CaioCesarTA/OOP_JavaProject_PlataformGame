@@ -26,7 +26,7 @@ public class Zumbi extends Personagem {
         tamSprite = 128;
         carregarAnimacoes();
         inicializarHitbox(25,63);
-        inicializarataquePerto(40,20);
+        inicializarAtaquePerto(40,20);
     }
 
     @Override

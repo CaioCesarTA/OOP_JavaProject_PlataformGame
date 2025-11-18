@@ -49,7 +49,7 @@ public abstract class Personagem extends Entidade {
     protected abstract void atualizarAcaoAtual();
 
     @Override
-    protected void carregarImagens() {
+    public void carregarImagens() {
         carregarAnimacoes();
     }
 
@@ -156,11 +156,6 @@ public abstract class Personagem extends Entidade {
         hitbox.y = posicaoInicial.getY();
     }
 
-    public void setPosicao(float x, float y, int cameraOffsetX, int cameraOffsetY){
-        hitbox.x = x + cameraOffsetX;
-        hitbox.y = y + cameraOffsetY;
-    }
-
     public abstract int getAcaoIdle();
 
     public void resetarPersonagem(){
@@ -186,4 +181,6 @@ public abstract class Personagem extends Entidade {
             jaAtacou = true;
         }
     }
+
+
 }

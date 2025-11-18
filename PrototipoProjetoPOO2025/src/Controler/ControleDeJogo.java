@@ -2,14 +2,22 @@ package Controler;
 
 import Auxiliar.Consts;
 import Fases.*;
+import Modelo.Entidade;
 
 import java.awt.Graphics;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
-public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
+public class ControleDeJogo implements Runnable, KeyListener, MouseListener, DropTargetListener {
     private Janela janela;
     private Tela tela;
     private Thread threadJogo;
@@ -127,12 +135,45 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     }
 
     @Override
+    public void drop(DropTargetDropEvent dtde) {
+        try {
+            dtde.acceptDrop(DnDConstants.ACTION_COPY);
+
+            // Pega os dados arrastados
+            Object dado = dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+
+            // O Java sempre devolve uma lista, mesmo se houver só um arquivo
+            @SuppressWarnings("unchecked")
+            java.util.List<File> lista = (java.util.List<File>) dado;
+
+            File zip = lista.get(0);
+
+            float x = dtde.getLocation().x;
+            float y = dtde.getLocation().y;
+
+            // Carrega entidade a partir do ZIP
+            Entidade novaEntidade = LoadSave.carregarEntidade(zip.getAbsolutePath());
+
+            if (novaEntidade != null) {
+                novaEntidade.setFase(getFaseAtual());
+                novaEntidade.setPosicao(x,y);
+
+                getFaseAtual().addEntidade(novaEntidade);
+                
+                System.out.println("Entidade adicionada");
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Erro ao carregar entidade.");
+        }
+    }
+
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        //getFaseAtual().addInimigo(new Zumbi(getFaseAtual(), e.getX() + getFaseAtual().getCameraOffsetX(), e.getY() + getFaseAtual().getCameraOffsetY()));
     }
 
     @Override
@@ -150,4 +191,21 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
+    @Override
+    public void dragEnter(DropTargetDragEvent dtde) {
+    }
+
+    @Override
+    public void dragOver(DropTargetDragEvent dtde) {
+    }
+
+    @Override
+    public void dropActionChanged(DropTargetDragEvent dtde) {
+    }
+
+    @Override
+    public void dragExit(DropTargetEvent dte) {
+    }
+
 }

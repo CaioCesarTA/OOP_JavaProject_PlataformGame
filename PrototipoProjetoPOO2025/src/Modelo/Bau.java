@@ -52,7 +52,7 @@ public class Bau extends Entidade implements Controlado{
     }
 
     @Override
-    protected void carregarImagens() {
+    public void carregarImagens() {
         BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         mortal = false;
         sprites[0] = temp.getSubimage(160, 96, 32, 32);

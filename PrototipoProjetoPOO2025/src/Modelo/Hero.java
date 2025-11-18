@@ -26,7 +26,7 @@ public class Hero extends Personagem {
         tamSprite = 128;
         imgVida = LoadSave.importarImagem("hero/vida.png");
         inicializarHitbox(22,63);
-        inicializarataquePerto(40,20);
+        inicializarAtaquePerto(40,20);
         carregarAnimacoes();
     }
 

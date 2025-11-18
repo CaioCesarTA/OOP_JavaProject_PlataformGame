@@ -3,6 +3,7 @@ package Controler;
 import Auxiliar.Consts;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.dnd.DropTarget;
 
 public class Tela extends JPanel {
     private ControleDeJogo cj;
@@ -14,6 +15,7 @@ public class Tela extends JPanel {
         setPreferredSize(Consts.RES); //Configura o tamanho do painel
         addKeyListener(cj);
         addMouseListener(cj);
+        new DropTarget(this, cj);
     }
     
     @Override

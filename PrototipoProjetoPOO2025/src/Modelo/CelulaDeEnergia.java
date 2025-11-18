@@ -53,7 +53,7 @@ public class CelulaDeEnergia extends Entidade {
     }
 
     @Override
-    protected void carregarImagens() {
+    public void carregarImagens() {
         imagemCelula = LoadSave.importarImagem("entidades/celulaEnergia.png");
     }
 

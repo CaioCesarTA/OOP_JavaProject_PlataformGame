@@ -80,7 +80,7 @@ public class Chave extends Entidade implements Controlado {
     }
 
     @Override
-    protected void carregarImagens() {
+    public void carregarImagens() {
         BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         imagemChave = temp.getSubimage(224,96,32,32);
     }

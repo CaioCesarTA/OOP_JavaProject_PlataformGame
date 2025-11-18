@@ -2,11 +2,14 @@ package Controler;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
@@ -44,11 +47,38 @@ public class LoadSave {
             serializador.flush();
             zipOut.closeEntry();
             serializador.close();
-            
+
             System.out.println("Entidade salva com sucesso em: " + nomeArqDestino);
 
         } catch (IOException error) {
             System.out.println("Erro ao salvar entidade: " + error.getMessage());
         }
+    }
+
+    public static Entidade carregarEntidade(String nomeArqOrigem) {
+        File arquivo = new File(nomeArqOrigem);
+        Entidade entidade = null;
+
+        try {
+            FileInputStream fis = new FileInputStream(arquivo);
+            ZipInputStream zipIn = new ZipInputStream(fis);
+            ZipEntry entrada = zipIn.getNextEntry();
+
+            if (entrada != null) {
+                ObjectInputStream ois = new ObjectInputStream(zipIn);
+                entidade = (Entidade) ois.readObject();
+                zipIn.closeEntry();
+
+                entidade.carregarImagens();
+                //entidade.inicializarHitbox((int) entidade.getHitbox.width, (int) entidade.hitbox.height);
+                //entidade.inicializarAtaquePerto((int) entidade.ataquePerto.width, (int) entidade.ataquePerto.height);
+            }
+
+            zipIn.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar entidade: " + e.getMessage());
+        }
+
+        return entidade;
     }
 }

@@ -47,7 +47,7 @@ public class Labubu extends Personagem {
         tamSprite = 32;
         carregarAnimacoes();
         inicializarHitbox(50,70);
-        inicializarataquePerto(50,60);
+        inicializarAtaquePerto(50,60);
 
         areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,200,50);
         atualizarAreaVisao();
