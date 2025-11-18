@@ -50,4 +50,8 @@ public class Fase2 extends Fase {
         if (sprite<81) return true;
         return false;
     }
+    @Override
+    protected int getSpriteVazio(){
+        return 81;
+    }
 }

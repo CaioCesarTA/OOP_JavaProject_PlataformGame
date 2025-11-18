@@ -51,4 +51,9 @@ public class Fase4 extends Fase {
         }
         return true;
     }
+
+    @Override
+    protected int getSpriteVazio(){
+        return 54;
+    }
 }

@@ -201,7 +201,6 @@ public class Hero extends Personagem {
             acaoAtual = SOCANDO;
             podeSocar = false;
             socar();
-            System.out.println("socou");
         }
 
         if (socando && noAr) socando = false;

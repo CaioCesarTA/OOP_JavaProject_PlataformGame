@@ -57,6 +57,8 @@ public abstract class Fase {
 
     protected abstract void adicionarPersonagens();
 
+    protected abstract int getSpriteVazio();
+
     public static BufferedImage importarImagem(String nome_da_imagem) {
         BufferedImage imagem = null;
         try {
@@ -95,7 +97,9 @@ public abstract class Fase {
         
         for (int i = 0; i < infoCenario.length; i++) {
             for (int j = 0; j < infoCenario[0].length; j++) {
-                g.drawImage(tileset[infoCenario[i][j]], j * Consts.CELL_SIDE - cameraOffsetX, i * Consts.CELL_SIDE - cameraOffsetY, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
+                int indice = infoCenario[i][j];
+                if(indice == getSpriteVazio()) continue;
+                g.drawImage(tileset[indice], j * Consts.CELL_SIDE - cameraOffsetX, i * Consts.CELL_SIDE - cameraOffsetY, Consts.CELL_SIDE, Consts.CELL_SIDE, null);
             }
         }
     }
