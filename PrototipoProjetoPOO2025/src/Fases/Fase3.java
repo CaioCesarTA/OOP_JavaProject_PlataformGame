@@ -33,10 +33,6 @@ public class Fase3 extends Fase {
         addInimigo(new Escorpiao(this, 116*Consts.CELL_SIDE, 18*Consts.CELL_SIDE));
         addInimigo(new Escorpiao(this, 120*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));
         addInimigo(new Mumia(this, 133*Consts.CELL_SIDE, 15*Consts.CELL_SIDE));
-
-
-
-
     }
 
 

@@ -31,6 +31,7 @@ public class Terminal extends Entidade {
         if(fase.getPlayer().getHitbox().intersects(hitbox)) {
             if(indiceImagem==0) {
                 indiceImagem++;
+                if(entidadesControladas.isEmpty()) return;
                 for(Controlado c : entidadesControladas){
                     c.mudarEstado();
                 }

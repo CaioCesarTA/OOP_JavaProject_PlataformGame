@@ -23,7 +23,6 @@ public class Chave extends Entidade implements Controlado {
         acompanharPlayer = false;
         inicializarHitbox(30, 8);
         carregarImagens();
-        visivel = false;
     }
 
     @Override
@@ -50,8 +49,8 @@ public class Chave extends Entidade implements Controlado {
         atualizarPosicao();
         if(hitbox.intersects(fase.getPlayer().getHitbox()) && !acompanharPlayer) {
             acompanharPlayer = true;
-            System.out.println(acompanharPlayer);
         }
+        if(portaControlada==null) return;
         if(acompanharPlayer && hitbox.intersects(portaControlada.getHitbox())) {
             portaControlada.mudarEstado();
             fase.removerEntidade(this);

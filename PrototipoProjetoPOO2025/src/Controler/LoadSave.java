@@ -68,13 +68,11 @@ public class LoadSave {
                 ObjectInputStream ois = new ObjectInputStream(zipIn);
                 entidade = (Entidade) ois.readObject();
                 zipIn.closeEntry();
-
                 entidade.carregarImagens();
-                //entidade.inicializarHitbox((int) entidade.getHitbox.width, (int) entidade.hitbox.height);
-                //entidade.inicializarAtaquePerto((int) entidade.ataquePerto.width, (int) entidade.ataquePerto.height);
             }
 
             zipIn.close();
+            
         } catch (Exception e) {
             System.out.println("Erro ao carregar entidade: " + e.getMessage());
         }

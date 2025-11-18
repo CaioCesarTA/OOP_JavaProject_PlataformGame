@@ -14,6 +14,7 @@ public class Fase5 extends Fase {
         adicionarPersonagens();
 
         LoadSave.salvarEntidade("labubu.zip", new Labubu(this, 0, 0));
+        LoadSave.salvarEntidade("chave.zip", new Chave(this, 0, 0,null));
     }
 
     @Override

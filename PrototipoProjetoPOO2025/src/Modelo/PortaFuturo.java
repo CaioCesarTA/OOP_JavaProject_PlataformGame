@@ -15,7 +15,6 @@ public class PortaFuturo extends Porta {
         carregarImagens();
         inicializarHitbox(44, 96);
     }
-    
 
     @Override
     public void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY) {

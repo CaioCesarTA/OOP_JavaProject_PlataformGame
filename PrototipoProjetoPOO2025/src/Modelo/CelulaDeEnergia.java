@@ -32,7 +32,7 @@ public class CelulaDeEnergia extends Entidade {
     public void atualizarEntidade() {
         atualizarPosicao();
         if(hitbox.intersects(fase.getPlayer().getHitbox())) {
-            entidadeControlada.mudarEstado();
+            if(entidadeControlada!=null) entidadeControlada.mudarEstado();
             fase.removerEntidade(this);
         }
     }

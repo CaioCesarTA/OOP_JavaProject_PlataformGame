@@ -3,6 +3,7 @@ package Controler;
 import Auxiliar.Consts;
 import Fases.*;
 import Modelo.Entidade;
+import Modelo.Personagem;
 
 import java.awt.Graphics;
 import java.awt.datatransfer.DataFlavor;
@@ -94,7 +95,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
             //Contador de FPS
             if(agora - ultimaChecagem >= umSegundo) {
                 ultimaChecagem = agora;
-                System.out.println("FPS: " + frames);
+                //System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -139,10 +140,8 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         try {
             dtde.acceptDrop(DnDConstants.ACTION_COPY);
 
-            // Pega os dados arrastados
             Object dado = dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
 
-            // O Java sempre devolve uma lista, mesmo se houver só um arquivo
             @SuppressWarnings("unchecked")
             java.util.List<File> lista = (java.util.List<File>) dado;
 
@@ -158,7 +157,12 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
                 novaEntidade.setFase(getFaseAtual());
                 novaEntidade.setPosicao(x,y);
 
-                getFaseAtual().addEntidade(novaEntidade);
+                if(novaEntidade instanceof Personagem){
+                    Personagem inimigo = (Personagem) novaEntidade;
+                    getFaseAtual().addInimigo(inimigo);
+                } else {
+                    getFaseAtual().addEntidade(novaEntidade);
+                }
                 
                 System.out.println("Entidade adicionada");
             }

@@ -68,6 +68,7 @@ public class Labubu extends Personagem {
         portaAbre = new PortaCastelo(fase, 62*Consts.CELL_SIDE, 27*Consts.CELL_SIDE, false, 1);
         portaFecha = new PortaCastelo(fase, 31*Consts.CELL_SIDE, 27*Consts.CELL_SIDE,true, -1);
         chave = new Chave(fase,bau.getHitbox().x,bau.getHitbox().y-32,portaAbre);
+        chave.setVisivel(false);
 
         fase.addEntidade(bau);
         fase.addEntidade(portaAbre);
