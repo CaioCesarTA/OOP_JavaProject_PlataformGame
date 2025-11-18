@@ -3,6 +3,7 @@ package Controler;
 import Auxiliar.Consts;
 import Fases.*;
 import Modelo.Entidade;
+import Modelo.Hero;
 import Modelo.Personagem;
 
 import java.awt.Graphics;
@@ -17,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class ControleDeJogo implements Runnable, KeyListener, MouseListener, DropTargetListener {
     private Janela janela;
@@ -124,6 +126,36 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         if(getFaseAtual() instanceof FaseInicial) avancarFase();
         else if(getFaseAtual() instanceof FaseFinal) voltarFase();
 
+        else if(e.getKeyCode() == KeyEvent.VK_K){
+            Hero heroiAtual = (Hero) getFaseAtual().getPlayer();
+            ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
+            SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, inimigosAtuais);
+            LoadSave.salvarJogo("jogoZipado.zip", save);
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_L){
+            SaveGame save = LoadSave.carregarSave("jogoZipado.zip");
+            if(save != null) {
+                this.IDfaseAtual = save.idFaseAtual;
+                Fase faseCarregada = getFaseAtual();
+                if(faseCarregada.getInimigos() != null) {
+                    faseCarregada.getInimigos().clear();
+                }
+
+                save.heroi.setFase(faseCarregada);
+                faseCarregada.setPlayer(save.heroi);
+
+                ArrayList<Personagem> listaInimigosSalvos = save.inimigos;
+                if(listaInimigosSalvos != null) {
+                    for(Personagem p : listaInimigosSalvos) {
+                        p.setFase(faseCarregada);
+                        faseCarregada.addInimigo(p);
+                    }
+                }
+
+                System.out.println("Jogo carregado na fase: " + IDfaseAtual);
+                tela.repaint();
+            }
+        }
         else if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
         else if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
 

@@ -172,6 +172,11 @@ public abstract class Fase implements Serializable {
         return player;
     }
 
+    public Hero setPlayer(Hero player) {
+        this.player = player;
+        return player;
+    }
+
     protected void checarPlayerNaBordaY(){
         int playerY = (int)player.getHitbox().y;
         int diferencaY = playerY - cameraOffsetY;

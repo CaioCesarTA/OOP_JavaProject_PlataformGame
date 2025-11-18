@@ -55,6 +55,55 @@ public class LoadSave {
         }
     }
 
+    public static void salvarJogo(String nomeArqDestino, SaveGame s) {
+        File tanque = new File(nomeArqDestino);
+        try {
+            tanque.createNewFile();
+            FileOutputStream canoOut = new FileOutputStream(tanque);
+            ZipOutputStream zipOut = new ZipOutputStream(canoOut);
+
+            ZipEntry entry = new ZipEntry("SaveJogo");
+            zipOut.putNextEntry(entry);
+
+            ObjectOutputStream serializador = new ObjectOutputStream(zipOut);
+            serializador.writeObject(s);
+
+            serializador.flush();
+            zipOut.closeEntry();
+            serializador.close();
+
+            System.out.println("Estado atual do jogo salvo com sucesso em: " + nomeArqDestino);
+
+        } catch (IOException error) {
+            System.out.println("Erro ao salvar jogo: " + error.getMessage());
+        }
+    }
+
+    public static SaveGame carregarSave(String nomeArqOrigem){
+        File arquivo = new File(nomeArqOrigem);
+        SaveGame save = null;
+
+        try {
+            FileInputStream fis = new FileInputStream(arquivo);
+            ZipInputStream zipIn = new ZipInputStream(fis);
+            ZipEntry entrada = zipIn.getNextEntry();
+
+            if (entrada != null) {
+                ObjectInputStream ois = new ObjectInputStream(zipIn);
+                save = (SaveGame) ois.readObject();
+                zipIn.closeEntry();
+                save.recuperarImagens();
+            }
+
+            zipIn.close();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar save: " + e.getMessage());
+        }
+
+        return save;
+    }
+
     public static Entidade carregarEntidade(String nomeArqOrigem) {
         File arquivo = new File(nomeArqOrigem);
         Entidade entidade = null;

@@ -18,7 +18,7 @@ public class Hero extends Personagem {
     private static final int ATIRANDO = 5;
     private static final int ANDANDO = 6;
     //Imagem dos coracoes
-    protected transient BufferedImage imgVida;
+    private transient BufferedImage imgVida;
 
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
@@ -28,6 +28,12 @@ public class Hero extends Personagem {
         inicializarHitbox(22,63);
         inicializarAtaquePerto(40,20);
         carregarAnimacoes();
+    }
+
+    @Override
+    public void carregarImagens() {
+        super.carregarImagens();
+        this.imgVida = LoadSave.importarImagem("hero/vida.png");
     }
 
     @Override
