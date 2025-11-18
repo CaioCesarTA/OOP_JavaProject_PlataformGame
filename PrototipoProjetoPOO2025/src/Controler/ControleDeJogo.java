@@ -39,25 +39,16 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     public void processaTudo(){
         getFaseAtual().atualizarFase();
-        Fase faseAtual = getFaseAtual();
-
-        if (faseAtual instanceof FaseInicial){
-            if(((FaseInicial) faseAtual).proxFase()){
-                avancarFase();
-            }
-        }
-        else if (faseAtual instanceof FaseFinal){
-            if(((FaseFinal) faseAtual).proxFase()){
-                avancarFase();
-            }
-        }
+        
         //Vai para a proxima fase se o Player entrar no portal
-        else if(getFaseAtual().getPortal().podeAvancarFase()) {
+        if(getFaseAtual().getPortal() != null && getFaseAtual().getPortal().podeAvancarFase()) {
             avancarFase();
         }
 
         //Atualiza o titulo da janela
-        janela.setTitle("FASE " + (IDfaseAtual+1));
+        if(IDfaseAtual==0) janela.setTitle("AVENTURA INTERDIMENSIONAL");
+        if(IDfaseAtual>0 && IDfaseAtual<6) janela.setTitle("FASE " + IDfaseAtual);
+        if(IDfaseAtual==6) janela.setTitle("FIM");
     }
 
     public void desenhaTudo(Graphics g){
@@ -122,8 +113,9 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
-        if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
-        getFaseAtual().keyPressed(e);
+        else if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
+
+        else getFaseAtual().keyPressed(e);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class FaseFinal extends Fase{
-    private boolean avancarFase = false;
+
     public FaseFinal() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
         this.background = Fase.importarImagem("fases/cenas/msgFinal.png");
@@ -19,7 +19,12 @@ public class FaseFinal extends Fase{
 
     @Override
     public void resetarFase() {
-        avancarFase = false;
+    }
+
+    @Override
+    public void desenharCenario(Graphics g) {
+        g.drawImage(background, 0, 0, Consts.CELL_SIDE * Consts.MUNDO_LARGURA, Consts.CELL_SIDE * Consts.MUNDO_ALTURA, null);
+
     }
 
     @Override
@@ -37,15 +42,6 @@ public class FaseFinal extends Fase{
     }
 
     @Override
-    public void desenharCenario(Graphics g) {
-        g.drawImage(background, 0, 0, Consts.CELL_SIDE * Consts.MUNDO_LARGURA, Consts.CELL_SIDE * Consts.MUNDO_ALTURA, null);
-
-    }
-
-    public boolean proxFase(){
-        return avancarFase;
-    }
-    @Override
     public void desenharFase(Graphics g) {
     }
 
@@ -55,7 +51,6 @@ public class FaseFinal extends Fase{
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 
 }

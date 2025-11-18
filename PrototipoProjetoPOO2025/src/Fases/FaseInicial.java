@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.*;
 
 public class FaseInicial extends Fase{
-private boolean avancarFase = false;
+
     public FaseInicial() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
         this.background = Fase.importarImagem("fases/cenas/msgInicio.png");
@@ -19,7 +19,6 @@ private boolean avancarFase = false;
 
     @Override
     public void resetarFase() {
-        avancarFase = false;
     }
 
     @Override
@@ -42,16 +41,12 @@ private boolean avancarFase = false;
 
     }
 
-    public boolean proxFase(){
-        return avancarFase;
-    }
     @Override
     public void desenharFase(Graphics g) {
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        avancarFase = true;
     }
 
     @Override
