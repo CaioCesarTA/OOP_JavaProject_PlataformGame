@@ -10,14 +10,16 @@ import Controler.LoadSave;
 
 public class Projetil extends Entidade {
     protected float velocidadeProjetil = 4.0f;
-    BufferedImage imagemProjetil;
-    int dano;
-    int flipW;
+    protected transient BufferedImage imagemProjetil;
+    protected int dano;
+    protected int flipW;
+    protected String pathImagem;
 
     public Projetil(Fase fase, float xInicial, float yInicial, int dir, int dano, String pathImagem) {
         super(fase, xInicial, yInicial);
         flipW = dir;
-        imagemProjetil = LoadSave.importarImagem(pathImagem);
+        this.pathImagem = pathImagem;
+        carregarImagens();
         inicializarHitbox(6,5);
         transponivel = true;
         this.dano = dano;
@@ -69,5 +71,10 @@ public class Projetil extends Entidade {
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }
+    }
+
+    @Override
+    protected void carregarImagens() {
+        imagemProjetil = LoadSave.importarImagem(pathImagem);
     }
 }

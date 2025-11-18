@@ -13,11 +13,12 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public abstract class Fase {
+public abstract class Fase implements Serializable {
     protected ArrayList<Personagem> inimigos = new ArrayList<Personagem>();
     //Arrays de "buffer" para evitar alteracoes no array de inimigos enquanto ele é percorrido:
     protected ArrayList<Personagem> inimigosParaRemover = new ArrayList<Personagem>();  
@@ -32,8 +33,8 @@ public abstract class Fase {
     protected Hero player;
     protected Portal portal;
     protected int[][] infoCenario;
-    protected BufferedImage[] tileset;
-    protected BufferedImage background;
+    protected transient BufferedImage[] tileset;
+    protected transient BufferedImage background;
     //Controle da camera
     protected int cameraOffsetX = 0;
     protected int bordaCameraEsquerda = (int)(0.5 * Consts.MUNDO_LARGURA * Consts.CELL_SIDE);
@@ -59,6 +60,8 @@ public abstract class Fase {
     protected abstract void adicionarPersonagens();
 
     protected abstract int getSpriteVazio();
+
+    protected abstract void carregarImagensFase();
 
     public void atualizarFase() {
         player.atualizarEntidade();

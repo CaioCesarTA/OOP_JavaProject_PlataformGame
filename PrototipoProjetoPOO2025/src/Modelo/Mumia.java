@@ -23,7 +23,9 @@ public class Mumia extends Personagem {
         animation_speed = 20;
         velocidadeX = 0.5f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/mumia.png",48);
+        pathSpritesheet = "inimigos/mumia.png";
+        tamSprite = 48;
+        carregarAnimacoes();
         inicializarHitbox(25,63);
         inicializarataquePerto(40,20);
     }

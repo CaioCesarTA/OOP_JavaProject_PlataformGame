@@ -11,10 +11,8 @@ public class PortaFuturo extends Porta {
 
     public PortaFuturo(Fase fase, float xInicial, float yInicial,boolean aberto){
         super(fase,xInicial,yInicial,aberto);
-        BufferedImage temp = LoadSave.importarImagem("entidades/porta.png");
         mortal = false;
-        sprites[0] = temp.getSubimage(0, 0, 64, 64);
-        sprites[1] = temp.getSubimage(64, 0, 64, 64);
+        carregarImagens();
         inicializarHitbox(44, 96);
     }
     
@@ -32,5 +30,13 @@ public class PortaFuturo extends Porta {
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }
+    }
+
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("entidades/porta.png");
+        sprites[0] = temp.getSubimage(0, 0, 64, 64);
+        sprites[1] = temp.getSubimage(64, 0, 64, 64);
     }
 }

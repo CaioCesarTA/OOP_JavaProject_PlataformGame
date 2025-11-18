@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase2 extends Fase {
@@ -9,9 +10,16 @@ public class Fase2 extends Fase {
         super(140,36);
         player = new Hero(this, 6*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
         portal = new Portal(this, 131*Consts.CELL_SIDE, 22*Consts.CELL_SIDE);
+        carregarImagensFase();
+        adicionarPersonagens();
+
+        LoadSave.salvarEntidade("robo.zip", new Robo(this, 0, 0));
+    }
+
+    @Override
+    protected void carregarImagensFase() {
         carregarImagens("fases/fase2/tilesetFase2.png","fases/fase2/bgFase2.png");
         carregarInfoNivel("fases/fase2/infoFase2.png");
-        adicionarPersonagens();
     }
 
     @Override

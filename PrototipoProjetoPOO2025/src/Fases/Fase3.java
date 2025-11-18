@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase3 extends Fase {
@@ -9,9 +10,17 @@ public class Fase3 extends Fase {
         super(140,32);
         player = new Hero(this, Consts.CELL_SIDE, 4*Consts.CELL_SIDE);
         portal = new Portal(this, 4444, 128);
+        carregarImagensFase();
+        adicionarPersonagens();
+
+        LoadSave.salvarEntidade("mumia.zip", new Mumia(this, 0, 0));
+        LoadSave.salvarEntidade("escorpiao.zip", new Escorpiao(this, 0, 0));
+    }
+
+    @Override
+    protected void carregarImagensFase() {
         carregarImagens("fases/fase3/tilesetFase3.png","fases/fase3/bgFase3.png");
         carregarInfoNivel("fases/fase3/infoFase3.png");
-        adicionarPersonagens();
     }
 
     protected void adicionarPersonagens(){

@@ -22,7 +22,9 @@ public class Escorpiao extends Personagem{
         animation_speed = 20;
         velocidadeX = 1.6f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/escorpiao.png",48);
+        pathSpritesheet = "inimigos/escorpiao.png";
+        tamSprite = 48;
+        carregarAnimacoes();
         inicializarHitbox(45,63);
         inicializarataquePerto(70,20);
     }

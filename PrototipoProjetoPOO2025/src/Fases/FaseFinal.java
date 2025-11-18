@@ -10,7 +10,12 @@ public class FaseFinal extends Fase{
 
     public FaseFinal() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
-        this.background = LoadSave.importarImagem("fases/cenas/msgFinal.png");
+        carregarImagensFase();
+    }
+
+    @Override
+    protected void carregarImagensFase() {
+        background = LoadSave.importarImagem("fases/cenas/msgFinal.png");
     }
 
     @Override

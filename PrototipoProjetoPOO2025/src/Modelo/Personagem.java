@@ -3,6 +3,7 @@ package Modelo;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.StringReader;
 
 import Auxiliar.Consts;
 import Auxiliar.Direcao;
@@ -19,8 +20,7 @@ public abstract class Personagem extends Entidade {
     protected boolean socando = false;
     protected boolean jaAtacou = false;
     //Controle de animacoes
-    protected BufferedImage[][] imagens;
-    protected BufferedImage vida;
+    protected transient BufferedImage[][] imagens;
     protected int animation_tick = 0;
     protected int animation_index = 0;
     protected int animation_speed = 10;
@@ -34,6 +34,9 @@ public abstract class Personagem extends Entidade {
     protected boolean podeSocar = true;
     protected int tempoEntreSocos =  Consts.FPS; // um soco a cada 120 quadros == 1 segundo
     protected int cooldownSoco = 0;
+    //Paths das imagens
+    protected String pathSpritesheet;
+    protected int tamSprite;
 
 
     public Personagem(Fase fase, float xInicial, float yInicial) {
@@ -45,11 +48,12 @@ public abstract class Personagem extends Entidade {
 
     protected abstract void atualizarAcaoAtual();
 
-    protected final void carregarVida(String pathVida){
-        vida = LoadSave.importarImagem(pathVida);
+    @Override
+    protected void carregarImagens() {
+        carregarAnimacoes();
     }
 
-    protected final void carregarAnimacoes(String pathSpritesheet, int tamSprite) {
+    protected final void carregarAnimacoes() {
         BufferedImage temp = LoadSave.importarImagem(pathSpritesheet);
         int alturaImg = temp.getHeight() / tamSprite;
         int larguraImg = temp.getWidth() / tamSprite;
@@ -150,6 +154,11 @@ public abstract class Personagem extends Entidade {
     public void resetarPosicao(){
         hitbox.x = posicaoInicial.getX();
         hitbox.y = posicaoInicial.getY();
+    }
+
+    public void setPosicao(float x, float y, int cameraOffsetX, int cameraOffsetY){
+        hitbox.x = x + cameraOffsetX;
+        hitbox.y = y + cameraOffsetY;
     }
 
     public abstract int getAcaoIdle();

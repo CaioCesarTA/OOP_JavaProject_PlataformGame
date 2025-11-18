@@ -1,6 +1,12 @@
 package Fases;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.zip.GZIPOutputStream;
+
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase1 extends Fase {
@@ -9,9 +15,16 @@ public class Fase1 extends Fase {
         super(140,36);
         player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
         portal = new Portal(this, 4000, 512);
+        adicionarPersonagens();
+        carregarImagensFase();
+
+        LoadSave.salvarEntidade("zumbi.zip", new Zumbi(this, 0, 0));
+    }
+
+    @Override
+    protected void carregarImagensFase() {
         carregarImagens("fases/fase1/tilesetFase1.png","fases/fase1/bgFase1.png");
         carregarInfoNivel("fases/fase1/infoFase1.png");
-        adicionarPersonagens();
     }
 
     protected void adicionarPersonagens(){

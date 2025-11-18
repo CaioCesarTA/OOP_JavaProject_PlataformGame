@@ -9,16 +9,14 @@ import Controler.LoadSave;
 import Fases.Fase;
 
 public class Plataforma extends Entidade implements Controlado{
-    private BufferedImage[] sprites = new BufferedImage[2];
+    private transient BufferedImage[] sprites = new BufferedImage[2];
     private int indiceImagem = 0;
 
     public Plataforma(Fase fase, float xInicial, float yInicial){
         super(fase,xInicial,yInicial);
-        BufferedImage temp = LoadSave.importarImagem("entidades/plataforma.png");
         mortal = false;
         transponivel = true;
-        sprites[0] = temp.getSubimage(0, 0, 32, 32);
-        sprites[1] = temp.getSubimage(32, 0, 32, 32);
+        carregarImagens();
         inicializarHitbox(32, 32);
     }
 
@@ -49,5 +47,12 @@ public class Plataforma extends Entidade implements Controlado{
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }  
+    }
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("entidades/plataforma.png");
+        sprites[0] = temp.getSubimage(0, 0, 32, 32);
+        sprites[1] = temp.getSubimage(32, 0, 32, 32);
     }
 }

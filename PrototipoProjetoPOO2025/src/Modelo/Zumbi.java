@@ -22,7 +22,9 @@ public class Zumbi extends Personagem {
         animation_speed = 20;
         velocidadeX = 0.25f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/zumbi1.png",128);
+        pathSpritesheet = "inimigos/zumbi1.png";
+        tamSprite = 128;
+        carregarAnimacoes();
         inicializarHitbox(25,63);
         inicializarataquePerto(40,20);
     }
@@ -145,5 +147,4 @@ public class Zumbi extends Personagem {
     public int getAcaoIdle(){
         return PARADO;
     }
-    
 }

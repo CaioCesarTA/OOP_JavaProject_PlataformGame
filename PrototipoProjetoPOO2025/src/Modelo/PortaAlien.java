@@ -16,11 +16,8 @@ public class PortaAlien extends Porta {
         indiceImagem = 0;
         transponivel = false;
         sprites = new BufferedImage[7];
+        carregarImagens();
         inicializarHitbox(32, 96);
-        BufferedImage temp = LoadSave.importarImagem("entidades/portaAlien.png");
-        for(int i=0;i<7;i++){
-            sprites[i] = temp.getSubimage(32*i, 0, 32, 96);
-        }
     }
 
     @Override
@@ -49,5 +46,13 @@ public class PortaAlien extends Porta {
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         } 
+    }
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("entidades/portaAlien.png");
+        for(int i=0;i<7;i++){
+            sprites[i] = temp.getSubimage(32*i, 0, 32, 96);
+        }
     }
 }

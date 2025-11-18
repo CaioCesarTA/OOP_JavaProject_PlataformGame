@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 
 public class Hero extends Personagem {
     //ID das animacoes do HERO
@@ -16,13 +17,17 @@ public class Hero extends Personagem {
     private static final int CORRENDO = 4;
     private static final int ATIRANDO = 5;
     private static final int ANDANDO = 6;
+    //Imagem dos coracoes
+    protected transient BufferedImage imgVida;
 
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
-        carregarAnimacoes("hero/hero.png",128);
-        carregarVida("hero/vida.png");
+        pathSpritesheet = "hero/hero.png";
+        tamSprite = 128;
+        imgVida = LoadSave.importarImagem("hero/vida.png");
         inicializarHitbox(22,63);
         inicializarataquePerto(40,20);
+        carregarAnimacoes();
     }
 
     @Override
@@ -42,7 +47,7 @@ public class Hero extends Personagem {
         g.drawImage(imagemAtual, posXimg - cameraOffsetX, posYimg - cameraOffsetY, larguraImg, alturaImg, null);
 
         for(int i = 0; i < vidaAtual; i++){
-            g.drawImage(vida, posXvida + (i * (larguravida + 10)), posYvida , larguravida, alturavida, null);
+            g.drawImage(imgVida, posXvida + (i * (larguravida + 10)), posYvida , larguravida, alturavida, null);
         }
 
         if(Consts.DESENHAR_HITBOX){

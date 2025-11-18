@@ -1,6 +1,8 @@
 package Auxiliar;
 
-public class Direcao {
+import java.io.Serializable;
+
+public class Direcao implements Serializable {
     private boolean direita;
     private boolean esquerda;
 

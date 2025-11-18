@@ -5,6 +5,8 @@ import Auxiliar.Direcao;
 import Auxiliar.Posicao;
 import Fases.Fase;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -43,6 +45,8 @@ public abstract class Entidade implements Serializable{
     protected abstract void atualizarPosicao();
 
     public abstract void atualizarEntidade();
+
+    protected abstract void carregarImagens();
 
     public abstract void desenharEntidade(Graphics g, int cameraOffsetX, int cameraOffsetY);
 
@@ -131,6 +135,17 @@ public abstract class Entidade implements Serializable{
 
         //Se passou em todos os testes, a posicao eh valida
         return true;
+    }
+
+    protected void readObject(ObjectInputStream in) 
+            throws IOException, ClassNotFoundException {
+
+        in.defaultReadObject();
+
+        // recria hitbox (com os mesmos valores que já existiam)
+        inicializarHitbox((int)hitbox.getWidth(), (int)hitbox.getHeight());
+
+        carregarImagens();
     }
 
     public Rectangle2D.Float getHitbox(){

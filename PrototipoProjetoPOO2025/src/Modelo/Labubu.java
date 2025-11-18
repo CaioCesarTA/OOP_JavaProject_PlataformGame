@@ -43,7 +43,9 @@ public class Labubu extends Personagem {
         direcao.setEsquerda(true);
         flipW = -1;
         flipX = 116;
-        carregarAnimacoes("inimigos/Labubu.png",32);
+        pathSpritesheet = "inimigos/Labubu.png";
+        tamSprite = 32;
+        carregarAnimacoes();
         inicializarHitbox(50,70);
         inicializarataquePerto(50,60);
 

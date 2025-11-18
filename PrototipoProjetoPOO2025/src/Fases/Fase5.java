@@ -1,6 +1,7 @@
 package Fases;
 
 import Auxiliar.Consts;
+import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase5 extends Fase {
@@ -9,10 +10,18 @@ public class Fase5 extends Fase {
         super(96,32);
         player = new Hero(this, 2*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
         portal = new Portal(this, 4444, 128);
+        carregarImagensFase();
+        adicionarPersonagens();
+
+        LoadSave.salvarEntidade("labubu.zip", new Labubu(this, 0, 0));
+    }
+
+    @Override
+    protected void carregarImagensFase() {
         carregarImagens("fases/fase5/tilesetFase5.png","fases/fase5/bgFase5.png");
         carregarInfoNivel("fases/fase5/infoFase5.png");
-        adicionarPersonagens();
     }
+
 
     protected void adicionarPersonagens(){
         addInimigo(new Labubu(this, 52*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));

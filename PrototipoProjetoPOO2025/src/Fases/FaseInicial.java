@@ -11,7 +11,12 @@ public class FaseInicial extends Fase{
 
     public FaseInicial() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
-        this.background = LoadSave.importarImagem("fases/cenas/msgInicio.png");
+        carregarImagensFase();
+    }
+
+    @Override
+    protected void carregarImagensFase() {
+        background = LoadSave.importarImagem("fases/cenas/msgInicio.png");
     }
 
     @Override

@@ -10,7 +10,7 @@ import Fases.Fase;
 
 public class Chave extends Entidade implements Controlado {
     private Porta portaControlada;
-    private BufferedImage imagemChave;
+    private transient BufferedImage imagemChave;
     private boolean acompanharPlayer;
     private float velocidadeY = 0.125f;
     private int flipW = 1, flipX = 0;
@@ -21,9 +21,8 @@ public class Chave extends Entidade implements Controlado {
         mortal = false;
         transponivel = true;
         acompanharPlayer = false;
-        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
-        imagemChave = temp.getSubimage(224,96,32,32);
         inicializarHitbox(30, 8);
+        carregarImagens();
         visivel = false;
     }
 
@@ -78,6 +77,12 @@ public class Chave extends Entidade implements Controlado {
     @Override
     public void mudarEstado() {
         visivel = true;
+    }
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
+        imagemChave = temp.getSubimage(224,96,32,32);
     }
 
 }

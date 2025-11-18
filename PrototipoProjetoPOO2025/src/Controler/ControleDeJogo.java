@@ -112,7 +112,10 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
+        if(getFaseAtual() instanceof FaseInicial) avancarFase();
+        else if(getFaseAtual() instanceof FaseFinal) voltarFase();
+
+        else if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
         else if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
 
         else getFaseAtual().keyPressed(e);
@@ -129,6 +132,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        //getFaseAtual().addInimigo(new Zumbi(getFaseAtual(), e.getX() + getFaseAtual().getCameraOffsetX(), e.getY() + getFaseAtual().getCameraOffsetY()));
     }
 
     @Override

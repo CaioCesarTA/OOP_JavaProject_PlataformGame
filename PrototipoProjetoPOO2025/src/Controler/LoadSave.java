@@ -2,11 +2,17 @@ package Controler;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.zip.GZIPOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 
 import Auxiliar.Consts;
+import Modelo.Entidade;
 
 //Metodos estaticos relacionados ao carregamento de saves, obejetos serializados e imagens
 public class LoadSave {
@@ -20,5 +26,29 @@ public class LoadSave {
             ex.printStackTrace();
         }
         return imagem;
+    }
+
+    public static void salvarEntidade(String nomeArqDestino, Entidade e) {
+        File tanque = new File(nomeArqDestino);
+        try {
+            tanque.createNewFile();
+            FileOutputStream canoOut = new FileOutputStream(tanque);
+            ZipOutputStream zipOut = new ZipOutputStream(canoOut);
+
+            ZipEntry entry = new ZipEntry("entidade");
+            zipOut.putNextEntry(entry);
+
+            ObjectOutputStream serializador = new ObjectOutputStream(zipOut);
+            serializador.writeObject(e);
+            
+            serializador.flush();
+            zipOut.closeEntry();
+            serializador.close();
+            
+            System.out.println("Entidade salva com sucesso em: " + nomeArqDestino);
+
+        } catch (IOException error) {
+            System.out.println("Erro ao salvar entidade: " + error.getMessage());
+        }
     }
 }

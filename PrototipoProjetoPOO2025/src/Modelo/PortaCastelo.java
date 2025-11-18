@@ -13,12 +13,10 @@ public class PortaCastelo extends Porta{
 
     public PortaCastelo(Fase fase, float xInicial, float yInicial, boolean aberto, int dir){
         super(fase,xInicial,yInicial,aberto);
-        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
         mortal = false;
         flipW = dir;
         if(flipW==-1) flipX = 32;
-        sprites[1] = temp.getSubimage(384, 96, 32, 64);
-        sprites[0] = temp.getSubimage(352, 96, 32, 64);
+        carregarImagens();
         inicializarHitbox(32, 64);
     }
 
@@ -35,5 +33,12 @@ public class PortaCastelo extends Porta{
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }  
+    }
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
+        sprites[1] = temp.getSubimage(384, 96, 32, 64);
+        sprites[0] = temp.getSubimage(352, 96, 32, 64);
     }
 }

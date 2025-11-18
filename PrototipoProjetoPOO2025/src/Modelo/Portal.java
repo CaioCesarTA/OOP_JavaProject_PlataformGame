@@ -22,7 +22,9 @@ public class Portal extends Personagem {
         acaoAtual = PARADO;
         mortal = false;
         transponivel = true;
-        carregarAnimacoes("portal/portal.png",64);
+        pathSpritesheet = "portal/portal.png";
+        tamSprite = 64;
+        carregarAnimacoes();
         inicializarHitbox(32,64);
     }
 

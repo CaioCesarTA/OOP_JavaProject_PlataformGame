@@ -9,16 +9,16 @@ import Controler.LoadSave;
 import Fases.Fase;
 
 public class CelulaDeEnergia extends Entidade {
-    private BufferedImage imagemCelula;
+    private transient BufferedImage imagemCelula;
     private float velocidadeY = 0.125f;
     private Controlado entidadeControlada;
 
     public CelulaDeEnergia(Fase fase, float xInicial, float yInicial, Controlado entidadeControlada){
         super(fase,xInicial,yInicial);
-        imagemCelula = LoadSave.importarImagem("entidades/celulaEnergia.png");
         transponivel = true;
         mortal = false;
         this.entidadeControlada = entidadeControlada;
+        carregarImagens();
         inicializarHitbox(32, 32);
     }
 
@@ -50,6 +50,11 @@ public class CelulaDeEnergia extends Entidade {
             g.setColor(Color.RED);
             g.drawRect((int)hitbox.x - cameraOffsetX,(int)hitbox.y - cameraOffsetY,(int)hitbox.width,(int)hitbox.height);
         }  
+    }
+
+    @Override
+    protected void carregarImagens() {
+        imagemCelula = LoadSave.importarImagem("entidades/celulaEnergia.png");
     }
 
 }

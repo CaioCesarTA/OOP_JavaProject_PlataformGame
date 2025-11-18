@@ -25,7 +25,9 @@ public class Alien extends Personagem {
         animation_speed = 20;
         velocidadeX = 0.25f;
         direcao.setEsquerda(true);
-        carregarAnimacoes("inimigos/alien.png",128);
+        pathSpritesheet = "inimigos/alien.png";
+        tamSprite = 128;
+        carregarAnimacoes();
         inicializarHitbox(25,63);
         areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,550,50);
         tempoEntreTiros = Consts.FPS; //um tiro por segundo

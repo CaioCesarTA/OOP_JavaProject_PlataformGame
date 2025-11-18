@@ -9,15 +9,12 @@ import Fases.Fase;
 
 public class Bau extends Entidade implements Controlado{
     private int indiceImagem = 0;
-    private BufferedImage[] sprites = new BufferedImage[2];
+    private transient BufferedImage[] sprites = new BufferedImage[2];
     private boolean aberto = false;
 
     public Bau(Fase fase, float xInicial, float yInicial){
         super(fase,xInicial,yInicial);
-        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
-        mortal = false;
-        sprites[0] = temp.getSubimage(160, 96, 32, 32);
-        sprites[1] = temp.getSubimage(192, 96, 32, 32);
+        carregarImagens();
         inicializarHitbox(32, 32);
         transponivel = true;
     }
@@ -52,5 +49,13 @@ public class Bau extends Entidade implements Controlado{
             indiceImagem = 1;
         }
         else indiceImagem = 0;
+    }
+
+    @Override
+    protected void carregarImagens() {
+        BufferedImage temp = LoadSave.importarImagem("fases/fase5/tilesetFase5.png");
+        mortal = false;
+        sprites[0] = temp.getSubimage(160, 96, 32, 32);
+        sprites[1] = temp.getSubimage(192, 96, 32, 32);
     }
 }

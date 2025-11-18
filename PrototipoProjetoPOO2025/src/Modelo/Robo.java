@@ -24,7 +24,9 @@ public class Robo extends Personagem {
         animation_speed = 15;
         velocidadeX = 0.75f;
         direcao.setDireita(true);
-        carregarAnimacoes("inimigos/robo1.png",128);
+        pathSpritesheet = "inimigos/robo1.png";
+        tamSprite = 128;
+        carregarAnimacoes();
         inicializarHitbox(25,68);
         areaVisao = new Rectangle2D.Float(hitbox.x,hitbox.y,550,50);
         tempoEntreTiros = Consts.FPS; //um tiro por segundo
