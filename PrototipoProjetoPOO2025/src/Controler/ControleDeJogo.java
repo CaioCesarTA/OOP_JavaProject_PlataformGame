@@ -111,52 +111,14 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_A:
-                getFaseAtual().getPlayer().getDirecao().setEsquerda(true);
-                break;
-            case KeyEvent.VK_D:
-                getFaseAtual().getPlayer().getDirecao().setDireita(true);
-                break;
-            case KeyEvent.VK_W:
-                getFaseAtual().getPlayer().setPulando(true);
-                break;
-            case KeyEvent.VK_SHIFT:
-                getFaseAtual().getPlayer().setCorrendo(true);
-                break;
-            case KeyEvent.VK_F:
-                getFaseAtual().getPlayer().setSocando(true);
-                break;
-            case KeyEvent.VK_SPACE:
-                getFaseAtual().getPlayer().setAtirando(true);
-                break;
-            case KeyEvent.VK_R:
-                getFaseAtual().resetarFase();
-                break;
-            case KeyEvent.VK_P:
-                avancarFase();
-                break;
-            case KeyEvent.VK_O:
-                voltarFase();
-                break;
-            case KeyEvent.VK_M:
-                getFaseAtual().getPlayer().sofrerDano(1);
-        }
+        if(e.getKeyCode() == KeyEvent.VK_P) avancarFase();
+        if(e.getKeyCode() == KeyEvent.VK_O) voltarFase();
+        getFaseAtual().keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_A:
-                getFaseAtual().getPlayer().getDirecao().setEsquerda(false);
-                break;
-            case KeyEvent.VK_D:
-                getFaseAtual().getPlayer().getDirecao().setDireita(false);
-                break;
-            case KeyEvent.VK_SHIFT:
-                getFaseAtual().getPlayer().setCorrendo(false);
-                break;
-        }
+        getFaseAtual().keyReleased(e);
     }
 
     @Override

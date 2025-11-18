@@ -8,6 +8,7 @@ import Modelo.Portal;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -260,4 +261,45 @@ public abstract class Fase {
     public float getGravidade(){
         return gravidade;
     }
+
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+                player.getDirecao().setEsquerda(true);
+                break;
+            case KeyEvent.VK_D:
+                player.getDirecao().setDireita(true);
+                break;
+            case KeyEvent.VK_W:
+                player.setPulando(true);
+                break;
+            case KeyEvent.VK_SHIFT:
+                player.setCorrendo(true);
+                break;
+            case KeyEvent.VK_F:
+                player.setSocando(true);
+                break;
+            case KeyEvent.VK_SPACE:
+                player.setAtirando(true);
+                break;
+            case KeyEvent.VK_R:
+                resetarFase();
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+                player.getDirecao().setEsquerda(false);
+                break;
+            case KeyEvent.VK_D:
+                player.getDirecao().setDireita(false);
+                break;
+            case KeyEvent.VK_SHIFT:
+                player.setCorrendo(false);
+                break;
+        }
+    }
+
 }
