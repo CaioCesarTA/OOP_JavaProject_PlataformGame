@@ -8,11 +8,12 @@ import Auxiliar.Consts;
 import Fases.Fase;
 
 public abstract class Porta extends Entidade implements Controlado {
-    protected BufferedImage[] sprites = new BufferedImage[2];
+    protected BufferedImage[] sprites;
     protected int indiceImagem = 0;
 
     public Porta(Fase fase, float xInicial, float yInicial, boolean aberto){
         super(fase,xInicial,yInicial);
+        sprites = new BufferedImage[2];
         if(aberto){
             indiceImagem = 1;
             transponivel = true;
