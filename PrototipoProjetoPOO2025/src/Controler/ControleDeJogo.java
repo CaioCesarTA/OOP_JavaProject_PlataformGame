@@ -18,12 +18,14 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     public ControleDeJogo(){
         IDfaseAtual = 0;
-        fases = new Fase[5];
-        fases[0] = new Fase1();
-        fases[1] = new Fase2();
-        fases[2] = new Fase3();
-        fases[3] = new Fase4();
-        fases[4] = new Fase5();
+        fases = new Fase[7];
+        fases[0] = new FaseInicial();
+        fases[1] = new Fase1();
+        fases[2] = new Fase2();
+        fases[3] = new Fase3();
+        fases[4] = new Fase4();
+        fases[5] = new Fase5();
+        fases[6] = new FaseFinal();
         tela = new Tela(this);
         janela = new Janela(tela);
         janela.setVisible(true);
@@ -37,9 +39,20 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
 
     public void processaTudo(){
         getFaseAtual().atualizarFase();
+        Fase faseAtual = getFaseAtual();
 
+        if (faseAtual instanceof FaseInicial){
+            if(((FaseInicial) faseAtual).proxFase()){
+                avancarFase();
+            }
+        }
+        else if (faseAtual instanceof FaseFinal){
+            if(((FaseFinal) faseAtual).proxFase()){
+                avancarFase();
+            }
+        }
         //Vai para a proxima fase se o Player entrar no portal
-        if(getFaseAtual().getPortal().podeAvancarFase()) {
+        else if(getFaseAtual().getPortal().podeAvancarFase()) {
             avancarFase();
         }
 
@@ -93,7 +106,7 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener {
     }
 
     private void avancarFase() {
-        if(IDfaseAtual<4) {
+        if(IDfaseAtual<6) {
             IDfaseAtual++;
             getFaseAtual().resetarFase();
         }

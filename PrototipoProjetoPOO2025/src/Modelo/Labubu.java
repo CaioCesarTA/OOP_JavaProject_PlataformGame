@@ -137,7 +137,7 @@ public class Labubu extends Personagem {
             acaoAtual = ATIRANDO;
             if(animation_index>=getQtdSprites(ATIRANDO)-1) {
                 acaoAtual = PARADO;
-                fase.addEntidade(new Projetil(fase,hitbox.x+70*flipW,hitbox.y+10,flipW,5,"projeteis/bullet3.png"));
+                fase.addEntidade(new Projetil(fase,hitbox.x+70*flipW,hitbox.y+10,flipW,1,"projeteis/bullet3.png"));
             }
             return;
         }
