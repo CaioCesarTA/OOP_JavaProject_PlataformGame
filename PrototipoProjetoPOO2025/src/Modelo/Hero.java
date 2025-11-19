@@ -19,6 +19,7 @@ public class Hero extends Personagem {
     private static final int ANDANDO = 6;
     //Imagem dos coracoes
     private transient BufferedImage imgVida;
+    private boolean jaTocou = false;
 
     public Hero(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
@@ -225,7 +226,13 @@ public class Hero extends Personagem {
 
         if (socando && noAr) socando = false;
 
-        if(morto) acaoAtual = MORRENDO;
+        if(morto) {
+            if(fase.getAudio() != null && !jaTocou) {
+                fase.getAudio().tocaEfeito(Audio.CORONHADA);
+                jaTocou = true;
+            }
+            acaoAtual = MORRENDO;
+        }
 
         if(acaoInicial == MORRENDO) {
             acaoAtual = MORRENDO;

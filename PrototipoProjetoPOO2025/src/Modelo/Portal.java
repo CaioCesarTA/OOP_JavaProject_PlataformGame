@@ -16,6 +16,7 @@ public class Portal extends Personagem {
     //Controle de avancar fase
     private boolean avancarFase = false;
     private int tempoAnimacaoFechando = 0;
+    boolean jaTocou = false;
 
     public Portal(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
@@ -40,11 +41,12 @@ public class Portal extends Personagem {
         int acaoInicial = acaoAtual;
         //Vai para a proxima fase se o Player entrar no portal
         if(hitbox.contains(fase.getPlayer().getHitbox())){
-            if(fase.getAudio() != null) {
-                fase.getAudio().tocaEfeito(Audio.PORTAL);
-            }
             animation_speed = 20;
             acaoAtual = FECHANDO;
+            if(fase.getAudio() != null && !jaTocou) {
+                fase.getAudio().tocaEfeito(Audio.PORTAL);
+                jaTocou = true;
+            }
             if(acaoInicial!=acaoAtual) resetAniTick();
             fase.getPlayer().setVisivel(false);
             tempoAnimacaoFechando++;
