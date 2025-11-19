@@ -54,6 +54,8 @@ public class Portal extends Personagem {
                 avancarFase = true;
                 animation_speed = 15;
                 tempoAnimacaoFechando = 0;
+                resetAniTick();
+                jaTocou = false;
             }
         }
     }
