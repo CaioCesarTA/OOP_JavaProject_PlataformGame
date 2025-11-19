@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 import java.awt.Color;
@@ -122,6 +123,9 @@ public class Labubu extends Personagem {
 
         if(vendoPlayer() && podeAtirar && !morto){
             acaoAtual = ATIRANDO;
+            if(fase.getAudio() != null) {
+                fase.getAudio().playEffect(Audio.PEDRA);
+            }
             
             podeAtirar = false;
             resetAniTick();
@@ -155,6 +159,9 @@ public class Labubu extends Personagem {
             if(animation_index == 0)
                 jaAtacou = false;
             if ( (animation_index == 3 ||animation_index == 5)  && !jaAtacou){
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.TAPA);
+                }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
         }

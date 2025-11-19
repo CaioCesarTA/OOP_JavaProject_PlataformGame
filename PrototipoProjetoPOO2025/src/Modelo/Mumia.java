@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 import java.awt.Color;
@@ -77,6 +78,9 @@ public class Mumia extends Personagem {
             if(animation_index == 0)
                 jaAtacou = false;
             if (animation_index == 4 && !jaAtacou){
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.ESPADA);
+                }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
         }

@@ -1,5 +1,6 @@
 package Fases;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Modelo.Entidade;
@@ -24,7 +25,9 @@ public abstract class Fase implements Serializable {
     //Arrays de "buffer" para evitar alteracoes no array de projeteis enquanto ele é percorrido:
     protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
     protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
-    
+    //audio
+    protected Audio audio;
+
     protected float gravidade = 0.07f;
     protected Hero player;
     protected Portal portal;
@@ -177,6 +180,14 @@ public abstract class Fase implements Serializable {
     public Hero setPlayer(Hero player) {
         this.player = player;
         return player;
+    }
+
+    public void setAudio(Audio audio) {
+        this.audio = audio;
+    }
+
+    public Audio getAudio() {
+        return this.audio;
     }
 
     protected void checarPlayerNaBordaY(){

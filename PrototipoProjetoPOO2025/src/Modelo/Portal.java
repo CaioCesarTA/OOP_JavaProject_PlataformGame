@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 import java.awt.*;
@@ -39,6 +40,9 @@ public class Portal extends Personagem {
         int acaoInicial = acaoAtual;
         //Vai para a proxima fase se o Player entrar no portal
         if(hitbox.contains(fase.getPlayer().getHitbox())){
+            if(fase.getAudio() != null) {
+                fase.getAudio().playEffect(Audio.PORTAL);
+            }
             animation_speed = 20;
             acaoAtual = FECHANDO;
             if(acaoInicial!=acaoAtual) resetAniTick();

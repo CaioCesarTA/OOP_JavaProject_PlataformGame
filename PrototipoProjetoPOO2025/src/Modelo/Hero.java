@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -178,6 +179,12 @@ public class Hero extends Personagem {
 
         if(acaoInicial == SOCANDO){
             acaoAtual = SOCANDO;
+            if(animation_index>=getQtdSprites(SOCANDO)-1) {
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.CORONHADA);
+                }
+                acaoAtual = PARADO;
+            }
             if(animation_index>=getQtdSprites(SOCANDO)-1) acaoAtual = PARADO;
             return;
         }
@@ -201,6 +208,9 @@ public class Hero extends Personagem {
             if(podeAtirar && !morto && visivel){
                 acaoAtual = ATIRANDO;
                 fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano,"projeteis/bullet.png"));
+                if(fase.getAudio() != null && !morto) {
+                    fase.getAudio().playEffect(Audio.TIRO);
+                }
                 podeAtirar = false;
                 resetAniTick();
             }

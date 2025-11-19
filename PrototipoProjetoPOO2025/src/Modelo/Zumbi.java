@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 import java.awt.Color;
@@ -76,6 +77,9 @@ public class Zumbi extends Personagem {
             if(animation_index == 0)
                 jaAtacou = false;
             if (animation_index == 3 && !jaAtacou){
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.TAPA);
+                }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
         }

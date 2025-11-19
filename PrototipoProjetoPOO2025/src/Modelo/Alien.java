@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 import java.awt.Color;
@@ -77,6 +78,9 @@ public class Alien extends Personagem {
         if(vendoPlayer()) {
             if(podeAtirar && !morto){
                 acaoAtual = ATIRANDO;
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.TIROINIMIGO);
+                }
                 fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+10,flipW,dano,"projeteis/bullet2.png"));
                 podeAtirar = false;
                 resetAniTick();

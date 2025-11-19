@@ -1,5 +1,6 @@
 package Controler;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Fases.*;
 import Modelo.Entidade;
@@ -26,9 +27,11 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
     private Thread threadJogo;
     private Fase[] fases;
     private int IDfaseAtual;
+    private Audio audio;
 
     public ControleDeJogo(){
         IDfaseAtual = 0;
+        audio = new Audio();
         fases = new Fase[7];
         fases[0] = new FaseInicial();
         fases[1] = new Fase1();
@@ -37,6 +40,11 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         fases[4] = new Fase4();
         fases[5] = new Fase5();
         fases[6] = new FaseFinal();
+        for(int i = 0; i < fases.length; i++) {
+            if(fases[i] != null) {
+                fases[i].setAudio(audio);
+            }
+        }
         tela = new Tela(this);
         janela = new Janela(tela);
         janela.setVisible(true);
@@ -105,6 +113,10 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
 
     private Fase getFaseAtual() {
         return fases[IDfaseAtual];
+    }
+
+    public Audio getAudio() {
+        return audio;
     }
 
     private void avancarFase() {
