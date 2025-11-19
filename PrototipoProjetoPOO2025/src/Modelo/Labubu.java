@@ -32,7 +32,7 @@ public class Labubu extends Personagem {
     public Labubu(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);
         mortal = false;
-        vidaMaxima = vidaAtual = 1;
+        vidaMaxima = vidaAtual = 50;
         dano = 2;
         tempoEntreTiros = Consts.FPS; //um tiro por segundo
         animation_speed = 15;
