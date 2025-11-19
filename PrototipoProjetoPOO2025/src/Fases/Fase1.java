@@ -1,16 +1,17 @@
 package Fases;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.zip.GZIPOutputStream;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase1 extends Fase {
-    
+    private transient BufferedImage tutorial; 
+    private boolean mostrarTutorial = true;   
+
     public Fase1(){
         super(140,36);
         player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
@@ -22,12 +23,27 @@ public class Fase1 extends Fase {
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         carregarImagens("fases/fase1/tilesetFase1.png","fases/fase1/bgFase1.png");
         carregarInfoNivel("fases/fase1/infoFase1.png");
+        tutorial = LoadSave.importarImagem("fases/fase1/tutorial.png");
     }
 
-    protected void adicionarPersonagens(){
+    @Override
+    public void desenharFase(Graphics g){
+        super.desenharFase(g);
+        if(mostrarTutorial)
+            g.drawImage(tutorial, (Consts.MUNDO_LARGURA*Consts.CELL_SIDE)/2 - tutorial.getWidth()/2, (Consts.MUNDO_ALTURA*Consts.CELL_SIDE)/2 - tutorial.getHeight()/2, null);
+    } 
+
+    @Override
+    public void keyPressed(KeyEvent e){
+        super.keyPressed(e);
+        if(e.getKeyCode() == KeyEvent.VK_H) mostrarTutorial = !mostrarTutorial;
+    }
+
+    @Override
+    protected final void adicionarPersonagens(){
         addInimigo(new Zumbi(this, 1600, (alturaFase-5)*Consts.CELL_SIDE));
         addInimigo(new Zumbi(this, 1772, (alturaFase-5)*Consts.CELL_SIDE));
         addInimigo(new Zumbi(this, 2000, (alturaFase-5)*Consts.CELL_SIDE));
@@ -45,7 +61,7 @@ public class Fase1 extends Fase {
         addInimigo(new Zumbi(this, 31*Consts.CELL_SIDE, 23*Consts.CELL_SIDE));
     }
 
-    
+    @Override
     public boolean isSolido(float x, float y){
         if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
         if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;

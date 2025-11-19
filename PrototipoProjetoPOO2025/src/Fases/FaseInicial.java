@@ -4,10 +4,16 @@ import Auxiliar.Consts;
 import Controler.LoadSave;
 
 import java.awt.event.KeyEvent;
-
+import java.awt.image.BufferedImage;
 import java.awt.*;
 
 public class FaseInicial extends Fase{
+    public static final int MENU1 = 0;
+    public static final int MENU2 = 1;
+    public static final int CENA_INICIO = 2;
+    public static final int CENA_CREDITOS = 3;
+    private transient BufferedImage[] menu;
+    private int estadoFase = MENU1;
 
     public FaseInicial() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
@@ -15,13 +21,30 @@ public class FaseInicial extends Fase{
     }
 
     @Override
-    protected void carregarImagensFase() {
-        background = LoadSave.importarImagem("fases/cenas/msgInicio.png");
+    protected final void carregarImagensFase() {
+        menu = new BufferedImage[4];
+        menu[0] = LoadSave.importarImagem("fases/cenas/menu1.png");
+        menu[1] = LoadSave.importarImagem("fases/cenas/menu2.png");
+        menu[2] = LoadSave.importarImagem("fases/cenas/msgInicio.png");
+        menu[3] = LoadSave.importarImagem("fases/cenas/creditos.png");
     }
 
     @Override
     public boolean isSolido(float x, float y) {
         return false;
+    }
+
+    public int getEstadoFase(){
+        return estadoFase;
+    }
+
+    public void setEstadoFase(int estadoFase){
+        this.estadoFase = estadoFase;
+    }
+
+    @Override
+    public void desenharCenario(Graphics g) {
+        g.drawImage(menu[estadoFase],  0, 0, Consts.CELL_SIDE * Consts.MUNDO_LARGURA, Consts.CELL_SIDE * Consts.MUNDO_ALTURA, null);
     }
 
     @Override
@@ -30,7 +53,6 @@ public class FaseInicial extends Fase{
 
     @Override
     protected void adicionarPersonagens() {
-
     }
 
     @Override
@@ -43,12 +65,6 @@ public class FaseInicial extends Fase{
     }
 
     @Override
-    public void desenharCenario(Graphics g) {
-        g.drawImage(background, 0, 0, Consts.CELL_SIDE * Consts.MUNDO_LARGURA, Consts.CELL_SIDE * Consts.MUNDO_ALTURA, null);
-
-    }
-
-    @Override
     public void desenharFase(Graphics g) {
     }
 
@@ -58,7 +74,6 @@ public class FaseInicial extends Fase{
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 
 }

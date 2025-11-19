@@ -48,7 +48,7 @@ public class PortaAlien extends Porta {
     }
 
     @Override
-    public void carregarImagens() {
+    public final void carregarImagens() {
         sprites = new BufferedImage[7];
         BufferedImage temp = LoadSave.importarImagem("entidades/portaAlien.png");
         for(int i=0;i<7;i++){

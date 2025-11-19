@@ -20,7 +20,7 @@ public class Fase2 extends Fase {
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         carregarImagens("fases/fase2/tilesetFase2.png","fases/fase2/bgFase2.png");
         carregarInfoNivel("fases/fase2/infoFase2.png");
     }

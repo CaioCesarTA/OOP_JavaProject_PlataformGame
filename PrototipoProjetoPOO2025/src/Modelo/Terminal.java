@@ -59,7 +59,7 @@ public class Terminal extends Entidade {
     }
 
     @Override
-    public void carregarImagens() {
+    public final void carregarImagens() {
         sprites = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("entidades/terminal.png");
         sprites[0] = temp.getSubimage(0, 0, 64, 64);

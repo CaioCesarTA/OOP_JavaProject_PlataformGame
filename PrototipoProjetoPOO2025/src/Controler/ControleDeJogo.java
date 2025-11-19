@@ -128,7 +128,25 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(getFaseAtual() instanceof FaseInicial) avancarFase();
+        if(getFaseAtual() instanceof FaseInicial) {
+            FaseInicial menu = (FaseInicial) getFaseAtual();
+
+            if(menu.getEstadoFase() == FaseInicial.CENA_CREDITOS) menu.setEstadoFase(FaseInicial.MENU2);
+            
+            else if (menu.getEstadoFase() == FaseInicial.MENU2){
+                if(e.getKeyCode() == KeyEvent.VK_UP) menu.setEstadoFase(FaseInicial.MENU1);
+                else menu.setEstadoFase(FaseInicial.CENA_CREDITOS);
+            }
+            else if (menu.getEstadoFase() == FaseInicial.MENU1){
+                if(e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU2);
+                else menu.setEstadoFase(FaseInicial.CENA_INICIO);
+            }
+
+            else if (menu.getEstadoFase() == FaseInicial.CENA_INICIO){
+                menu.setEstadoFase(FaseInicial.MENU1);
+                avancarFase();
+            }
+        }
         else if(getFaseAtual() instanceof FaseFinal) System.exit(0);
 
         else if(e.getKeyCode() == KeyEvent.VK_S){

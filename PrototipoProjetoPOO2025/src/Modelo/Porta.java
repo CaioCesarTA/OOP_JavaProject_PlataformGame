@@ -1,10 +1,7 @@
 package Modelo;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import Auxiliar.Consts;
 import Fases.Fase;
 
 public abstract class Porta extends Entidade implements Controlado {

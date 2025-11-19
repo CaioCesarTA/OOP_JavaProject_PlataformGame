@@ -14,7 +14,7 @@ public class FaseFinal extends Fase{
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         background = LoadSave.importarImagem("fases/cenas/msgFinal.png");
     }
 

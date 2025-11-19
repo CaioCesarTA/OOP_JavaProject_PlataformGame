@@ -18,12 +18,13 @@ public class Fase3 extends Fase {
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         carregarImagens("fases/fase3/tilesetFase3.png","fases/fase3/bgFase3.png");
         carregarInfoNivel("fases/fase3/infoFase3.png");
     }
 
-    protected void adicionarPersonagens(){
+    @Override
+    protected final void adicionarPersonagens(){
         addInimigo(new Mumia(this, 52*Consts.CELL_SIDE, 29*Consts.CELL_SIDE));
         addInimigo(new Mumia(this, 10*Consts.CELL_SIDE, 28*Consts.CELL_SIDE));
         addInimigo(new Escorpiao(this, 12*Consts.CELL_SIDE, 22*Consts.CELL_SIDE));
@@ -35,7 +36,7 @@ public class Fase3 extends Fase {
         addInimigo(new Mumia(this, 133*Consts.CELL_SIDE, 15*Consts.CELL_SIDE));
     }
 
-
+    @Override
     public boolean isSolido(float x, float y){
         if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
         if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;

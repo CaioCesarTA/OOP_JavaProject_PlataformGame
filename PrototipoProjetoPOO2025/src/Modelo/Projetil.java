@@ -25,6 +25,7 @@ public class Projetil extends Entidade {
         this.dano = dano;
     }
 
+    @Override
     public void atualizarEntidade(){
         detectarColisao();
         atualizarPosicao();
@@ -74,7 +75,7 @@ public class Projetil extends Entidade {
     }
 
     @Override
-    public void carregarImagens() {
+    public final void carregarImagens() {
         imagemProjetil = LoadSave.importarImagem(pathImagem);
     }
 }

@@ -3,7 +3,6 @@ package Modelo;
 import Fases.Fase;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import Auxiliar.Consts;
 import Controler.LoadSave;

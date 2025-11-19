@@ -20,12 +20,13 @@ public class Fase4 extends Fase {
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         carregarImagens("fases/fase4/tilesetFase4.png","fases/fase4/bgFase4.png");
         carregarInfoNivel("fases/fase4/infoFase4.png");
     }
 
-    protected void adicionarPersonagens(){
+    @Override
+    protected final void adicionarPersonagens(){
         addInimigo(new Alien(this, 60*Consts.CELL_SIDE,28*Consts.CELL_SIDE));
         addInimigo(new Alien(this, 77*Consts.CELL_SIDE,28*Consts.CELL_SIDE));
         addInimigo(new Alien(this, 98*Consts.CELL_SIDE,28*Consts.CELL_SIDE));
@@ -49,7 +50,7 @@ public class Fase4 extends Fase {
 
     }
 
-
+    @Override
     public boolean isSolido(float x, float y){
         if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
         if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;

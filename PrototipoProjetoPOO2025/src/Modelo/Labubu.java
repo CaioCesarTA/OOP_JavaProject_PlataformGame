@@ -4,11 +4,8 @@ import Fases.Fase;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-
-import javax.sound.sampled.ReverbType;
 
 import Auxiliar.Consts;
 

@@ -20,16 +20,17 @@ public class Fase5 extends Fase {
     }
 
     @Override
-    protected void carregarImagensFase() {
+    protected final void carregarImagensFase() {
         carregarImagens("fases/fase5/tilesetFase5.png","fases/fase5/bgFase5.png");
         carregarInfoNivel("fases/fase5/infoFase5.png");
     }
 
-
-    protected void adicionarPersonagens(){
+    @Override
+    protected final void adicionarPersonagens(){
         addInimigo(new Labubu(this, 52*Consts.CELL_SIDE, 26*Consts.CELL_SIDE));
     }
 
+    @Override
     public boolean isSolido(float x, float y){
         if(x<0 || x>=(larguraFase*Consts.CELL_SIDE)) return true;
         if(y<0 || y>=(alturaFase*Consts.CELL_SIDE)) return true;

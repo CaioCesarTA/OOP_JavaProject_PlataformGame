@@ -1,9 +1,7 @@
 package Modelo;
 
-import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.StringReader;
 
 import Auxiliar.Consts;
 import Auxiliar.Direcao;

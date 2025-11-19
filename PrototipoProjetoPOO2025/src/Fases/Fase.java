@@ -11,12 +11,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 public abstract class Fase implements Serializable {
     protected ArrayList<Personagem> inimigos = new ArrayList<>();

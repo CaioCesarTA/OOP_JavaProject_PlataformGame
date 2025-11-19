@@ -1,6 +1,5 @@
 package Modelo;
 
-import Auxiliar.Consts;
 import Auxiliar.Direcao;
 import Auxiliar.Posicao;
 import Fases.Fase;
@@ -8,7 +7,6 @@ import Fases.Fase;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 

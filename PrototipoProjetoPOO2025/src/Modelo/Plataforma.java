@@ -50,7 +50,7 @@ public class Plataforma extends Entidade implements Controlado{
     }
 
     @Override
-    public void carregarImagens() {
+    public final void carregarImagens() {
         sprites  = new BufferedImage[2];
         BufferedImage temp = LoadSave.importarImagem("entidades/plataforma.png");
         sprites[0] = temp.getSubimage(0, 0, 32, 32);
