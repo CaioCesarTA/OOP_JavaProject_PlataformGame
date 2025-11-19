@@ -124,7 +124,7 @@ public class Labubu extends Personagem {
         if(vendoPlayer() && podeAtirar && !morto){
             acaoAtual = ATIRANDO;
             if(fase.getAudio() != null) {
-                fase.getAudio().playEffect(Audio.PEDRA);
+                fase.getAudio().tocaEfeito(Audio.PEDRA);
             }
             
             podeAtirar = false;
@@ -160,7 +160,7 @@ public class Labubu extends Personagem {
                 jaAtacou = false;
             if ( (animation_index == 3 ||animation_index == 5)  && !jaAtacou){
                 if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                    fase.getAudio().playEffect(Audio.TAPA);
+                    fase.getAudio().tocaEfeito(Audio.TAPA);
                 }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
