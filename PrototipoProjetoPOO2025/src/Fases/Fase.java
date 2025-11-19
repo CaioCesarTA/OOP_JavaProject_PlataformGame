@@ -26,7 +26,7 @@ public abstract class Fase implements Serializable {
     protected ArrayList<Entidade> entidadesParaRemover = new ArrayList<>();  
     protected ArrayList<Entidade> entidadesParaAdicionar = new ArrayList<>();
     //audio
-    protected Audio audio;
+    protected transient Audio audio;
 
     protected float gravidade = 0.07f;
     protected Hero player;
