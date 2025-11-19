@@ -1,5 +1,6 @@
 package Modelo;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Fases.Fase;
 
@@ -75,6 +76,9 @@ public class Escorpiao extends Personagem{
             if(animation_index == 0)
                 jaAtacou = false;
             if (animation_index == 3 && !jaAtacou){
+                if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
+                    fase.getAudio().playEffect(Audio.PICADA);
+                }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }
         }
