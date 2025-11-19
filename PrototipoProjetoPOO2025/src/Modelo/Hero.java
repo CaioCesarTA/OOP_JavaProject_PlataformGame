@@ -181,7 +181,7 @@ public class Hero extends Personagem {
             acaoAtual = SOCANDO;
             if(animation_index>=getQtdSprites(SOCANDO)-1) {
                 if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                    fase.getAudio().playEffect(Audio.CORONHADA);
+                    fase.getAudio().tocaEfeito(Audio.CORONHADA);
                 }
                 acaoAtual = PARADO;
             }
@@ -209,7 +209,7 @@ public class Hero extends Personagem {
                 acaoAtual = ATIRANDO;
                 fase.addEntidade(new Projetil(fase,hitbox.x+30*flipW,hitbox.y+20,flipW,dano,"projeteis/bullet.png"));
                 if(fase.getAudio() != null && !morto) {
-                    fase.getAudio().playEffect(Audio.TIRO);
+                    fase.getAudio().tocaEfeito(Audio.TIRO);
                 }
                 podeAtirar = false;
                 resetAniTick();

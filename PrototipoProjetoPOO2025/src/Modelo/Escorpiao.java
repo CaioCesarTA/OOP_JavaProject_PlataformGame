@@ -77,7 +77,7 @@ public class Escorpiao extends Personagem{
                 jaAtacou = false;
             if (animation_index == 3 && !jaAtacou){
                 if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                    fase.getAudio().playEffect(Audio.PICADA);
+                    fase.getAudio().tocaEfeito(Audio.PICADA);
                 }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }

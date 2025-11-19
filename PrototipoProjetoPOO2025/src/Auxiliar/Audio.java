@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
@@ -20,64 +19,56 @@ public class Audio {
     public static int CORONHADA = 7;
     public static int PICADA = 8;
 
-    private Clip[] effects;
+    private Clip[] efeito;
 
     private float volume = 0.85f;
 
 
     public Audio() {
-        loadEffects();
+        carregaEfeitoSonoro();
     }
 
-    private void loadEffects() {
-        String[] effectNames = { "tiro", "tapa", "tiroInimigo", "portal", "pedra", "machucado", "espada", "coronhada", "picada" };
-        effects = new Clip[effectNames.length];
-        for (int i = 0; i < effects.length; i++)
-            effects[i] = getClip(effectNames[i]);
+    private void carregaEfeitoSonoro() {
+        String[] nomesEfeitos = { "tiro", "tapa", "tiroInimigo", "portal", "pedra", "machucado", "espada", "coronhada", "picada" };
+        efeito = new Clip[nomesEfeitos.length];
+        for (int i = 0; i < efeito.length; i++)
+            efeito[i] = getClip(nomesEfeitos[i]);
 
-        updateEffectsVolume();
+        AtualizaVolume();
 
     }
 
-    private Clip getClip(String name) {
+    private Clip getClip(String nome) {
         try {
-
-            String caminhoCompleto = new java.io.File(".").getCanonicalPath() + "/" + "sounds/" + name + ".wav";
-
+            String caminhoCompleto = new java.io.File(".").getCanonicalPath() + "/" + "sounds/" + nome + ".wav";
             File arquivoSom = new File(caminhoCompleto);
-
             System.out.println("Carregando som de: " + arquivoSom.getAbsolutePath());
-
             if (!arquivoSom.exists()) {
                 System.err.println("ERRO: Arquivo nao encontrado: " + caminhoCompleto);
                 return null;
             }
-
             AudioInputStream audio = AudioSystem.getAudioInputStream(arquivoSom);
             Clip c = AudioSystem.getClip();
             c.open(audio);
             return c;
-
         } catch (Exception e) {
-            System.err.println("Erro ao carregar audio: " + name);
+            System.err.println("Erro ao carregar audio: " + nome);
             e.printStackTrace();
         }
         return null;
     }
 
-    public void playEffect(int effect) {
-        effects[effect].setMicrosecondPosition(0);
-        effects[effect].start();
+    public void tocaEfeito(int efeitos) {
+        efeito[efeitos].setMicrosecondPosition(0);
+        efeito[efeitos].start();
     }
 
-
-    private void updateEffectsVolume() {
-        for (Clip c : effects) {
+    private void AtualizaVolume() {
+        for (Clip c : efeito) {
             FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-            float range = gainControl.getMaximum() - gainControl.getMinimum();
-            float gain = (range * volume) + gainControl.getMinimum();
-            gainControl.setValue(gain);
+            float alcance = gainControl.getMaximum() - gainControl.getMinimum();
+            float ganho = (alcance * volume) + gainControl.getMinimum();
+            gainControl.setValue(ganho);
         }
     }
-
 }

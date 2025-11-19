@@ -78,7 +78,7 @@ public class Zumbi extends Personagem {
                 jaAtacou = false;
             if (animation_index == 3 && !jaAtacou){
                 if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                    fase.getAudio().playEffect(Audio.TAPA);
+                    fase.getAudio().tocaEfeito(Audio.TAPA);
                 }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }

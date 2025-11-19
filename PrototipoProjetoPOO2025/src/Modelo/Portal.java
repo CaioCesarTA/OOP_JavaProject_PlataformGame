@@ -41,7 +41,7 @@ public class Portal extends Personagem {
         //Vai para a proxima fase se o Player entrar no portal
         if(hitbox.contains(fase.getPlayer().getHitbox())){
             if(fase.getAudio() != null) {
-                fase.getAudio().playEffect(Audio.PORTAL);
+                fase.getAudio().tocaEfeito(Audio.PORTAL);
             }
             animation_speed = 20;
             acaoAtual = FECHANDO;

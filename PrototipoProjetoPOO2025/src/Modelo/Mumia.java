@@ -79,7 +79,7 @@ public class Mumia extends Personagem {
                 jaAtacou = false;
             if (animation_index == 4 && !jaAtacou){
                 if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                    fase.getAudio().playEffect(Audio.ESPADA);
+                    fase.getAudio().tocaEfeito(Audio.ESPADA);
                 }
                 ataca(fase.getPlayer().hitbox, ataquePerto);
             }

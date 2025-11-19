@@ -86,7 +86,7 @@ public class Robo extends Personagem {
         if(acaoInicial == ATIRANDO) {
             acaoAtual = ATIRANDO;
             if(fase.getAudio() != null && !fase.getPlayer().isMorto()) {
-                fase.getAudio().playEffect(Audio.TIROINIMIGO);
+                fase.getAudio().tocaEfeito(Audio.TIROINIMIGO);
             }
             if(animation_index>=getQtdSprites(ATIRANDO)-1) acaoAtual = PARADO;
         }
