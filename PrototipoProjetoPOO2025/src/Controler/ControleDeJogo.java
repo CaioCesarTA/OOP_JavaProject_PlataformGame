@@ -4,9 +4,7 @@ import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Fases.*;
 import Modelo.Entidade;
-import Modelo.Hero;
 import Modelo.Personagem;
-import Modelo.Portal;
 
 import java.awt.Graphics;
 import java.awt.datatransfer.DataFlavor;
@@ -20,8 +18,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.net.PortUnreachableException;
-import java.util.ArrayList;
 
 public class ControleDeJogo implements Runnable, KeyListener, MouseListener, DropTargetListener {
     private Janela janela;
@@ -144,31 +140,33 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
     public void keyReleased(KeyEvent e) {
         if(getFaseAtual() instanceof FaseInicial) {
             FaseInicial menu = (FaseInicial) getFaseAtual();
-
-            if(menu.getEstadoFase() == FaseInicial.CENA_CREDITOS) menu.setEstadoFase(FaseInicial.MENU2);
             
-            else if (menu.getEstadoFase() == FaseInicial.MENU2){
-                if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU1);
-                else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_CREDITOS);
+            switch(menu.getEstadoFase()){
+                case FaseInicial.MENU1:
+                    if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU2);
+                    else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_INICIO);
+                    break;
+                case FaseInicial.MENU2:
+                    if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU1);
+                    else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_CREDITOS);
+                    break;
+                case FaseInicial.CENA_CREDITOS:
+                    menu.setEstadoFase(FaseInicial.MENU2);
+                    break;
+                case FaseInicial.CENA_INICIO:
+                    menu.setEstadoFase(FaseInicial.MENU1);
+                    avancarFase();
+                    break;
+                default:
+                    break;      
             }
-            else if (menu.getEstadoFase() == FaseInicial.MENU1){
-                if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU2);
-                else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_INICIO);
-            }
-
-            else if (menu.getEstadoFase() == FaseInicial.CENA_INICIO){
-                menu.setEstadoFase(FaseInicial.MENU1);
-                avancarFase();
-            }
+            
         }
         else if(getFaseAtual() instanceof FaseFinal) System.exit(0);
 
         else if(e.getKeyCode() == KeyEvent.VK_S){
             getFaseAtual().isSalvando = true;
-            Hero heroiAtual = getFaseAtual().getPlayer();
-            Portal portalAtual = getFaseAtual().getPortal();
-            ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
-            SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, portalAtual, inimigosAtuais);
+            SaveGame save = new SaveGame(getFaseAtual());
             if(LoadSave.salvarJogo("SAVE/save.zip", save)){
                 audio.tocaEfeito(Audio.JOGO_SALVO);
             }
@@ -177,31 +175,17 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
         else if (e.getKeyCode() == KeyEvent.VK_L){
             SaveGame save = LoadSave.carregarSave("SAVE/save.zip");
             if(save != null) {
-                this.IDfaseAtual = save.idFaseAtual;
-                Fase faseCarregada = getFaseAtual();
-                if(faseCarregada.getInimigos() != null) {
-                    faseCarregada.getInimigos().clear();
-                }
-
-                save.heroi.setFase(faseCarregada);
-                save.portal.setFase(faseCarregada);
-                faseCarregada.setPlayer(save.heroi);
-                faseCarregada.setPortal(save.portal);
-
-                ArrayList<Personagem> listaInimigosSalvos = save.inimigos;
-                if(listaInimigosSalvos != null) {
-                    for(Personagem p : listaInimigosSalvos) {
-                        p.setFase(faseCarregada);
-                        faseCarregada.addInimigo(p);
-                    }
-                }
-
+                IDfaseAtual = save.faseSalva.getIDFase();
+                fases[IDfaseAtual] = save.faseSalva;
+                getFaseAtual().setAudio(audio);
+                getFaseAtual().isSalvando = false;
                 System.out.println("Jogo carregado na fase " + IDfaseAtual);
                 tela.repaint();
             }
         }
         else if(e.getKeyCode() == KeyEvent.VK_N) avancarFase();
         else if(e.getKeyCode() == KeyEvent.VK_B) voltarFase();
+        
         else getFaseAtual().keyReleased(e);
     }
 

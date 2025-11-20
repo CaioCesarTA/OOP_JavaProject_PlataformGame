@@ -1,9 +1,5 @@
 package Fases;
 
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Modelo.*;
@@ -14,17 +10,15 @@ public class Fase1 extends Fase {
         super(140,36);
         player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
         portal = new Portal(this, 4000, 512);
+        carregarImagens();
         adicionarPersonagens();
-        carregarImagensFase();
         LoadSave.salvarEntidade("ENTIDADES/zumbi.zip", new Zumbi(this, 0, 0));
         mostrarTutorial = true;
     }
 
     @Override
-    protected final void carregarImagensFase() {
-        super.carregarImagensFase();
-        carregarImagens("fases/fase1/tilesetFase1.png","fases/fase1/bgFase1.png");
-        carregarInfoNivel("fases/fase1/infoFase1.png");
+    public final void carregarImagens(){
+        carregarImagensFase("fases/fase1/tilesetFase1.png","fases/fase1/bgFase1.png", "fases/fase1/infoFase1.png");
     }
 
     @Override
@@ -66,5 +60,10 @@ public class Fase1 extends Fase {
     @Override
     protected int getSpriteVazio(){
         return 13;
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 1;
     }
 }

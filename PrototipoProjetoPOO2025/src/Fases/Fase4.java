@@ -11,7 +11,7 @@ public class Fase4 extends Fase {
         gravidade = 0.07f/2;
         player = new Hero(this, 30*Consts.CELL_SIDE,28*Consts.CELL_SIDE);
         portal = new Portal(this, 20*Consts.CELL_SIDE,10*Consts.CELL_SIDE);
-        carregarImagensFase();
+        carregarImagens();
         adicionarPersonagens();
 
         LoadSave.salvarEntidade("ENTIDADES/alien.zip", new Alien(this, 0, 0));
@@ -20,10 +20,8 @@ public class Fase4 extends Fase {
     }
 
     @Override
-    protected final void carregarImagensFase() {
-        super.carregarImagensFase();
-        carregarImagens("fases/fase4/tilesetFase4.png","fases/fase4/bgFase4.png");
-        carregarInfoNivel("fases/fase4/infoFase4.png");
+    public final void carregarImagens(){
+        carregarImagensFase("fases/fase4/tilesetFase4.png","fases/fase4/bgFase4.png","fases/fase4/infoFase4.png");
     }
 
     @Override
@@ -67,5 +65,10 @@ public class Fase4 extends Fase {
     @Override
     protected int getSpriteVazio(){
         return 54;
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 4;
     }
 }

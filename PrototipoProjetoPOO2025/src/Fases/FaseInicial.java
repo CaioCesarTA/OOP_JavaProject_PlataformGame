@@ -17,11 +17,11 @@ public class FaseInicial extends Fase{
 
     public FaseInicial() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
-        carregarImagensFase();
+        carregarImagens();
     }
 
     @Override
-    protected final void carregarImagensFase() {
+    public final void carregarImagens(){
         menu = new BufferedImage[4];
         menu[0] = LoadSave.importarImagem("fases/cenas/menu1.png");
         menu[1] = LoadSave.importarImagem("fases/cenas/menu2.png");
@@ -74,6 +74,11 @@ public class FaseInicial extends Fase{
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 0;
     }
 
 }

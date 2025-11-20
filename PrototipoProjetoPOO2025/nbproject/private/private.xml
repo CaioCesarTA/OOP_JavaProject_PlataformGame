@@ -4,11 +4,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Caio%20Cesar/Documents/GitHub/OOP_JavaProject_PlataformGame/PrototipoProjetoPOO2025/src/Main.java</file>
-            <file>file:/C:/Users/Caio%20Cesar/Documents/GitHub/OOP_JavaProject_PlataformGame/PrototipoProjetoPOO2025/src/Controler/ControleDeJogo.java</file>
-            <file>file:/C:/Users/Caio%20Cesar/Documents/GitHub/OOP_JavaProject_PlataformGame/PrototipoProjetoPOO2025/src/Modelo/Entidade.java</file>
-            <file>file:/C:/Users/Caio%20Cesar/Documents/GitHub/OOP_JavaProject_PlataformGame/PrototipoProjetoPOO2025/src/Fases/Fase1.java</file>
-            <file>file:/C:/Users/Caio%20Cesar/Documents/GitHub/OOP_JavaProject_PlataformGame/PrototipoProjetoPOO2025/src/Fases/Fase.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Auxiliar/Direcao.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Main.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Controler/ControleDeJogo.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Controler/LoadSave.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Auxiliar/Consts.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Auxiliar/Audio.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Auxiliar/Posicao.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Controler/SaveGame.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Controler/Tela.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase1.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase2.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase3.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase4.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/Fase5.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/FaseInicial.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Fases/FaseFinal.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Modelo/Alien.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Modelo/Bau.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Modelo/Zumbi.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Modelo/Labubu.java</file>
+            <file>file:/C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src/Modelo/Chave.java</file>
         </group>
     </open-files>
 </project-private>

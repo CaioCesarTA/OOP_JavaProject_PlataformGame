@@ -10,7 +10,7 @@ public class Fase2 extends Fase {
         super(140,36);
         player = new Hero(this, 6*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
         portal = new Portal(this, 131*Consts.CELL_SIDE, 22*Consts.CELL_SIDE);
-        carregarImagensFase();
+        carregarImagens();
         adicionarPersonagens();
 
         LoadSave.salvarEntidade("ENTIDADES/robo.zip", new Robo(this, 0, 0));
@@ -20,10 +20,8 @@ public class Fase2 extends Fase {
     }
 
     @Override
-    protected final void carregarImagensFase() {
-        super.carregarImagensFase();
-        carregarImagens("fases/fase2/tilesetFase2.png","fases/fase2/bgFase2.png");
-        carregarInfoNivel("fases/fase2/infoFase2.png");
+    public final void carregarImagens(){
+        carregarImagensFase("fases/fase2/tilesetFase2.png","fases/fase2/bgFase2.png","fases/fase2/infoFase2.png");
     }
 
     @Override
@@ -65,5 +63,10 @@ public class Fase2 extends Fase {
     @Override
     protected int getSpriteVazio(){
         return 81;
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 2;
     }
 }

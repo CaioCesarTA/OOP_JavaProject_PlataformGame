@@ -10,7 +10,7 @@ public class Fase3 extends Fase {
         super(140,32);
         player = new Hero(this, Consts.CELL_SIDE, 4*Consts.CELL_SIDE);
         portal = new Portal(this, 4444, 128);
-        carregarImagensFase();
+        carregarImagens();
         adicionarPersonagens();
 
         LoadSave.salvarEntidade("ENTIDADES/mumia.zip", new Mumia(this, 0, 0));
@@ -18,10 +18,8 @@ public class Fase3 extends Fase {
     }
 
     @Override
-    protected final void carregarImagensFase() {
-        super.carregarImagensFase();
-        carregarImagens("fases/fase3/tilesetFase3.png","fases/fase3/bgFase3.png");
-        carregarInfoNivel("fases/fase3/infoFase3.png");
+    public final void carregarImagens(){
+        carregarImagensFase("fases/fase3/tilesetFase3.png","fases/fase3/bgFase3.png","fases/fase3/infoFase3.png");
     }
 
     @Override
@@ -70,5 +68,10 @@ public class Fase3 extends Fase {
     @Override
     protected int getSpriteVazio(){
         return 63;
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 3;
     }
 }

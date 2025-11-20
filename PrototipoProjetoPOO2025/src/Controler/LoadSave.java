@@ -54,7 +54,7 @@ public class LoadSave {
         }
     }
 
-    public static boolean salvarJogo(String nomeArqDestino, SaveGame s) {
+    public static boolean salvarJogo(String nomeArqDestino, SaveGame save) {
         File tanque = new File(nomeArqDestino);
         try {
             tanque.createNewFile();
@@ -65,7 +65,7 @@ public class LoadSave {
             zipOut.putNextEntry(entry);
 
             ObjectOutputStream serializador = new ObjectOutputStream(zipOut);
-            serializador.writeObject(s);
+            serializador.writeObject(save);
 
             serializador.flush();
             zipOut.closeEntry();

@@ -10,11 +10,11 @@ public class FaseFinal extends Fase{
 
     public FaseFinal() {
         super(Consts.MUNDO_LARGURA, Consts.MUNDO_ALTURA);
-        carregarImagensFase();
+        carregarImagens();
     }
 
     @Override
-    protected final void carregarImagensFase() {
+    public final void carregarImagens(){
         background = LoadSave.importarImagem("fases/cenas/msgFinal.png");
     }
 
@@ -57,6 +57,11 @@ public class FaseFinal extends Fase{
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 6;
     }
 
 }

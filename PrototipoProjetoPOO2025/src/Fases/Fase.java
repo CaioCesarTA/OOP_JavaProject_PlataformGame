@@ -59,16 +59,15 @@ public abstract class Fase implements Serializable {
         maxCameraOffsetY = (alturaFase - Consts.MUNDO_ALTURA) * Consts.CELL_SIDE;
     }
 
+    public abstract void carregarImagens();
+
     public abstract boolean isSolido(float x, float y);
 
     protected abstract void adicionarPersonagens();
 
     protected abstract int getSpriteVazio();
 
-    protected void carregarImagensFase(){
-        tutorial = LoadSave.importarImagem("fases/cenas/tutorial.png");
-        morte = LoadSave.importarImagem("fases/cenas/morte.png");
-    }
+    public abstract int getIDFase();
 
     public void atualizarFase() {
         if(isSalvando) {
@@ -144,7 +143,10 @@ public abstract class Fase implements Serializable {
         }
     }
 
-    protected final void carregarImagens(String pathTileset, String pathBackground) {
+    protected final void carregarImagensFase(String pathTileset, String pathBackground, String pathInfoNivel) {
+        tutorial = LoadSave.importarImagem("fases/cenas/tutorial.png");
+        morte = LoadSave.importarImagem("fases/cenas/morte.png");
+        carregarInfoNivel(pathInfoNivel);
         BufferedImage temp = LoadSave.importarImagem(pathTileset);
         int larguraImg = temp.getWidth()/Consts.CELL_SIDE;
         int alturaImg = temp.getHeight()/Consts.CELL_SIDE;
@@ -181,6 +183,7 @@ public abstract class Fase implements Serializable {
         entidadesFase.addAll(inimigos);
         entidadesFase.addAll(entidades);
         entidadesFase.add(player);
+        entidadesFase.add(portal);
         return entidadesFase;
     }
 

@@ -10,9 +10,8 @@ public class Fase5 extends Fase {
         super(96,32);
         player = new Hero(this, 2*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
         portal = new Portal(this, 82*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
-        carregarImagensFase();
+        carregarImagens();
         adicionarPersonagens();
-
         LoadSave.salvarEntidade("ENTIDADES/labubu.zip", new Labubu(this, 0, 0));
         LoadSave.salvarEntidade("ENTIDADES/chave.zip", new Chave(this, 0, 0,null));
         LoadSave.salvarEntidade("ENTIDADES/bau.zip", new Bau(this,0,0));
@@ -20,10 +19,8 @@ public class Fase5 extends Fase {
     }
 
     @Override
-    protected final void carregarImagensFase() {
-        super.carregarImagensFase();
-        carregarImagens("fases/fase5/tilesetFase5.png","fases/fase5/bgFase5.png");
-        carregarInfoNivel("fases/fase5/infoFase5.png");
+    public final void carregarImagens(){
+        carregarImagensFase("fases/fase5/tilesetFase5.png","fases/fase5/bgFase5.png","fases/fase5/infoFase5.png");
     }
 
     @Override
@@ -48,5 +45,10 @@ public class Fase5 extends Fase {
     @Override
     protected int getSpriteVazio(){
         return 39;
+    }
+
+    @Override
+    public final int getIDFase(){
+        return 5;
     }
 }
