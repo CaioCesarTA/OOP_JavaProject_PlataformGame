@@ -16,7 +16,7 @@ public class Portal extends Personagem {
     //Controle de avancar fase
     private boolean avancarFase = false;
     private int tempoAnimacaoFechando = 0;
-    boolean jaTocou = false;
+    private boolean jaTocou = false;
 
     public Portal(Fase fase, float xInicial, float yInicial) {
         super(fase, xInicial, yInicial);

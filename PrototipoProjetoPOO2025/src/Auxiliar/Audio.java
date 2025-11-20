@@ -18,6 +18,7 @@ public class Audio {
     public static int ESPADA = 6;
     public static int CORONHADA = 7;
     public static int PICADA = 8;
+    public static int JOGO_SALVO = 9;
 
     private Clip[] efeito;
 
@@ -29,7 +30,7 @@ public class Audio {
     }
 
     private void carregaEfeitoSonoro() {
-        String[] nomesEfeitos = { "tiro", "tapa", "tiroInimigo", "portal", "pedra", "machucado", "espada", "coronhada", "picada" };
+        String[] nomesEfeitos = { "tiro", "tapa", "tiroInimigo", "portal", "pedra", "machucado", "espada", "coronhada", "picada", "save" };
         efeito = new Clip[nomesEfeitos.length];
         for (int i = 0; i < efeito.length; i++)
             efeito[i] = getClip(nomesEfeitos[i]);

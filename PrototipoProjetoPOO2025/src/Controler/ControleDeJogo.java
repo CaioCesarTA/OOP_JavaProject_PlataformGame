@@ -169,7 +169,9 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
             Portal portalAtual = getFaseAtual().getPortal();
             ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
             SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, portalAtual, inimigosAtuais);
-            LoadSave.salvarJogo("SAVE/save.zip", save);
+            if(LoadSave.salvarJogo("SAVE/save.zip", save)){
+                audio.tocaEfeito(Audio.JOGO_SALVO);
+            }
             getFaseAtual().isSalvando = false;
         }
         else if (e.getKeyCode() == KeyEvent.VK_L){

@@ -54,7 +54,7 @@ public class LoadSave {
         }
     }
 
-    public static void salvarJogo(String nomeArqDestino, SaveGame s) {
+    public static boolean salvarJogo(String nomeArqDestino, SaveGame s) {
         File tanque = new File(nomeArqDestino);
         try {
             tanque.createNewFile();
@@ -72,9 +72,10 @@ public class LoadSave {
             serializador.close();
 
             System.out.println("Estado atual do jogo salvo com sucesso em: " + nomeArqDestino);
-
+            return true;
         } catch (IOException error) {
             System.out.println("Erro ao salvar jogo: " + error.getMessage());
+            return false;
         }
     }
 
