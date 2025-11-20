@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/jplop/Documents/git/TrabPOO/PrototipoProjetoPOO2025/src</OriginalElement>
+  <nodes>
+    <node x="979.7886491285187" y="-94.4904347826083">Fases.Fase1</node>
+    <node x="-250.17272253936483" y="451.9751900342216">Modelo.Escorpiao</node>
+    <node x="-5.887617270037367" y="451.9751900342216">Modelo.Alien</node>
+    <node x="-109.30466788097772" y="451.9751900342216">Modelo.Robo</node>
+    <node x="979.7886491285187" y="72.30360248447221">Fases.Fase4</node>
+    <node x="-361.04077719775194" y="451.9751900342216">Modelo.Zumbi</node>
+    <node x="979.7886491285187" y="183.4996273291926">Fases.FaseFinal</node>
+    <node x="836.7642386609953" y="-271.2464593432456">Controler.Janela</node>
+    <node x="317.3635345627837" y="451.9751900342216">Modelo.Hero</node>
+    <node x="710.5670575737984" y="252.58850931677011">Modelo.Entidade</node>
+    <node x="982.5398304381622" y="361.5976475252133">Modelo.CelulaDeEnergia</node>
+    <node x="417.78058517372403" y="452.06713164912725">Modelo.Labubu</node>
+    <node x="660.9511016837698" y="452.06713164912725">Modelo.PortaCastelo</node>
+    <node x="551.5322761688178" y="183.4996273291926">Auxiliar.Posicao</node>
+    <node x="383.1849154205913" y="361.5976475252133">Modelo.Projetil</node>
+    <node x="979.7886491285187" y="252.58850931677011">Modelo.Controlado</node>
+    <node x="1178.5398304381622" y="361.5976475252133">Modelo.Terminal</node>
+    <node x="719.9511016837698" y="361.5976475252133">Modelo.Porta</node>
+    <node x="336.40595693594287" y="-135.05990711638276">Controler.LoadSave</node>
+    <node x="208.94648395184333" y="451.9751900342216">Modelo.Portal</node>
+    <node x="15.571264717539975" y="361.5976475252133">Modelo.Personagem</node>
+    <node x="345.90595693594287" y="-183.5998447204969">Auxiliar.Consts</node>
+    <node x="979.7886491285187" y="-150.08844720496847">Fases.FaseInicial</node>
+    <node x="504.77364417498416" y="361.5976475252133">Modelo.Bau</node>
+    <node x="819.1610844099471" y="452.06713164912725">Modelo.PortaAlien</node>
+    <node x="609.2370031657867" y="-271.2464593432456">Auxiliar.Audio</node>
+    <node x="602.362372929377" y="361.5976475252133">Modelo.Chave</node>
+    <node x="979.7886491285187" y="16.705590062112037">Fases.Fase3</node>
+    <node x="829.5398304381622" y="361.5976475252133">Modelo.Plataforma</node>
+    <node x="729.000620913391" y="-271.2464593432456">Controler.Tela</node>
+    <node x="552.5322761688178" y="143.1475653167703">Auxiliar.Direcao</node>
+    <node x="681.500620913391" y="-183.5998447204969">Controler.ControleDeJogo</node>
+    <node x="979.7886491285187" y="127.90161490683238">Fases.Fase5</node>
+    <node x="726.500620913391" y="16.705590062112037">Fases.Fase</node>
+    <node x="979.7886491285187" y="-205.68645962732865">Controler.SaveGame</node>
+    <node x="355.40595693594287" y="-232.13978232461102">Main</node>
+    <node x="979.7886491285187" y="-38.89242236024813">Fases.Fase2</node>
+    <node x="95.52943334090298" y="451.9751900342216">Modelo.Mumia</node>
+    <node x="956.3710671361243" y="452.06713164912725">Modelo.PortaFuturo</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Modelo.Porta" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="3.9346225116214555" y="-7.797249865561412" />
+      <point x="769.3857241953913" y="323.52048956533656" />
+      <point x="768.7084008540218" y="323.52048956533656" />
+      <point x="-0.8586567197766044" y="6.581436972292352" />
+    </edge>
+    <edge source="Modelo.Robo" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-64.30466788097772" y="428.41454407148876" />
+      <point x="92.31608608592057" y="428.41454407148876" />
+      <point x="3.744821368380599" y="5.677418633537911" />
+    </edge>
+    <edge source="Modelo.Labubu" target="Modelo.Chave" relationship="TO_ONE">
+      <point x="0.5900959025457269" y="0.7134727108357879" />
+      <point x="621.7527637368305" y="466.78060435996304" />
+      <point x="621.7527637368305" y="466.06713164912725" />
+      <point x="625.1837014382068" y="466.06713164912725" />
+      <point x="625.1837014382068" y="431.8372675497434" />
+      <point x="625.3693000033788" y="431.8372675497434" />
+      <point x="-26.49307292599815" y="8.582193788819325" />
+    </edge>
+    <edge source="Modelo.CelulaDeEnergia" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="2.286113412760187" y="-8.84103105590276" />
+      <point x="1072.8259438509224" y="323.029552795031" />
+      <point x="768.9037133540218" y="323.029552795031" />
+      <point x="-0.6633442197766044" y="8.827530722292352" />
+    </edge>
+    <edge source="Modelo.Alien" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="38.11238272996263" y="428.4145440714887" />
+      <point x="92.92469899523815" y="428.4145440714887" />
+      <point x="92.92469899523815" y="414.6346287276972" />
+      <point x="92.39465113436756" y="414.6346287276972" />
+      <point x="3.8233864168275886" y="12.659572094409043" />
+    </edge>
+    <edge source="Fases.FaseFinal" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1041.7886491285187" y="197.4996273291926" />
+      <point x="929.39711198181" y="197.4996273291926" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.Entidade" target="Fases.Fase" relationship="TO_ONE">
+      <point x="5.271050325002307" y="-2.4760861118015782" />
+      <point x="769.4861363354128" y="264.11242320496854" />
+      <point x="-0.5144845779782372" y="-11.302453813664812" />
+    </edge>
+    <edge source="Fases.Fase" target="Modelo.Hero" relationship="TO_ONE">
+      <point x="-18.593267683570048" y="3.437581118011096" />
+      <point x="751.407353229821" y="112.15013445962673" />
+      <point x="336.81626769169077" y="112.15013445962673" />
+      <point x="336.81626769169077" y="473.6716933882549" />
+      <point x="-31.368657544153734" y="7.696503354033268" />
+    </edge>
+    <edge source="Controler.SaveGame" target="Fases.Fase" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="1045.2886491285187" y="-191.68645962732865" />
+      <point x="886.7642386609953" y="-191.68645962732865" />
+      <point x="886.7642386609953" y="-91.06073630247357" />
+      <point x="806.4109554265576" y="-91.06073630247357" />
+      <point x="36.41033451316662" y="5.988271304347336" />
+    </edge>
+    <edge source="Modelo.Chave" target="Modelo.Controlado" relationship="REALIZATION">
+      <point x="33.0" y="-14.0" />
+      <point x="684.862372929377" y="348.924409937888" />
+      <point x="1043.6202941490772" y="348.924409937888" />
+      <point x="-4.668354979441574" y="-4.296108660869436" />
+    </edge>
+    <edge source="Modelo.Portal" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="256.44648395184333" y="428.41454407148876" />
+      <point x="92.6005648933725" y="428.41454407148876" />
+      <point x="4.029300175832532" y="6.608399006210277" />
+    </edge>
+    <edge source="Fases.Fase" target="Modelo.Portal" relationship="TO_ONE">
+      <point x="-32.177130143197246" y="-12.143908173914284" />
+      <point x="737.8234907701938" y="94.70780024844683" />
+      <point x="235.07579627328903" y="94.70780024844683" />
+      <point x="-21.370687678554305" y="-4.008341366463526" />
+    </edge>
+    <edge source="Modelo.Bau" target="Modelo.Controlado" relationship="REALIZATION">
+      <point x="19.75" y="-14.0" />
+      <point x="564.0236441749842" y="348.924409937888" />
+      <point x="1044.4193448819963" y="348.924409937888" />
+      <point x="-3.8693042465224607" y="-3.8965832944098224" />
+    </edge>
+    <edge source="Modelo.Porta" target="Modelo.Controlado" relationship="REALIZATION">
+      <point x="22.75" y="-14.0" />
+      <point x="788.2011016837698" y="348.924409937888" />
+      <point x="1044.8188702484556" y="348.924409937888" />
+      <point x="-3.4697788800631315" y="-6.69326085962723" />
+    </edge>
+    <edge source="Modelo.Mumia" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="145.52943334090298" y="428.41454407148876" />
+      <point x="92.92469899523815" y="428.41454407148876" />
+      <point x="4.35343427769817" y="8.713320248445996" />
+    </edge>
+    <edge source="Modelo.Terminal" target="Modelo.Controlado" relationship="TO_MANY">
+      <point x="21.222659996609764" y="-11.962322981368573" />
+      <point x="1257.762490434772" y="261.1233178832298" />
+      <point x="1012.1209273695124" y="261.1233178832298" />
+      <point x="1012.1209273695124" y="277.0885093167701" />
+      <point x="1014.0386491285187" y="277.0885093167701" />
+      <point x="-34.25" y="14.0" />
+    </edge>
+    <edge source="Controler.ControleDeJogo" target="Controler.Janela" relationship="TO_ONE">
+      <point x="40.49153655639384" y="-8.286864880496978" />
+      <point x="810.4921574697848" y="-208.70652173913146" />
+      <point x="886.7642386609953" y="-208.70652173913146" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="Modelo.Escorpiao" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-186.67272253936483" y="428.4145440714887" />
+      <point x="92.4327833877843" y="428.4145440714887" />
+      <point x="3.8615186702443225" y="9.61912048695342" />
+    </edge>
+    <edge source="Modelo.Zumbi" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="45.90266037459355" y="0.09194161490563602" />
+      <point x="-312.54077719775194" y="466.06713164912725" />
+      <point x="-312.54077719775194" y="428.4145440714887" />
+      <point x="92.1338525455509" y="428.4145440714887" />
+      <point x="3.562587828010919" y="2.509329192545408" />
+    </edge>
+    <edge source="Modelo.Plataforma" target="Modelo.Controlado" relationship="REALIZATION">
+      <point x="31.085953937888462" y="-3.7360964968947314" />
+      <point x="927.1257843760507" y="348.924409937888" />
+      <point x="1042.734606099388" y="348.924409937888" />
+      <point x="-5.554043029130753" y="-4.047363875776455" />
+    </edge>
+    <edge source="Modelo.Labubu" target="Modelo.PortaCastelo" relationship="TO_ONE">
+      <point x="47.40947478453336" y="-3.032077599723209" />
+      <point x="518.1900599582574" y="466.78060435996304" />
+      <point x="730.9570346030243" y="466.78060435996304" />
+      <point x="-4.994067080745481" y="13.753302360248085" />
+    </edge>
+    <edge source="Modelo.Chave" target="Modelo.Porta" relationship="TO_ONE">
+      <point x="24.09929278828895" y="-11.121382857143146" />
+      <point x="675.9616657176659" y="414.418204916517" />
+      <point x="732.8940304381624" y="414.418204916517" />
+      <point x="-32.5570712456074" y="11.415994534161314" />
+    </edge>
+    <edge source="Controler.ControleDeJogo" target="Controler.Tela" relationship="TO_ONE">
+      <point x="19.891009848319754" y="-2.0442810295652976" />
+      <point x="789.8916307617108" y="-246.72897366871172" />
+      <point x="13.377747561613432" y="10.517485674533873" />
+    </edge>
+    <edge source="Controler.Tela" target="Controler.ControleDeJogo" relationship="TO_ONE">
+      <point x="-18.813010027456585" y="0.8933897778878759" />
+      <point x="-18.813010027456585" y="-8.911123265590163" />
+    </edge>
+    <edge source="Fases.FaseInicial" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1045.2886491285187" y="-136.08844720496847" />
+      <point x="929.8028533511585" y="-136.08844720496847" />
+      <point x="929.8028533511585" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.Entidade" target="Auxiliar.Posicao" relationship="TO_ONE">
+      <point x="-39.26890068120929" y="-11.238658683230454" />
+      <point x="730.2981568925891" y="197.4996273291926" />
+      <point x="607.0322761688178" y="197.4996273291926" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="Modelo.Chave" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="651.862372929377" y="323.52048956533656" />
+      <point x="768.7084008540218" y="323.52048956533656" />
+      <point x="-0.8586567197766044" y="7.948624472292352" />
+    </edge>
+    <edge source="Modelo.Bau" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="-19.75" y="-14.0" />
+      <point x="524.5236441749842" y="323.68413515543847" />
+      <point x="767.9107643777418" y="323.68413515543847" />
+      <point x="767.9107643777418" y="299.86747188146046" />
+      <point x="768.9037133540218" y="299.86747188146046" />
+      <point x="-0.6633442197766044" y="7.362686972292352" />
+    </edge>
+    <edge source="Fases.Fase" target="Auxiliar.Audio" relationship="TO_ONE">
+      <point x="10.353568192208968" y="-3.8172207701865943" />
+      <point x="736.5578068944162" y="26.888369291925443" />
+      <point x="736.5578068944162" y="-91.06073630247357" />
+      <point x="630.7973941301927" y="-91.06073630247357" />
+      <point x="-25.439609035594003" y="7.199339130434396" />
+    </edge>
+    <edge source="Modelo.Terminal" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="-1.4067064630173718" y="-9.621354037269214" />
+      <point x="1235.1331239751448" y="323.52048956533656" />
+      <point x="768.7084008540218" y="323.52048956533656" />
+      <point x="-0.8586567197766044" y="8.729874472292352" />
+    </edge>
+    <edge source="Fases.Fase" target="Modelo.Entidade" relationship="TO_MANY">
+      <point x="25.128404863011838" y="3.360531677016894" />
+      <point x="795.1290257764028" y="202.61588571428368" />
+      <point x="795.2420566232738" y="202.61588571428368" />
+      <point x="25.674999049475446" y="-12.282307478261146" />
+    </edge>
+    <edge source="Fases.Fase5" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1028.2886491285187" y="134.90161490683238" />
+      <point x="1027.1575932278977" y="134.90161490683238" />
+      <point x="1027.1575932278977" y="141.90161490683238" />
+      <point x="929.39711198181" y="141.90161490683238" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Fases.Fase4" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1028.2886491285187" y="86.30360248447221" />
+      <point x="929.39711198181" y="86.30360248447221" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.Labubu" target="Modelo.Bau" relationship="TO_ONE">
+      <point x="22.439139380806864" y="0.0892143257426028" />
+      <point x="544.2736441749842" y="466.15634597486985" />
+      <point x="544.2736441749842" y="431.8372675497434" />
+      <point x="543.9727094940629" y="431.8372675497434" />
+      <point x="-0.30093468092127296" y="6.903488959283152" />
+    </edge>
+    <edge source="Controler.ControleDeJogo" target="Auxiliar.Audio" relationship="TO_ONE">
+      <point x="-41.286311890810794" y="-3.917056184844853" />
+      <point x="728.7143090225802" y="-208.70652173913146" />
+      <point x="671.3741891612483" y="-208.70652173913146" />
+      <point x="15.13718599546155" y="9.072114285713894" />
+    </edge>
+    <edge source="Modelo.Projetil" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="434.6849154205913" y="323.029552795031" />
+      <point x="769.5670575737984" y="323.029552795031" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="Fases.Fase1" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1027.2886491285187" y="-80.4904347826083" />
+      <point x="929.39711198181" y="-80.4904347826083" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.PortaFuturo" target="Modelo.Porta" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1026.8710671361243" y="428.50648568639434" />
+      <point x="766.8536865872309" y="428.50648568639434" />
+      <point x="1.4025849034610474" y="10.417181118012252" />
+    </edge>
+    <edge source="Fases.Fase3" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1028.2886491285187" y="30.705590062112094" />
+      <point x="929.39711198181" y="30.705590062112094" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.Plataforma" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="-33.25" y="-14.0" />
+      <point x="862.7898304381622" y="323.68413515543847" />
+      <point x="768.8060571040218" y="323.68413515543847" />
+      <point x="-0.7610004697766044" y="5.897843222292352" />
+    </edge>
+    <edge source="Fases.Fase2" target="Fases.Fase" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1028.2886491285187" y="-24.892422360248133" />
+      <point x="929.39711198181" y="-24.892422360248133" />
+      <point x="929.39711198181" y="30.705590062112037" />
+      <point x="748.250620913391" y="30.705590062112037" />
+      <point x="-21.75" y="14.0" />
+    </edge>
+    <edge source="Modelo.PortaAlien" target="Modelo.Porta" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="883.6610844099471" y="428.41454407148876" />
+      <point x="766.8536865872309" y="428.41454407148876" />
+      <point x="1.4025849034610474" y="6.921334161490506" />
+    </edge>
+    <edge source="Modelo.CelulaDeEnergia" target="Modelo.Controlado" relationship="TO_ONE">
+      <point x="24.91547987238755" y="-8.84103105590276" />
+      <point x="1095.4553103105497" y="274.2593963527949" />
+      <point x="1014.0386491285187" y="274.2593963527949" />
+      <point x="-34.25" y="14.0" />
+    </edge>
+    <edge source="Modelo.Hero" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="360.8635345627837" y="428.4145440714887" />
+      <point x="92.31608608592057" y="428.4145440714887" />
+      <point x="92.31608608592057" y="414.418204916517" />
+      <point x="93.5494376387145" y="414.418204916517" />
+      <point x="4.978172921174519" y="12.226724472048716" />
+    </edge>
+    <edge source="Modelo.PortaCastelo" target="Modelo.Porta" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="735.9511016837698" y="428.50648568639434" />
+      <point x="767.3530932953056" y="428.50648568639434" />
+      <point x="1.9019916115357773" y="7.420740869565009" />
+    </edge>
+    <edge source="Fases.Fase" target="Modelo.Personagem" relationship="TO_MANY">
+      <point x="-33.44281401897479" y="-7.617966708075784" />
+      <point x="736.5578068944162" y="30.705590062112037" />
+      <point x="52.071264717539975" y="30.705590062112037" />
+      <point x="-36.5" y="14.0" />
+    </edge>
+    <edge source="Controler.ControleDeJogo" target="Fases.Fase" relationship="TO_MANY">
+      <point x="0.0" y="-14.0" />
+      <point x="770.000620913391" y="-69.44712732919243" />
+      <point x="769.5927807850827" y="-69.44712732919243" />
+      <point x="-0.40784012830829397" y="8.67852341117728" />
+    </edge>
+    <edge source="Modelo.Entidade" target="Auxiliar.Direcao" relationship="TO_ONE">
+      <point x="-18.084867687421138" y="-8.99029813664663" />
+      <point x="751.4821898863772" y="157.1475653167703" />
+      <point x="607.0322761688178" y="157.1475653167703" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="Modelo.Labubu" target="Modelo.Personagem" relationship="GENERALIZATION">
+      <point x="0.2876633340988519" y="-7.507440897193931" />
+      <point x="471.0682485078229" y="428.4145440714887" />
+      <point x="92.91417552691735" y="428.4145440714887" />
+      <point x="4.342910809377372" y="3.289652173911861" />
+    </edge>
+    <edge source="Modelo.Personagem" target="Modelo.Entidade" relationship="GENERALIZATION">
+      <point x="3.19525615099019" y="-4.141055900622916" />
+      <point x="91.76652086853016" y="323.029552795031" />
+      <point x="768.7084008540218" y="323.029552795031" />
+      <point x="-0.8586567197766044" y="-8.555281777707648" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8796093022208007" showDependencies="true" x="488.5162864115547" y="110.87311496492441" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
