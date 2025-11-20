@@ -6,6 +6,7 @@ import Fases.*;
 import Modelo.Entidade;
 import Modelo.Hero;
 import Modelo.Personagem;
+import Modelo.Portal;
 
 import java.awt.Graphics;
 import java.awt.datatransfer.DataFlavor;
@@ -19,6 +20,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 
 public class ControleDeJogo implements Runnable, KeyListener, MouseListener, DropTargetListener {
@@ -146,12 +148,12 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
             if(menu.getEstadoFase() == FaseInicial.CENA_CREDITOS) menu.setEstadoFase(FaseInicial.MENU2);
             
             else if (menu.getEstadoFase() == FaseInicial.MENU2){
-                if(e.getKeyCode() == KeyEvent.VK_UP) menu.setEstadoFase(FaseInicial.MENU1);
-                else menu.setEstadoFase(FaseInicial.CENA_CREDITOS);
+                if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU1);
+                else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_CREDITOS);
             }
             else if (menu.getEstadoFase() == FaseInicial.MENU1){
-                if(e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU2);
-                else menu.setEstadoFase(FaseInicial.CENA_INICIO);
+                if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) menu.setEstadoFase(FaseInicial.MENU2);
+                else if(e.getKeyCode() == KeyEvent.VK_ENTER) menu.setEstadoFase(FaseInicial.CENA_INICIO);
             }
 
             else if (menu.getEstadoFase() == FaseInicial.CENA_INICIO){
@@ -163,9 +165,10 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
 
         else if(e.getKeyCode() == KeyEvent.VK_S){
             getFaseAtual().isSalvando = true;
-            Hero heroiAtual = (Hero) getFaseAtual().getPlayer();
+            Hero heroiAtual = getFaseAtual().getPlayer();
+            Portal portalAtual = getFaseAtual().getPortal();
             ArrayList<Personagem> inimigosAtuais = getFaseAtual().getInimigos();
-            SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, inimigosAtuais);
+            SaveGame save = new SaveGame(IDfaseAtual, heroiAtual, portalAtual, inimigosAtuais);
             LoadSave.salvarJogo("SAVE/save.zip", save);
             getFaseAtual().isSalvando = false;
         }
@@ -179,7 +182,9 @@ public class ControleDeJogo implements Runnable, KeyListener, MouseListener, Dro
                 }
 
                 save.heroi.setFase(faseCarregada);
+                save.portal.setFase(faseCarregada);
                 faseCarregada.setPlayer(save.heroi);
+                faseCarregada.setPortal(save.portal);
 
                 ArrayList<Personagem> listaInimigosSalvos = save.inimigos;
                 if(listaInimigosSalvos != null) {

@@ -177,9 +177,12 @@ public abstract class Fase implements Serializable {
         return player;
     }
 
-    public Hero setPlayer(Hero player) {
+    public void setPlayer(Hero player) {
         this.player = player;
-        return player;
+    }
+
+    public void setPortal(Portal portal){
+        this.portal = portal;
     }
 
     public void setAudio(Audio audio) {
