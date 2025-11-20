@@ -174,7 +174,7 @@ public abstract class Personagem extends Entidade {
     }
 
     public void ataca(Rectangle2D.Float hitbox,Rectangle2D.Float ataquePerto){
-        if (intersecta(fase.getPlayer().hitbox, ataquePerto)){
+        if (ataquePerto.intersects(fase.getPlayer().hitbox)){
             fase.getPlayer().sofrerDano(dano);
             jaAtacou = true;
         }

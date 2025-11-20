@@ -9,10 +9,10 @@ public class Fase4 extends Fase {
     public Fase4(){
         super(106,36);
         gravidade = 0.07f/2;
-        player = new Hero(this, 30*Consts.CELL_SIDE,28*Consts.CELL_SIDE);
-        portal = new Portal(this, 20*Consts.CELL_SIDE,10*Consts.CELL_SIDE);
         carregarImagens();
         adicionarPersonagens();
+        player = new Hero(this, 30*Consts.CELL_SIDE,28*Consts.CELL_SIDE);
+        portal = new Portal(this, 20*Consts.CELL_SIDE,10*Consts.CELL_SIDE);
 
         LoadSave.salvarEntidade("ENTIDADES/alien.zip", new Alien(this, 0, 0));
         LoadSave.salvarEntidade("ENTIDADES/celulaEnergia.zip", new CelulaDeEnergia(this, 0, 0,null));

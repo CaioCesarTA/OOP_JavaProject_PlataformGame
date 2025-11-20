@@ -8,10 +8,10 @@ public class Fase3 extends Fase {
 
     public Fase3(){
         super(140,32);
-        player = new Hero(this, Consts.CELL_SIDE, 4*Consts.CELL_SIDE);
-        portal = new Portal(this, 4444, 128);
         carregarImagens();
         adicionarPersonagens();
+        player = new Hero(this, Consts.CELL_SIDE, 4*Consts.CELL_SIDE);
+        portal = new Portal(this, 4444, 128);
 
         LoadSave.salvarEntidade("ENTIDADES/mumia.zip", new Mumia(this, 0, 0));
         LoadSave.salvarEntidade("ENTIDADES/escorpiao.zip", new Escorpiao(this, 0, 0));

@@ -56,10 +56,6 @@ public abstract class Entidade implements Serializable{
         ataquePerto = new Rectangle2D.Float(posicaoInicial.getX(),posicaoInicial.getY(),largura,altura);
     }
 
-    protected boolean intersecta(Rectangle2D.Float hitbox,Rectangle2D.Float ataquePerto){
-        if (ataquePerto.intersects(hitbox)) return true;
-        return false;
-    }
 
     public void sofrerDano(int dano){
         if(vidaAtual<=0) return;

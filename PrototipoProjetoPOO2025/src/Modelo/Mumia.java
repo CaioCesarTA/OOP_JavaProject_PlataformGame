@@ -71,7 +71,7 @@ public class Mumia extends Personagem {
         else if (!direcao.isEsquerda() && direcao.isDireita())
             acaoAtual = ANDANDO;
 
-        if (intersecta(fase.getPlayer().hitbox, ataquePerto)) {
+        if (ataquePerto.intersects(fase.getPlayer().hitbox)) {
             acaoAtual = ATACANDO;
             if (fase.getPlayer().isMorto())
                 acaoAtual = ANDANDO;

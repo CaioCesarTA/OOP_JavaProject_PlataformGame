@@ -8,10 +8,10 @@ public class Fase2 extends Fase {
 
     public Fase2(){
         super(140,36);
-        player = new Hero(this, 6*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
-        portal = new Portal(this, 131*Consts.CELL_SIDE, 22*Consts.CELL_SIDE);
         carregarImagens();
         adicionarPersonagens();
+        player = new Hero(this, 6*Consts.CELL_SIDE, 27*Consts.CELL_SIDE);
+        portal = new Portal(this, 131*Consts.CELL_SIDE, 22*Consts.CELL_SIDE);
 
         LoadSave.salvarEntidade("ENTIDADES/robo.zip", new Robo(this, 0, 0));
         LoadSave.salvarEntidade("ENTIDADES/terminal.zip", new Terminal(this, 0,0));

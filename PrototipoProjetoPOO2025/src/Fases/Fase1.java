@@ -8,10 +8,11 @@ public class Fase1 extends Fase {
 
     public Fase1(){
         super(140,36);
-        player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
-        portal = new Portal(this, 4000, 512);
         carregarImagens();
         adicionarPersonagens();
+        player = new Hero(this, 4*Consts.CELL_SIDE, (alturaFase-5)*Consts.CELL_SIDE);
+        portal = new Portal(this, 4000, 512);
+
         LoadSave.salvarEntidade("ENTIDADES/zumbi.zip", new Zumbi(this, 0, 0));
         mostrarTutorial = true;
     }
