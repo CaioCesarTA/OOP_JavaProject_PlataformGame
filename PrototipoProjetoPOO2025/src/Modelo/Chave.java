@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Fases.Fase;
@@ -49,6 +50,7 @@ public class Chave extends Entidade implements Controlado {
         atualizarPosicao();
         if(hitbox.intersects(fase.getPlayer().getHitbox()) && !acompanharPlayer) {
             acompanharPlayer = true;
+            fase.getAudio().tocaEfeito(Audio.PLIM);
         }
         if(portaControlada==null) return;
         if(acompanharPlayer && hitbox.intersects(portaControlada.getHitbox())) {

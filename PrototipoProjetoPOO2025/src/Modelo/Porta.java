@@ -2,6 +2,7 @@ package Modelo;
 
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Audio;
 import Fases.Fase;
 
 public abstract class Porta extends Entidade implements Controlado {

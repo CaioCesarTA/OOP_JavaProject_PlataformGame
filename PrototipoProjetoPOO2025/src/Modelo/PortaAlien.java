@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Fases.Fase;
@@ -29,7 +30,10 @@ public class PortaAlien extends Porta {
     @Override
     public void mudarEstado(){
         qtdEnergia++;
-        if(indiceImagem<6) indiceImagem++;
+        if(indiceImagem<6) {
+            indiceImagem++;
+            fase.getAudio().tocaEfeito(Audio.PLIM);
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Auxiliar.Audio;
 import Auxiliar.Consts;
 import Controler.LoadSave;
 import Fases.Fase;
@@ -31,6 +32,7 @@ public class Terminal extends Entidade {
         if(fase.getPlayer().getHitbox().intersects(hitbox)) {
             if(indiceImagem==0) {
                 indiceImagem++;
+                fase.getAudio().tocaEfeito(Audio.PLIM);
                 if(entidadesControladas.isEmpty()) return;
                 for(Controlado c : entidadesControladas){
                     c.mudarEstado();
