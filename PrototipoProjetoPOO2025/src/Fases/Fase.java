@@ -34,6 +34,9 @@ public abstract class Fase implements Serializable {
     protected int[][] infoCenario;
     protected transient BufferedImage[] tileset;
     protected transient BufferedImage background;
+    protected transient BufferedImage tutorial; 
+    protected transient BufferedImage morte; 
+    protected boolean mostrarTutorial = false;   
     //Controle da camera
     protected int cameraOffsetX = 0;
     protected int bordaCameraEsquerda = (int)(0.5 * Consts.MUNDO_LARGURA * Consts.CELL_SIDE);
@@ -62,7 +65,10 @@ public abstract class Fase implements Serializable {
 
     protected abstract int getSpriteVazio();
 
-    protected abstract void carregarImagensFase();
+    protected void carregarImagensFase(){
+        tutorial = LoadSave.importarImagem("fases/cenas/tutorial.png");
+        morte = LoadSave.importarImagem("fases/cenas/morte.png");
+    }
 
     public void atualizarFase() {
         if(isSalvando) {
@@ -119,6 +125,11 @@ public abstract class Fase implements Serializable {
             }
         }
         player.desenharEntidade(g, cameraOffsetX, cameraOffsetY);
+
+        if(player.isMorto())
+            g.drawImage(morte, (Consts.MUNDO_LARGURA*Consts.CELL_SIDE)/2 - tutorial.getWidth()/2, (Consts.MUNDO_ALTURA*Consts.CELL_SIDE)/2 - tutorial.getHeight()/2, null);
+        else if(mostrarTutorial)
+            g.drawImage(tutorial, (Consts.MUNDO_LARGURA*Consts.CELL_SIDE)/2 - tutorial.getWidth()/2, (Consts.MUNDO_ALTURA*Consts.CELL_SIDE)/2 - tutorial.getHeight()/2, null);
     }
 
     protected final void carregarInfoNivel(String pathInfoNivel){
@@ -299,6 +310,9 @@ public abstract class Fase implements Serializable {
                 break;
             case KeyEvent.VK_Z:
                 player.setAtirando(true);
+                break;
+            case KeyEvent.VK_H:
+                mostrarTutorial = !mostrarTutorial;
                 break;
         }
     }

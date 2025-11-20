@@ -21,6 +21,7 @@ public class Fase4 extends Fase {
 
     @Override
     protected final void carregarImagensFase() {
+        super.carregarImagensFase();
         carregarImagens("fases/fase4/tilesetFase4.png","fases/fase4/bgFase4.png");
         carregarInfoNivel("fases/fase4/infoFase4.png");
     }

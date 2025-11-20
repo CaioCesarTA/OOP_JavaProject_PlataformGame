@@ -9,8 +9,6 @@ import Controler.LoadSave;
 import Modelo.*;
 
 public class Fase1 extends Fase {
-    private transient BufferedImage tutorial; 
-    private boolean mostrarTutorial = true;   
 
     public Fase1(){
         super(140,36);
@@ -18,28 +16,15 @@ public class Fase1 extends Fase {
         portal = new Portal(this, 4000, 512);
         adicionarPersonagens();
         carregarImagensFase();
-
         LoadSave.salvarEntidade("ENTIDADES/zumbi.zip", new Zumbi(this, 0, 0));
+        mostrarTutorial = true;
     }
 
     @Override
     protected final void carregarImagensFase() {
+        super.carregarImagensFase();
         carregarImagens("fases/fase1/tilesetFase1.png","fases/fase1/bgFase1.png");
         carregarInfoNivel("fases/fase1/infoFase1.png");
-        tutorial = LoadSave.importarImagem("fases/fase1/tutorial.png");
-    }
-
-    @Override
-    public void desenharFase(Graphics g){
-        super.desenharFase(g);
-        if(mostrarTutorial)
-            g.drawImage(tutorial, (Consts.MUNDO_LARGURA*Consts.CELL_SIDE)/2 - tutorial.getWidth()/2, (Consts.MUNDO_ALTURA*Consts.CELL_SIDE)/2 - tutorial.getHeight()/2, null);
-    } 
-
-    @Override
-    public void keyPressed(KeyEvent e){
-        super.keyPressed(e);
-        if(e.getKeyCode() == KeyEvent.VK_H) mostrarTutorial = !mostrarTutorial;
     }
 
     @Override
